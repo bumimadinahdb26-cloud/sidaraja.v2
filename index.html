@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDARAJA — Antrian Pasien Instalasi Dialisis RSSA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Plus Jakarta Sans','sans-serif']}}}}</script>
+<style>
+:root{--b900:#1e3a5f;--b700:#1d4ed8;--b600:#2563eb;--b500:#3b82f6;--b400:#60a5fa;--b300:#93c5fd;--b200:#bfdbfe;--b100:#dbeafe;--b50:#eff6ff;--g600:#059669;--g500:#10b981;--g400:#34d399;--w:#fff;--g50:#f8fafc;--g100s:#f1f5f9;--g200:#e2e8f0;--g400:#94a3b8;--g500:#64748b;--g600:#475569;--txt:#1e293b;--txt2:#475569;--muted:#94a3b8;--bdr:#e2e8f0;--pg:#059669;--pgl:#d1fae5;--pgbg:#ecfdf5;--pk:#d97706;--pkl:#fde68a;--pkbg:#fffbeb;--pp:#db2777;--ppl:#fbcfe8;--ppbg:#fce7f3;--cn:#0891b2;--cnl:#cffafe;--cnbg:#ecfeff;--cnd:#155e75}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--g50);color:var(--txt);min-height:100vh}
+body.patient-bg{background:linear-gradient(170deg,#ecfdf5 0%,#fffbeb 40%,#fce7f3 70%,#ecfdf5 100%)}
+.hdr{position:relative;overflow:hidden;display:flex;flex-direction:column}
+.hdr-logo-area{flex-shrink:0;height:120px;background-image:url('logosidaraja.png');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:rgba(10,22,50,.92);position:relative;z-index:2}
+.hdr-body{flex:1;position:relative;overflow:hidden}
+.hdr.grad-admin .hdr-body{background:linear-gradient(135deg,var(--b900),var(--b700) 40%,var(--b600))}
+.hdr.grad-patient .hdr-body{background:linear-gradient(135deg,#047857 0%,#059669 25%,#b45309 60%,#be185d 100%)}
+.stripe{height:4px;background:repeating-linear-gradient(90deg,var(--b600) 0 20px,var(--g500) 20px 40px);z-index:2;position:relative}
+.login-overlay{position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(16px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.login-box{background:var(--w);border-radius:24px;max-width:520px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,.35);overflow:hidden;margin:auto}
+.login-logo-area{height:130px;background-image:url('logosidaraja.png');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:rgba(10,22,50,.95)}
+.login-header-text{background:linear-gradient(135deg,var(--b900),var(--b700));padding:18px 28px 24px;text-align:center}
+.login-body{padding:24px 28px 28px}
+.mode-card{border:2px solid var(--bdr);border-radius:16px;padding:18px;cursor:pointer;transition:all .25s;text-align:center;background:var(--w);position:relative;overflow:hidden}
+.mode-card.sel-admin{border-color:var(--b500);background:#eff6ff}
+.mode-card.sel-user{border-color:var(--pg);background:#ecfdf5}
+.mode-card .mc-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:20px}
+.mode-card .mc-title{font-size:14px;font-weight:800;color:var(--txt);margin-bottom:2px}
+.mode-card .mc-desc{font-size:11px;color:var(--muted);line-height:1.3}
+.auth-tabs{display:flex;gap:0;margin-bottom:18px;border-bottom:2px solid var(--bdr)}
+.auth-tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;border:none;border-bottom:3px solid transparent;color:var(--muted);background:none}
+.auth-tab.active{color:var(--b600);border-bottom-color:var(--b600)}
+.si2{width:100%;padding:12px 14px 12px 44px;border:2px solid var(--bdr);border-radius:12px;font-size:14px;color:var(--txt);background:var(--w);outline:none}
+.iic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;z-index:2}
+.bp{background:linear-gradient(135deg,var(--b600),var(--b700));color:#fff;font-weight:700;padding:12px 24px;border-radius:12px;border:none;cursor:pointer;transition:all .25s;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.bp:disabled{opacity:.5;cursor:not-allowed}
+.bg2{background:linear-gradient(135deg,var(--g500),var(--g600));color:#fff;font-weight:700;padding:12px 24px;border-radius:12px;border:none;cursor:pointer;transition:all .25s;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.bo{background:var(--w);color:var(--txt2);font-weight:600;padding:12px 24px;border-radius:12px;border:2px solid var(--bdr);cursor:pointer;transition:all .25s;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.card{background:var(--w);border-radius:16px;border:1px solid var(--bdr);box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.02)}
+.stc{background:var(--w);border-radius:14px;border:2px solid var(--bdr);padding:16px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.stc.sel{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.nav-tab{padding:12px 24px;font-weight:700;font-size:14px;border-radius:12px 12px 0 0;cursor:pointer;transition:all .25s;border:2px solid transparent;border-bottom:none;background:var(--g100);color:var(--g500)}
+.nav-tab.active{background:var(--w);color:var(--b700);border-color:var(--bdr)}
+.tw{overflow-x:auto}
+.dt{width:100%;border-collapse:separate;border-spacing:0}
+.dt thead th{background:linear-gradient(135deg,var(--b900),var(--b700));padding:12px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.95);position:sticky;top:0;z-index:10;white-space:nowrap}
+.dt tbody tr{transition:background .15s}
+.dt tbody tr:hover{background:var(--b50)!important}
+.dt tbody td{padding:12px 14px;border-bottom:1px solid var(--bdr);font-size:13px;color:var(--txt2);max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap}
+.badge-menunggu{background:#dbeafe;color:#1e40af}.badge-terjadwal{background:#d1fae5;color:#065f46}
+.badge-hdlain{background:#fef3c7;color:#92400e}.badge-batal{background:#fee2e2;color:#991b1b}
+.badge-meninggal{background:#e5e7eb;color:#374151}.badge-norespon{background:#cffafe;color:#155e75}
+.tc2{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.tt{padding:14px 20px;border-radius:12px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.12);max-width:440px;pointer-events:auto}
+.tt-s{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}.tt-e{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.7);backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-box{background:var(--w);border-radius:20px;max-width:480px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,.3);overflow:hidden;max-height:90vh;overflow-y:auto}
+.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
+.modal-hdr h3{font-size:16px;font-weight:900;color:var(--b900)}
+.modal-close{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;background:var(--g100);color:var(--g500);font-size:14px}
+.modal-body{padding:24px}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--bdr);display:flex;gap:10px;justify-content:flex-end}
+.form-input{width:100%;padding:11px 14px;border:2px solid var(--bdr);border-radius:10px;font-size:14px;color:var(--txt);background:var(--w);outline:none}
+.contact-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:10px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;border:none;text-decoration:none}
+.contact-btn-wa{background:#dcfce7;color:#166534}.contact-btn-call{background:#fef3c7;color:#92400e}.contact-btn-sms{background:#dbeafe;color:#1e40af}
+.pickup-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;font-size:11.5px;font-weight:800;cursor:pointer;transition:all .2s;border:none;background:linear-gradient(135deg,#0891b2,#0e7490);color:#fff;white-space:nowrap}
+.pickup-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:8px;font-size:11px;font-weight:800;background:#d1fae5;color:#065f46;white-space:nowrap}
+.err-box{padding:10px 14px;border-radius:10px;font-size:12px;font-weight:600;margin-bottom:14px;display:none}
+.err-box.show{display:flex;align-items:center;gap:8px;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+</style>
+</head>
+<body>
+<div class="tc2" id="toastC"></div>
+
+<!-- LOGIN OVERLAY -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo-area"></div>
+    <div class="login-header-text">
+      <h2 class="text-xl font-black text-white">SIDARAJA</h2>
+      <p class="text-blue-200 text-xs mt-1">Sistem Informasi Antrian Pasien Instalasi Dialisis RSSA</p>
+    </div>
+    <div class="login-body">
+      <p class="text-center font-bold text-sm mb-5">Pilih Mode Akses</p>
+      <div class="grid grid-cols-2 gap-4 mb-5">
+        <div class="mode-card" id="modeAdmin" onclick="selectMode('admin')">
+          <div class="mc-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)"><i class="fa-solid fa-user-shield" style="color:#2563eb"></i></div>
+          <div class="mc-title">Petugas</div>
+          <div class="mc-desc">Login & Akses Dashboard</div>
+        </div>
+        <div class="mode-card" id="modeUser" onclick="selectMode('user')">
+          <div class="mc-icon" style="background:linear-gradient(135deg,#d1fae5,#fde68a)"><i class="fa-solid fa-users" style="color:#059669"></i></div>
+          <div class="mc-title">Pasien</div>
+          <div class="mc-desc">Cek Antrian</div>
+        </div>
+      </div>
+      
+      <div id="adminSection" style="display:none">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchAuthTab('login')">Masuk</button>
+          <button class="auth-tab" onclick="switchAuthTab('register')">Daftar</button>
+        </div>
+        <div id="authLoginForm">
+          <input type="email" id="loginEmail" class="si2 mb-3" placeholder="Email" style="width:100%;padding-left:14px">
+          <input type="password" id="loginPass" class="si2 mb-3" placeholder="Kata Sandi" style="width:100%;padding-left:14px">
+          <div class="err-box" id="loginError"><span id="loginErrorMsg"></span></div>
+          <button class="bp w-full justify-center" onclick="doPetugasLogin()" id="btnLogin"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
+        </div>
+        <div id="authRegisterForm" style="display:none">
+          <input type="text" id="regNama" class="si2 mb-3" placeholder="Nama Lengkap" style="width:100%;padding-left:14px">
+          <input type="email" id="regEmail" class="si2 mb-3" placeholder="Email" style="width:100%;padding-left:14px">
+          <input type="password" id="regPass" class="si2 mb-3" placeholder="Kata Sandi (min 6)" style="width:100%;padding-left:14px">
+          <div class="err-box" id="regError"><span id="regErrorMsg"></span></div>
+          <button class="bp w-full justify-center" onclick="doPetugasRegister()" id="btnRegister"><i class="fa-solid fa-user-plus"></i> Daftar</button>
+        </div>
+      </div>
+      
+      <div id="userSection" style="display:none">
+        <button class="bg2 w-full justify-center" onclick="doUserLogin()">Lanjut Cek Antrian</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL AMBIL PASIEN -->
+<div class="modal-overlay" id="ambilModal" style="display:none" onclick="if(event.target===this)closeAmbilModal()">
+  <div class="modal-box" style="max-width:600px">
+    <div class="modal-hdr">
+      <h3><i class="fa-solid fa-hand-holding-medical mr-2" style="color:var(--cn)"></i>Hubungi & Ambil Pasien</h3>
+      <button class="modal-close" onclick="closeAmbilModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-4 p-3 rounded-xl" style="background:var(--g50);border:1px solid var(--bdr)">
+        <p class="text-sm font-bold" id="mdlNama">-</p>
+        <p class="text-xs" style="color:var(--muted)" id="mdlAlamat">-</p>
+      </div>
+      <label class="block text-xs font-bold mb-2">Template Pesan WhatsApp</label>
+      <textarea id="mdlWaText" class="form-input mb-4" rows="8" style="font-size:12px;line-height:1.5"></textarea>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <a class="contact-btn contact-btn-wa py-3" id="mdlBtnWa1" target="_blank"><i class="fa-brands fa-whatsapp"></i> WA Utama</a>
+        <a class="contact-btn contact-btn-wa py-3" id="mdlBtnWa2" target="_blank" style="background:#dcfce7;color:#166534"><i class="fa-brands fa-whatsapp"></i> WA Cadangan</a>
+        <a class="contact-btn contact-btn-call py-3" id="mdlBtnCall" target="_blank"><i class="fa-solid fa-phone"></i> Telepon</a>
+        <a class="contact-btn contact-btn-sms py-3" id="mdlBtnSms" target="_blank"><i class="fa-solid fa-comment-sms"></i> SMS</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="bo" onclick="closeAmbilModal()">Batal</button>
+      <button class="bg2" onclick="tandaiSudahAmbil()"><i class="fa-solid fa-check"></i> Tandai Sudah Ambil</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER UTAMA -->
+<header class="hdr grad-admin" id="mainHeader" style="display:none">
+  <div class="hdr-logo-area"></div>
+  <div class="hdr-body">
+    <div class="px-4 sm:px-8 pt-6 pb-8" style="position:relative;z-index:3">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+          <div class="text-white">
+            <div class="font-extrabold text-lg">SIDARAJA</div>
+            <div class="text-blue-200 text-xs">INSTALASI DIALISIS RSSA</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="px-3 py-1.5 rounded-full text-xs font-bold text-white" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);cursor:pointer" onclick="refreshData()"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-bold" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);cursor:pointer" onclick="doLogout()">
+              <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </div>
+          </div>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-white">Daftar Antri Pasien</h1>
+        <p class="text-blue-200 text-sm mt-2" id="lastUpdate">Memuat data...</p>
+      </div>
+    </div>
+  </div>
+  <div class="stripe"></div>
+</header>
+
+<!-- NAV TABS -->
+<div class="max-w-7xl mx-auto px-4 sm:px-8 mt-6" id="navTabsWrap" style="display:none">
+  <div class="flex gap-1 flex-wrap">
+    <button class="nav-tab active" id="tab1" onclick="switchSlide(1)"><i class="fa-solid fa-clipboard-list mr-2"></i>Dashboard</button>
+    <button class="nav-tab" id="tab2" onclick="switchSlide(2)"><i class="fa-solid fa-database mr-2"></i>Data Lengkap</button>
+    <button class="nav-tab" id="tab3" onclick="switchSlide(3)"><i class="fa-solid fa-chart-pie mr-2"></i>Statistik</button>
+  </div>
+</div>
+
+<!-- SLIDE 1: DASHBOARD -->
+<main id="slide1" class="px-4 sm:px-8 pb-16" style="display:none">
+  <div class="max-w-7xl mx-auto">
+    <div class="card p-6 mt-6">
+      <h3 class="text-sm font-bold mb-4"><i class="fa-solid fa-list-check mr-2" style="color:var(--b500)"></i>Daftar Pasien <span class="text-xs font-normal" style="color:var(--muted)" id="filterLabel">(Menunggu)</span></h3>
+      <div class="tw" style="max-height:600px;overflow-y:auto;border-radius:12px;border:1px solid var(--bdr)">
+        <table class="dt">
+          <thead><tr><th>No</th><th>Nama</th><th>No RM</th><th>Umur</th><th>HbsAg</th><th>Status</th><th>Info Ambil</th><th>Aksi</th></tr></thead>
+          <tbody id="dashBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- SLIDE 2: DATA LENGKAP -->
+<main id="slide2" style="display:none" class="px-4 sm:px-8 pb-16">
+  <div class="max-w-3xl mx-auto mt-6">
+    <div class="card p-8 text-center">
+      <i class="fa-solid fa-file-excel text-4xl mb-4" style="color:var(--pg)"></i>
+      <h3 class="text-xl font-black mb-2">Data Lengkap Pasien</h3>
+      <p class="text-sm mb-6" style="color:var(--txt2)">Klik tombol di bawah untuk membuka spreadsheet asli.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit" target="_blank" class="bp px-8 py-3" style="text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Excel SIDARJA</a>
+    </div>
+  </div>
+</main>
+
+<!-- SLIDE 3: STATISTIK -->
+<main id="slide3" style="display:none" class="px-4 sm:px-8 pb-16">
+  <div class="max-w-7xl mx-auto mt-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="card p-6">
+        <h3 class="text-sm font-bold mb-4"><i class="fa-solid fa-chart-column mr-2" style="color:var(--g500)"></i>Distribusi Status Pasien</h3>
+        <div style="height:350px"><canvas id="chart1"></canvas></div>
+      </div>
+      <div class="card p-6">
+        <h3 class="text-sm font-bold mb-4"><i class="fa-solid fa-hospital-user mr-2" style="color:var(--pp)"></i>Pengambilan Pasien per Ruangan</h3>
+        <div style="height:350px"><canvas id="chartRuangan"></canvas></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+let allPatientData = [];
+let currentUser = { nama: "Petugas", wa: "081200000000" };
+let pickedUpPatients = {}; 
+let currentAmbilRow = null;
+
+function toast(msg, type='success') {
+  const c = document.getElementById('toastC');
+  const t = document.createElement('div');
+  t.className = 'tt ' + (type === 'success' ? 'tt-s' : 'tt-e');
+  t.innerHTML = '<span>' + msg + '</span>';
+  c.appendChild(t);
+  setTimeout(() => { t.remove(); }, 3000);
+}
+
+function selectMode(mode) {
+  document.getElementById('modeAdmin').classList.remove('sel-admin', 'sel-user');
+  document.getElementById('modeUser').classList.remove('sel-admin', 'sel-user');
+  if (mode === 'admin') {
+    document.getElementById('modeAdmin').classList.add('sel-admin');
+    document.getElementById('adminSection').style.display = 'block';
+    document.getElementById('userSection').style.display = 'none';
+  } else {
+    document.getElementById('modeUser').classList.add('sel-user');
+    document.getElementById('adminSection').style.display = 'none';
+    document.getElementById('userSection').style.display = 'block';
+  }
+}
+
+function switchAuthTab(tab) {
+  document.getElementById('authTabLogin').classList.toggle('active', tab === 'login');
+  document.getElementById('authTabRegister').classList.toggle('active', tab === 'register');
+  document.getElementById('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function doPetugasLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const btn = document.getElementById('btnLogin');
+  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Proses...';
+  
+  google.script.run
+    .withSuccessHandler(res => {
+      btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk';
+      if (res.ok) {
+        currentUser = { nama: res.user.nama, email: res.user.email, wa: res.user.wa };
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainHeader').style.display = 'flex';
+        document.getElementById('navTabsWrap').style.display = 'block';
+        document.getElementById('slide1').style.display = 'block';
+        refreshData();
+      } else {
+        document.getElementById('loginErrorMsg').innerText = res.msg;
+        document.getElementById('loginError').classList.add('show');
+      }
+    })
+    .loginPetugas(email, pass);
+}
+
+function doUserLogin() {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('mainHeader').style.display = 'flex';
+  document.getElementById('navTabsWrap').style.display = 'none';
+  document.getElementById('slide1').style.display = 'block';
+  refreshData();
+}
+
+function doLogout() {
+  window.top.location.href = window.top.location.href;
+}
+
+function switchSlide(num) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('slide' + i).style.display = 'none';
+    document.getElementById('tab' + i).classList.remove('active');
+  }
+  document.getElementById('slide' + num).style.display = 'block';
+  document.getElementById('tab' + num).classList.add('active');
+  if (num === 3) updateRuanganChart();
+}
+
+function refreshData() {
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res.ok) {
+        allPatientData = res.data;
+        document.getElementById('lastUpdate').innerText = 'Terakhir diperbarui: ' + new Date().toLocaleTimeString('id-ID');
+        renderDashboardTable(allPatientData.filter(p => (p.STATUS||'MENUNGGU').toUpperCase() === 'MENUNGGU'));
+      } else {
+        toast('Gagal memuat data: ' + res.msg, 'error');
+      }
+    })
+    .getAllPatients();
+}
+
+function renderDashboardTable(data) {
+  const body = document.getElementById('dashBody');
+  body.innerHTML = '';
+  if (!data || data.length === 0) {
+    body.innerHTML = '<tr><td colspan="8" class="text-center py-4" style="color:var(--muted)">Tidak ada data</td></tr>';
+    return;
+  }
+
+  data.forEach((p, i) => {
+    const rowIdx = p._row;
+    const statusVal = (p.STATUS || 'MENUNGGU').toUpperCase();
+    const isPickedUp = pickedUpPatients[rowIdx];
+    
+    let aksiCell = '-';
+    if (statusVal === 'MENUNGGU') {
+      if (isPickedUp) {
+        aksiCell = `<span class="pickup-badge"><i class="fa-solid fa-check"></i> Sudah Diambil</span>`;
+      } else {
+        aksiCell = `<button class="pickup-btn" onclick="openAmbilModal(${rowIdx})"><i class="fa-solid fa-hand-holding-medical"></i> Ambil Pasien</button>`;
+      }
+    } else {
+      aksiCell = `<span class="badge badge-${statusVal.toLowerCase().replace(/\s/g,'')}">${statusVal}</span>`;
+    }
+
+    let infoAmbil = isPickedUp ? `<span style="color:var(--g600);font-weight:700;font-size:11px"><i class="fa-solid fa-user-check"></i> ${isPickedUp}</span>` : '-';
+
+    body.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${p.NAMA || p['Nama Lengkap'] || '-'}</td>
+        <td>${p['NO RM'] || p.NORM || '-'}</td>
+        <td>${p.UMUR || '-'}</td>
+        <td>${p.HBSAG || '-'}</td>
+        <td><span class="badge badge-${statusVal.toLowerCase().replace(/\s/g,'')}">${statusVal}</span></td>
+        <td>${infoAmbil}</td>
+        <td>${aksiCell}</td>
+      </tr>`;
+  });
+}
+
+function openAmbilModal(rowIdx) {
+  currentAmbilRow = rowIdx;
+  const p = allPatientData.find(x => x._row === rowIdx);
+  if(!p) return;
+
+  const nama = p.NAMA || p['Nama Lengkap'] || 'Pasien';
+  const alamat = p.ALAMAT || p['Alamat Lengkap'] || '-';
+  const wa1 = (p['NO HP'] || p.NOHP || '').replace(/[^0-9]/g, '');
+  const wa2 = (p['NO HP 2'] || '').replace(/[^0-9]/g, '');
+
+  document.getElementById('mdlNama').innerText = nama;
+  document.getElementById('mdlAlamat').innerText = alamat;
+
+  const msg = `Assalamu'alaikum warahmatullahi wabarakatuh.\n\nSelamat pagi, Bapak/Ibu.\n\nPerkenalkan, kami dari Tim Pendaftaran HD Rawat Jalan RSSA.\n\nMohon maaf mengganggu waktunya. Kami ingin dan konfirmasinya, kami memastikan data yang kami miliki sudah sesuai. Apakah benar nomor WhatsApp ini milik ${nama} yang beralamat di ${alamat}?\n\nUntuk kelancaran proses administrasi dan pendaftaran layanan HD Rawat Jalan di RSSA segera konfirmasi ke nomor WA : ${currentUser.nama} (${currentUser.wa})\n\nAtas waktu dan konfirmasinya, kami ucapkan terima kasih.\n\nWassalamu'alaikum warahmatullahi wabarakatuh.`;
+
+  document.getElementById('mdlWaText').value = msg;
+  const encodedMsg = encodeURIComponent(msg);
+
+  document.getElementById('mdlBtnWa1').href = wa1 ? `https://wa.me/62${wa1.replace(/^0/, '')}?text=${encodedMsg}` : '#';
+  document.getElementById('mdlBtnWa2').href = wa2 ? `https://wa.me/62${wa2.replace(/^0/, '')}?text=${encodedMsg}` : '#';
+  document.getElementById('mdlBtnCall').href = wa1 ? `tel:${wa1}` : '#';
+  document.getElementById('mdlBtnSms').href = wa1 ? `sms:${wa1}?body=${encodedMsg}` : '#';
+
+  document.getElementById('ambilModal').style.display = 'flex';
+}
+
+function closeAmbilModal() {
+  document.getElementById('ambilModal').style.display = 'none';
+  currentAmbilRow = null;
+}
+
+function tandaiSudahAmbil() {
+  if (currentAmbilRow) {
+    pickedUpPatients[currentAmbilRow] = currentUser.nama;
+    toast('✅ Pasien ditandai sudah diambil oleh ' + currentUser.nama);
+    closeAmbilModal();
+    renderDashboardTable(allPatientData.filter(p => (p.STATUS||'MENUNGGU').toUpperCase() === 'MENUNGGU'));
+  }
+}
+
+function updateRuanganChart() {
+  const counts = {};
+  Object.values(pickedUpPatients).forEach(petugas => {
+    counts[petugas] = (counts[petugas] || 0) + 1;
+  });
+  const labels = Object.keys(counts);
+  const data = Object.values(counts);
+  const ctx = document.getElementById('chartRuangan');
+  if(!ctx) return;
+  if(window.ruanganChart) window.ruanganChart.destroy();
+  if(labels.length === 0) return;
+
+  window.ruanganChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data, backgroundColor: ['#3b82f6','#10b981','#f59e0b','#ef4444'] }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+  });
+}
+</script>
+</body>
+</html>

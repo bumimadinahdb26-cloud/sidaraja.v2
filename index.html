@@ -12,109 +12,101 @@
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
 <style>
 :root {
-  --primary: #095995;
-  --primary-light: #5da6d6;
-  --primary-dark: #004b91;
+  --primary: #001f3f;
+  --primary-light: #003366;
+  --primary-accent: #004080;
   --secondary: #f0f0f0;
-  --border: #c4c4c4;
+  --border: #d1d5db;
   --text: #333333;
   --text-muted: #666666;
-  --bg: #efefef;
+  --bg: #f3f4f6;
   --green: #059669;
   --green-light: #34d399;
   --red: #dc2626;
   --yellow: #d97706;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 4px !important; }
 body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); font-size: 13px; min-height: 100vh; }
 body.patient-bg { background: #f0f4f8; }
 
-/* Top Navbar eMaster Style */
-.topbar { background: linear-gradient(to bottom, #3a7bb5, #095995); border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
-.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 40px; }
-.topbar-logo { color: #fff; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; text-shadow: 1px 1px 1px rgba(0,0,0,.3); }
-.topbar-logo-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
-.topbar-menu { display: flex; gap: 0; height: 40px; }
-.topbar-menu-item { padding: 0 18px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; }
-.topbar-menu-item:hover { background: rgba(0,0,0,0.15); }
-.topbar-menu-item.active { background: var(--bg); color: var(--primary); }
+/* Top Navbar 3D Style */
+.topbar { background: linear-gradient(to bottom, var(--primary), var(--primary-light)); border-bottom: 3px solid #001a33; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 50px; }
+.topbar-logo { color: #fff; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,.4); }
+.topbar-logo img { height: 35px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
+.topbar-menu { display: flex; gap: 0; height: 50px; }
+.topbar-menu-item { padding: 0 18px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; }
+.topbar-menu-item:hover { background: rgba(255,255,255,0.1); }
+.topbar-menu-item.active { background: var(--bg); color: var(--primary); box-shadow: inset 0 4px 0 var(--primary-accent); }
 .topbar-right { display: flex; align-items: center; gap: 10px; }
-.topbar-user { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.2); cursor: pointer; transition: none; }
-.topbar-user:hover { background: rgba(0,0,0,0.2); }
-.topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); }
+.topbar-user { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+.topbar-user:hover { background: rgba(0,0,0,0.3); }
+.topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
 .topbar-username { color: #fff; font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media(max-width:768px){.topbar-menu{display:none}.topbar-username{display:none}}
 
-/* Welcome Banner eMaster Style */
-.welcome-banner { background: #fff; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+/* Welcome Banner */
+.welcome-banner { background: #fff; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1); }
 .welcome-title { font-size: 18px; font-weight: bold; color: var(--primary); }
 .welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-.welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
 
-/* eMaster Style Cards Grid */
-.em-card { background: #fff; border: 1px solid var(--border); padding: 15px; text-align: center; cursor: pointer; transition: none; box-shadow: none; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 8px; min-height: 120px; justify-content: center; }
-.em-card:hover { border-color: var(--primary); background: #f0f7ff; box-shadow: 0 0 5px rgba(9,89,149,0.3); }
-.em-card.active { border: 2px solid var(--primary); background: #e6f2ff; padding: 14px; }
-.em-card-icon { width: 48px; height: 48px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 1px solid var(--primary-dark); }
-.em-card-num { font-size: 24px; font-weight: bold; color: var(--text); line-height: 1; }
+/* 3D Style Cards Grid */
+.em-card { background: #fff; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #d1d5db, 0 6px 12px rgba(0,0,0,0.1); }
+.em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #b0b3b8, 0 10px 20px rgba(0,0,0,0.15); }
+.em-card.active { border: 2px solid var(--primary); background: #f0f7ff; box-shadow: 0 4px 0 var(--primary-accent), 0 6px 12px rgba(0,0,0,0.15); }
+.em-card-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+.em-card-icon img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2)); }
+.em-card-num { font-size: 24px; font-weight: bold; color: var(--text); line-height: 1; text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
 .em-card-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; }
 
-/* Login & Header */
-.login-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.85); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
-.login-box { background: #fff; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,.3); animation:fu2 .4s cubic-bezier(.16,1,.3,1); margin:auto; }
-.login-logo-area { height: 80px; background-image: url('logosidaraja.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: rgba(10,22,50,.92); }
-.login-header-text { background: var(--primary); padding: 15px; text-align: center; border-bottom: 2px solid var(--primary-dark); }
+/* Login */
+.login-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+.login-box { background: #fff; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); margin:auto; }
+.login-logo-area { height: 100px; background-image: url('logosidaraja.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: var(--primary); }
+.login-header-text { background: var(--primary-light); padding: 15px; text-align: center; border-bottom: 2px solid var(--primary-accent); }
 .login-body { padding: 20px; }
-.mode-card { border: 1px solid var(--border); padding: 15px; cursor: pointer; transition: none; text-align: center; background: #fff; position: relative; overflow: hidden; }
-.mode-card:hover { background: #f0f7ff; border-color: var(--primary); }
+.mode-card { border: 1px solid var(--border); padding: 15px; cursor: pointer; text-align: center; background: #fff; box-shadow: 0 3px 0 #d1d5db; transition: all 0.2s; }
+.mode-card:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #b0b3b8; }
 .mode-card.sel-admin { border: 2px solid var(--primary); background: #f0f7ff; }
 .mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
 .mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
-.mode-card .mc-title { font-size: 13px; font-weight: bold; color: var(--text); }
-.mode-card .mc-desc { font-size: 11px; color: var(--text-muted); line-height: 1.3; margin-top: 2px; }
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
 .auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
-.auth-tab.active { color: var(--primary); border-bottom-color: var(--primary); background: #f9f9f9; }
 
-/* Form Inputs */
-.si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; }
-.si2:focus { border-color: var(--primary); box-shadow: 0 0 3px rgba(9,89,149,.2); }
-.iic { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; z-index: 2; }
+/* Inputs */
+.si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+.si2:focus { border-color: var(--primary); box-shadow: 0 0 3px rgba(0,64,128,.2); }
 .form-label { display: block; font-size: 11px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
-.form-input { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; }
-.form-input:focus { border-color: var(--primary); }
 
-/* Buttons */
-.bp, .bg2, .bo { padding: 6px 12px; font-size: 12px; font-weight: bold; border: 1px solid; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: none; font-family: inherit; text-decoration: none; line-height: 1.4; }
-.bp { background: linear-gradient(to bottom, #5da6d6, var(--primary)); border-color: var(--primary-dark); color: #fff; }
-.bp:hover { background: var(--primary); }
-.bg2 { background: linear-gradient(to bottom, #34d399, var(--green)); border-color: #047857; color: #fff; }
-.bg2:hover { background: var(--green); }
-.bo { background: linear-gradient(to bottom, #ffffff, #e0e0e0); border-color: var(--border); color: var(--text); }
-.bo:hover { background: #e0e0e0; }
+/* 3D Buttons */
+.bp, .bg2, .bo { padding: 6px 12px; font-size: 12px; font-weight: bold; border: 1px solid; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.1s; font-family: inherit; text-decoration: none; line-height: 1.4; }
+.bp { background: linear-gradient(to bottom, #004080, var(--primary-light)); border-color: #001a33; color: #fff; box-shadow: 0 3px 0 #001a33, 0 4px 6px rgba(0,0,0,0.2); }
+.bp:hover { transform: translateY(1px); box-shadow: 0 2px 0 #001a33, 0 3px 4px rgba(0,0,0,0.2); }
+.bg2 { background: linear-gradient(to bottom, #34d399, var(--green)); border-color: #047857; color: #fff; box-shadow: 0 3px 0 #047857, 0 4px 6px rgba(0,0,0,0.2); }
+.bg2:hover { transform: translateY(1px); box-shadow: 0 2px 0 #047857, 0 3px 4px rgba(0,0,0,0.2); }
+.bo { background: linear-gradient(to bottom, #ffffff, #e0e0e0); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #b0b3b8, 0 4px 6px rgba(0,0,0,0.1); }
+.bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #b0b3b8, 0 3px 4px rgba(0,0,0,0.1); }
 
-/* Cards & Content Boxes */
-.card { background: #fff; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
-.card-header { background: linear-gradient(to bottom, #f9f9f9, #e9e9e9); border-bottom: 1px solid var(--border); padding: 8px 15px; font-weight: bold; color: var(--text); font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
+/* Cards */
+.card { background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,0.1); }
+.card-header { background: linear-gradient(to bottom, #003366, var(--primary-light)); border-bottom: 2px solid #001a33; padding: 8px 15px; font-weight: bold; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+
 .tc2 { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; animation:ti .4s; box-shadow: 0 4px 12px rgba(0,0,0,.15); max-width: 350px; pointer-events: auto; border: 1px solid; }
+.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); max-width: 350px; pointer-events: auto; border: 1px solid; }
 .tt-s { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
 .tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .tt-i { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-@keyframes ti{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-.tt-x{animation:to .3s ease forwards}@keyframes to{to{opacity:0;transform:translateX(20px)}}
-.fu{opacity:0;transform:translateY(10px);animation:fu2 .4s forwards}
-@keyframes fu2{to{opacity:1;transform:translateY(0)}}
 
-/* Tables (Flexigrid Style) */
+/* Tables 3D */
 table.dt { width: 100%; border-collapse: collapse; }
-table.dt thead th { background: linear-gradient(to bottom, #f9f9f9, #e9e9e9); border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 12px; color: var(--text); font-weight: bold; position: sticky; top: 0; z-index: 10; }
+table.dt thead th { background: linear-gradient(to bottom, #003366, var(--primary-light)); border: 1px solid #001a33; padding: 8px; text-align: left; font-size: 12px; color: #fff; font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.3); }
 table.dt tbody td { border: 1px solid #ddd; padding: 8px; font-size: 12px; color: var(--text); background: #fff; }
 table.dt tbody tr:nth-child(even) td { background: #f9f9f9; }
 table.dt tbody tr:hover td { background: #e0effa; }
 
-.badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; }
+.badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .badge-menunggu { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
 .badge-terjadwal { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 .badge-hdlain { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
@@ -126,21 +118,18 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 
 /* WA Buttons */
-.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
-.btn-wa:hover { background: #128C7E; }
-.btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); color: #fff; border-color: #0369a1; }
-.btn-wa2:hover { background: #0284c7; }
+.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; }
+.btn-wa:hover { transform: translateY(1px); box-shadow: 0 1px 0 #0a6b58; }
+.btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
+.btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
 
 /* Excel & Instructions */
-.excel-link-card { border: 1px solid var(--green); transition: none; }
-.dl-info-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; background: #f9f9f9; border: 1px solid var(--border); }
-.instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; }
+.excel-link-card { border: 1px solid var(--green); box-shadow: 0 4px 0 #047857; }
+.instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-.instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; }
+.instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
 
-.laporan-stat-card { background: #fff; border: 1px solid var(--border); padding: 15px; text-align: center; border-top: 3px solid var(--primary); }
-.laporan-stat-num { font-size: 24px; font-weight: bold; color: var(--primary); line-height: 1; }
-.laporan-stat-label { font-size: 11px; font-weight: bold; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+.laporan-stat-card { background: #fff; border: 1px solid var(--border); padding: 15px; text-align: center; border-top: 4px solid var(--primary); box-shadow: 0 4px 0 #d1d5db, 0 6px 12px rgba(0,0,0,0.05); }
 
 .conn-dot { width: 8px; height: 8px; display: inline-block; }
 .conn-ok { background: #10b981; }
@@ -153,12 +142,12 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .err-box { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
 .ok-box { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
 
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 16px; }
-.modal-box { background: #fff; border: 1px solid var(--border); max-width: 600px; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,.3); max-height: 90vh; overflow-y: auto; }
-.modal-hdr { padding: 10px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: #f9f9f9; }
-.modal-hdr h3 { font-size: 14px; font-weight: bold; color: var(--text); }
-.modal-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--border); background: #fff; color: var(--text-muted); }
-.modal-close:hover { background: #fee2e2; color: #dc2626; border-color: #fecaca; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal-box { background: #fff; border: 1px solid var(--border); max-width: 600px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); max-height: 90vh; overflow-y: auto; }
+.modal-hdr { padding: 10px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, #003366, var(--primary-light)); color: #fff; }
+.modal-hdr h3 { font-size: 14px; font-weight: bold; color: #fff; }
+.modal-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; }
+.modal-close:hover { background: #dc2626; border-color: #fecaca; }
 .modal-body { padding: 15px; }
 
 @media print{body>*{display:none!important}#printArea{display:block!important}}
@@ -197,8 +186,8 @@ table.dt tbody tr:hover td { background: #e0effa; }
           <button class="auth-tab" id="authTabRegister" onclick="switchAuthTab('register')">Daftar</button>
         </div>
         <div id="authLoginForm">
-          <div class="mb-3"><label class="form-label">Email</label><div class="relative"><i class="fa-solid fa-envelope iic"></i><input type="email" id="loginEmail" class="si2" style="padding-left:30px" placeholder="email@contoh.com"></div></div>
-          <div class="mb-3"><label class="form-label">Kata Sandi</label><div class="relative"><i class="fa-solid fa-lock iic"></i><input type="password" id="loginPass" class="si2" style="padding-left:30px" placeholder="Kata sandi"></div></div>
+          <div class="mb-3"><label class="form-label">Email</label><div class="relative"><i class="fa-solid fa-envelope absolute left-2 top-2 text-gray-400"></i><input type="email" id="loginEmail" class="si2" style="padding-left:30px" placeholder="email@contoh.com"></div></div>
+          <div class="mb-3"><label class="form-label">Kata Sandi</label><div class="relative"><i class="fa-solid fa-lock absolute left-2 top-2 text-gray-400"></i><input type="password" id="loginPass" class="si2" style="padding-left:30px" placeholder="Kata sandi"></div></div>
           <div class="err-box" id="loginError"><i class="fa-solid fa-circle-xmark"></i><span id="loginErrorMsg"></span></div>
           <button class="bp w-full justify-center" onclick="doPetugasLogin()" id="btnLogin"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
         </div>
@@ -226,7 +215,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 <div class="modal-overlay" id="menungguWaModal" style="display:none" onclick="if(event.target===this)closeMenungguWaModal()">
   <div class="modal-box">
     <div class="modal-hdr">
-      <h3><i class="fa-solid fa-phone-volume mr-2" style="color:var(--primary)"></i>Hubungi Pasien Menunggu</h3>
+      <h3><i class="fa-solid fa-phone-volume mr-2"></i>Hubungi Pasien Menunggu</h3>
       <button class="modal-close" onclick="closeMenungguWaModal()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="modal-body">
@@ -236,11 +225,11 @@ table.dt tbody tr:hover td { background: #e0effa; }
   </div>
 </div>
 
-<!-- ===== MODAL KIRIM WHATSAPP (Sesuai Gambar 1) ===== -->
+<!-- ===== MODAL KIRIM WHATSAPP ===== -->
 <div class="modal-overlay" id="waModal" style="display:none" onclick="if(event.target===this)closeWaModal()">
   <div class="modal-box">
     <div class="modal-hdr">
-      <h3><i class="fa-brands fa-whatsapp mr-2" style="color:#128C7E"></i>Kirim WhatsApp Pasien</h3>
+      <h3><i class="fa-brands fa-whatsapp mr-2"></i>Kirim WhatsApp Pasien</h3>
       <button class="modal-close" onclick="closeWaModal()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="modal-body">
@@ -266,21 +255,19 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <textarea id="waText" rows="10" class="si2" style="resize:vertical;font-size:12px;line-height:1.5"></textarea>
       </div>
     </div>
-    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px">
+    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px;background:#f9f9f9;color:#333">
       <button class="bo mr-2" onclick="closeWaModal()">Batal</button>
-      <button class="bg2" onclick="sendWaMessage()" style="background:linear-gradient(to bottom, #25D366, #128C7E);border-color:#0a6b58"><i class="fa-brands fa-whatsapp"></i> Kirim WhatsApp</button>
+      <button class="bg2" onclick="sendWaMessage()"><i class="fa-brands fa-whatsapp"></i> Kirim WhatsApp</button>
     </div>
   </div>
 </div>
 
-<!-- ===== TOP NAVBAR eMaster Style ===== -->
+<!-- ===== TOP NAVBAR ===== -->
 <header id="mainHeader" style="display:none">
   <div class="topbar">
     <div class="topbar-inner">
       <div class="topbar-logo">
-        <div class="topbar-logo-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="20" fill="#fff"/><rect x="2" y="9" width="20" height="6" fill="#fff"/></svg>
-        </div>
+        <img src="logosidaraja.png" alt="Logo SIDARAJA">
         <span>SIDARAJA</span>
       </div>
       <nav class="topbar-menu">
@@ -289,7 +276,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)">Laporan</button>
       </nav>
       <div class="topbar-right">
-        <div class="flex items-center gap-2 px-2 py-1" style="background:rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.2)">
+        <div class="flex items-center gap-2 px-2 py-1" style="background:rgba(0,0,0,.2);border:1px solid rgba(0,0,0,0.3)">
           <span class="conn-dot conn-load" id="connDot"></span>
           <span class="text-white text-xs font-bold" id="connLabel">MEMUAT</span>
         </div>
@@ -343,52 +330,53 @@ table.dt tbody tr:hover td { background: #e0effa; }
     </div>
 
     <div id="dashboardPrintArea">
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-4" id="statusCards">
-        <div class="em-card active" style="border-color:var(--primary)" onclick="clickStatusCard('menunggu')" data-key="menunggu">
-          <div class="em-card-icon" style="background:var(--primary)"><i class="fa-solid fa-hourglass-half"></i></div>
+      <!-- Grid Kartu 3D (8 Kolom di Desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
+        <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/hourglass-sand-timer.png" alt="Menunggu"></div>
           <div class="em-card-num" id="scMenunggu">0</div>
           <div class="em-card-label">Menunggu</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
-          <div class="em-card-icon" style="background:#059669"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/check-calendar.png" alt="Terjadwal"></div>
           <div class="em-card-num" id="scTerjadwal">0</div>
           <div class="em-card-label">Terjadwal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon" style="background:#d97706"><i class="fa-solid fa-arrows-turn-right"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/exchange.png" alt="HD Lain"></div>
           <div class="em-card-num" id="scHdlain">0</div>
           <div class="em-card-label">HD Lain</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon" style="background:#dc2626"><i class="fa-solid fa-circle-xmark"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/cancel.png" alt="Batal"></div>
           <div class="em-card-num" id="scBatal">0</div>
           <div class="em-card-label">Batal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon" style="background:#6b7280"><i class="fa-solid fa-heart-crack"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/broken-heart.png" alt="Meninggal"></div>
           <div class="em-card-num" id="scMeninggal">0</div>
           <div class="em-card-label">Meninggal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
-          <div class="em-card-icon" style="background:#0891b2"><i class="fa-solid fa-phone-slash"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/no-phones.png" alt="No Respon"></div>
           <div class="em-card-num" id="scNorespon">0</div>
           <div class="em-card-label">No Respon</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('all')" data-key="all">
-          <div class="em-card-icon" style="background:#7c3aed"><i class="fa-solid fa-users"></i></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/groups.png" alt="Total"></div>
           <div class="em-card-num" id="scTotal">0</div>
           <div class="em-card-label">Total Pasien</div>
         </div>
-        <div class="em-card" style="background:#f0fdf4;border-color:#86efac" onclick="openMenungguWaModal()">
-          <div class="em-card-icon" style="background:#128C7E"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="em-card" style="background:#f0fdf4" onclick="openMenungguWaModal()">
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/whatsapp.png" alt="WA"></div>
           <div class="em-card-num" id="scWaMenunggu" style="color:#065f46">0</div>
-          <div class="em-card-label" style="color:#047857">Hubungi WA Menunggu</div>
+          <div class="em-card-label" style="color:#047857">Hubungi WA</div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <span>Daftar Pasien <span id="filterLabel" style="color:var(--primary)">(Menunggu)</span></span>
+          <span>Daftar Pasien <span id="filterLabel" style="color:#a4caee">(Menunggu)</span></span>
         </div>
         <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
           <table class="dt">
@@ -423,12 +411,12 @@ table.dt tbody tr:hover td { background: #e0effa; }
     </div>
 
     <div class="card">
-      <div class="card-header" style="background:linear-gradient(to bottom, #34d399, #059669);color:#fff;border-bottom:2px solid #047857">
+      <div class="card-header" style="background:linear-gradient(to bottom, #34d399, var(--green));border-bottom:2px solid #047857">
         <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARJA</span>
       </div>
       <div class="p-6 text-center">
         <p class="mb-4">Klik tombol di bawah untuk membuka data lengkap seluruh pasien yang dikelola melalui Google Spreadsheet.</p>
-        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bp" style="background:linear-gradient(to bottom, #34d399, #059669);border-color:#047857;padding:10px 20px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Spreadsheet</a>
+        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bp" style="background:linear-gradient(to bottom, #34d399, var(--green));border-color:#047857;padding:10px 20px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Spreadsheet</a>
       </div>
     </div>
 
@@ -522,7 +510,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
 var GID = '1588121083';
 var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
-var SHEET_USER = 'user'; // Sesuai Code.gs
+var SHEET_USER = 'user'; 
 
 var allData = [];
 var currentFilter = 'menunggu';
@@ -549,6 +537,16 @@ function setConnState(dotId, labelId, state) {
   if (!dot || !lbl) return;
   dot.className = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
   lbl.textContent = state === 'ok' ? 'TERHUBUNG' : state === 'fail' ? 'GAGAL' : 'MEMUAT';
+}
+
+function parseGvizDate(val) {
+  if (!val) return null;
+  if (typeof val === 'string' && val.startsWith('Date(')) {
+    var m = val.match(/Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)/);
+    if (m) return new Date(+m[1], +m[2], +m[3], m[4]?+m[4]:0, m[5]?+m[5]:0, m[6]?+m[6]:0);
+  }
+  var d = new Date(val);
+  return isNaN(d.getTime()) ? null : d;
 }
 
 function getStatusKey(status) {
@@ -604,10 +602,7 @@ function doPetugasLogin() {
   enterApp('admin');
 }
 
-function doPetugasRegister() {
-  showErr('regError', 'Fitur daftar sedang maintenance. Hubungi admin.');
-}
-
+function doPetugasRegister() { showErr('regError', 'Fitur daftar sedang maintenance. Hubungi admin.'); }
 function doUserLogin() { currentUser = { nama: 'Pasien', role: 'Pasien' }; enterApp('patient'); }
 
 function doLogout() {
@@ -665,7 +660,9 @@ function fetchSheetData() {
     rows.forEach(function(row, idx) {
       var c = function(ci) { return row.c[ci] ? (row.c[ci].v !== null ? row.c[ci].v : '') : ''; };
       allData.push({
-        row: idx + 2, timestamp: c(0), nama: c(1), noRM: c(2), umur: c(4),
+        row: idx + 2, 
+        timestamp: parseGvizDate(c(0)), 
+        nama: c(1), noRM: c(2), umur: c(4),
         hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
       });
     });
@@ -685,7 +682,6 @@ function clickStatusCard(key) {
   document.querySelectorAll('#statusCards .em-card').forEach(function(c) {
     if (c.getAttribute('data-key')) {
       c.classList.toggle('active', c.getAttribute('data-key') === key);
-      if (c.getAttribute('data-key') === key) c.style.borderColor = 'var(--primary)'; else c.style.borderColor = 'var(--border)';
     }
   });
   $('filterLabel').textContent = key === 'all' ? '(Semua Data)' : '(' + key.charAt(0).toUpperCase() + key.slice(1) + ')';
@@ -727,7 +723,6 @@ function renderDashboard() {
   body.innerHTML = html;
 }
 
-// ===== MODAL WA MENUNGGU =====
 function openMenungguWaModal() {
   var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
   var container = $('menungguWaList');
@@ -750,41 +745,31 @@ function openMenungguWaModal() {
 }
 function closeMenungguWaModal() { $('menungguWaModal').style.display = 'none'; }
 
-// ===== MODAL KIRIM WA =====
 function openWaModal(row, type) {
   var d = allData.find(function(x) { return x.row == row; });
   if (!d) return toast('Data tidak ditemukan', 'error');
-  
   var phone = type === 1 ? d.noHP : d.noHP2;
   var wa = formatPhone(phone);
   if (!wa) return toast('Nomor WhatsApp tidak tersedia', 'error');
-  
   $('waNama').value = d.nama;
   $('waNomor').value = wa;
   $('waRuangan').value = '';
   generateWaText();
   $('waModal').style.display = 'flex';
 }
-
 function closeWaModal() { $('waModal').style.display = 'none'; }
 
 function generateWaText() {
   var nama = $('waNama').value;
   var ruangan = $('waRuangan').value;
-  
-  var text = "INSTALASI DIALISIS\n";
-  text += "RSUD DR SAIFUL ANWAR\n";
-  text += "PROV JAWA TIMUR\n\n";
-  text += "Salam sehat kami sampaikan,\n\n";
+  var text = "INSTALASI DIALISIS\nRSUD DR SAIFUL ANWAR\nPROV JAWA TIMUR\n\nSalam sehat kami sampaikan,\n\n";
   if (ruangan) {
     text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menginformasikan bahwa saat ini di ruangan " + ruangan + " terdapat jadwal kosong untuk pelaksanaan Hemodialisis.\n\n";
     text += "Apakah Bapak/Ibu " + nama + " bersedia untuk mengisi jadwal tersebut?\n\n";
   } else {
     text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menghubungi Bapak/Ibu " + nama + " terkait jadwal Hemodialisis.\n\n";
   }
-  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\n";
-  text += "Salam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
-  
+  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\nSalam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
   $('waText').value = text;
 }
 
@@ -801,12 +786,13 @@ function applyLaporanFilter() { renderLaporan(); }
 function resetLaporanFilter() { $('laporanDari').value = ''; $('laporanSampai').value = ''; renderLaporan(); }
 
 function renderLaporan() {
-  var dari = $('laporanDari').value, sampai = $('laporanSampai').value;
+  var dari = $('laporanDari').value ? new Date($('laporanDari').value + 'T00:00:00') : null;
+  var sampai = $('laporanSampai').value ? new Date($('laporanSampai').value + 'T23:59:59') : null;
+
   laporanData = allData.filter(function(d) {
-    if (!d.timestamp) return false;
-    var ts = new Date(d.timestamp); if (isNaN(ts.getTime())) return false;
-    if (dari && ts < new Date(dari)) return false;
-    if (sampai) { var s = new Date(sampai); s.setHours(23,59,59,999); if (ts > s) return false; }
+    if (!d.timestamp) return false; 
+    if (dari && d.timestamp < dari) return false;
+    if (sampai && d.timestamp > sampai) return false;
     return true;
   });
   
@@ -834,7 +820,7 @@ function renderLaporan() {
   var html = '';
   laporanData.forEach(function(d, i) {
     var sk = getStatusKey(d.status);
-    var tgl = d.timestamp ? new Date(d.timestamp).toLocaleDateString('id-ID') : '-';
+    var tgl = d.timestamp ? d.timestamp.toLocaleDateString('id-ID') : '-';
     html += '<tr><td>' + (i+1) + '</td><td>' + escHtml(tgl) + '</td><td>' + escHtml(d.nama) + '</td><td>' + escHtml(d.noRM) + '</td><td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td></tr>';
   });
   body.innerHTML = html || '<tr><td colspan="5" style="text-align:center;padding:20px">Tidak ada data</td></tr>';

@@ -126,7 +126,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 
 /* WA Buttons */
-.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; }
+.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
 .btn-wa:hover { background: #128C7E; }
 .btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); color: #fff; border-color: #0369a1; }
 .btn-wa2:hover { background: #0284c7; }
@@ -232,6 +232,43 @@ table.dt tbody tr:hover td { background: #e0effa; }
     <div class="modal-body">
       <p class="text-xs mb-3" style="color:var(--text-muted)">Klik tombol WhatsApp untuk menghubungi nomor pasien (kolom O) atau keluarga (kolom P).</p>
       <div id="menungguWaList" style="max-height:60vh;overflow-y:auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL KIRIM WHATSAPP (Sesuai Gambar 1) ===== -->
+<div class="modal-overlay" id="waModal" style="display:none" onclick="if(event.target===this)closeWaModal()">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <h3><i class="fa-brands fa-whatsapp mr-2" style="color:#128C7E"></i>Kirim WhatsApp Pasien</h3>
+      <button class="modal-close" onclick="closeWaModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label class="form-label">Nama Pasien</label>
+        <input type="text" id="waNama" class="si2" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nomor WhatsApp</label>
+        <input type="text" id="waNomor" class="si2" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Pilih Ruangan HD yang Kosong</label>
+        <select id="waRuangan" class="si2" onchange="generateWaText()">
+          <option value="">-- Pilih Ruangan --</option>
+          <option value="Teuku Umar">Teuku Umar</option>
+          <option value="Malahayati">Malahayati</option>
+          <option value="Cut Nyak Dien">Cut Nyak Dien</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Pesan WhatsApp</label>
+        <textarea id="waText" rows="10" class="si2" style="resize:vertical;font-size:12px;line-height:1.5"></textarea>
+      </div>
+    </div>
+    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px">
+      <button class="bo mr-2" onclick="closeWaModal()">Batal</button>
+      <button class="bg2" onclick="sendWaMessage()" style="background:linear-gradient(to bottom, #25D366, #128C7E);border-color:#0a6b58"><i class="fa-brands fa-whatsapp"></i> Kirim WhatsApp</button>
     </div>
   </div>
 </div>
@@ -681,8 +718,8 @@ function renderDashboard() {
     html += '<td>' + escHtml(d.keterangan) + '</td>';
     html += '<td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td>';
     html += '<td style="white-space:nowrap;text-align:center">';
-    if (wa1) html += '<a href="https://wa.me/' + wa1 + '" target="_blank" class="btn-wa" title="WA Pasien (O)"><i class="fa-brands fa-whatsapp"></i></a>';
-    if (wa2) html += '<a href="https://wa.me/' + wa2 + '" target="_blank" class="btn-wa btn-wa2" title="WA Keluarga (P)"><i class="fa-brands fa-whatsapp"></i></a>';
+    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa" title="WA Pasien (O)"><i class="fa-brands fa-whatsapp"></i></button>';
+    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2" title="WA Keluarga (P)"><i class="fa-brands fa-whatsapp"></i></button>';
     if (!wa1 && !wa2) html += '<span style="color:var(--text-muted)">-</span>';
     html += '</td>';
     html += '</tr>';
@@ -690,6 +727,7 @@ function renderDashboard() {
   body.innerHTML = html;
 }
 
+// ===== MODAL WA MENUNGGU =====
 function openMenungguWaModal() {
   var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
   var container = $('menungguWaList');
@@ -702,8 +740,8 @@ function openMenungguWaModal() {
       html += '<div style="background:#f9f9f9;border:1px solid #ddd;padding:10px;margin-bottom:8px">';
       html += '<div style="font-weight:bold;margin-bottom:5px">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
       html += '<div style="display:flex;gap:5px;flex-wrap:wrap">';
-      if (wa1) html += '<a href="https://wa.me/' + wa1 + '" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</a>';
-      if (wa2) html += '<a href="https://wa.me/' + wa2 + '" target="_blank" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga (P)</a>';
+      if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</button>';
+      if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga (P)</button>';
       html += '</div></div>';
     });
     container.innerHTML = html;
@@ -712,6 +750,53 @@ function openMenungguWaModal() {
 }
 function closeMenungguWaModal() { $('menungguWaModal').style.display = 'none'; }
 
+// ===== MODAL KIRIM WA =====
+function openWaModal(row, type) {
+  var d = allData.find(function(x) { return x.row == row; });
+  if (!d) return toast('Data tidak ditemukan', 'error');
+  
+  var phone = type === 1 ? d.noHP : d.noHP2;
+  var wa = formatPhone(phone);
+  if (!wa) return toast('Nomor WhatsApp tidak tersedia', 'error');
+  
+  $('waNama').value = d.nama;
+  $('waNomor').value = wa;
+  $('waRuangan').value = '';
+  generateWaText();
+  $('waModal').style.display = 'flex';
+}
+
+function closeWaModal() { $('waModal').style.display = 'none'; }
+
+function generateWaText() {
+  var nama = $('waNama').value;
+  var ruangan = $('waRuangan').value;
+  
+  var text = "INSTALASI DIALISIS\n";
+  text += "RSUD DR SAIFUL ANWAR\n";
+  text += "PROV JAWA TIMUR\n\n";
+  text += "Salam sehat kami sampaikan,\n\n";
+  if (ruangan) {
+    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menginformasikan bahwa saat ini di ruangan " + ruangan + " terdapat jadwal kosong untuk pelaksanaan Hemodialisis.\n\n";
+    text += "Apakah Bapak/Ibu " + nama + " bersedia untuk mengisi jadwal tersebut?\n\n";
+  } else {
+    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menghubungi Bapak/Ibu " + nama + " terkait jadwal Hemodialisis.\n\n";
+  }
+  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\n";
+  text += "Salam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
+  
+  $('waText').value = text;
+}
+
+function sendWaMessage() {
+  var text = $('waText').value;
+  var wa = $('waNomor').value;
+  if (!text.trim()) return toast('Pesan tidak boleh kosong', 'error');
+  window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), '_blank');
+  closeWaModal();
+}
+
+// ===== LAPORAN =====
 function applyLaporanFilter() { renderLaporan(); }
 function resetLaporanFilter() { $('laporanDari').value = ''; $('laporanSampai').value = ''; renderLaporan(); }
 
@@ -787,8 +872,8 @@ function patientSearch() {
     html += '<div style="font-size:12px;color:var(--text-muted)">No RM: ' + escHtml(d.noRM) + '</div>';
     html += '<div style="margin-top:5px"><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
     html += '<div style="margin-top:10px;display:flex;gap:5px">';
-    if (wa1) html += '<a href="https://wa.me/' + wa1 + '" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien</a>';
-    if (wa2) html += '<a href="https://wa.me/' + wa2 + '" target="_blank" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga</a>';
+    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien</button>';
+    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>';
     html += '</div></div>';
   });
   container.innerHTML = html;

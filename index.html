@@ -43,6 +43,10 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
 .topbar-username { color: #fff; font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* ===== Versi / Status Koneksi ===== */
+.conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+.conn-version { color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
+
 /* ===== Tombol Hamburger (hanya mobile) ===== */
 .hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
 .hamburger-btn:active { background: rgba(255,255,255,0.3); }
@@ -82,7 +86,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
   table.dt thead th, table.dt tbody td { padding: 6px 5px; font-size: 11px; }
   .hero-title { font-size: 26px !important; }
   .hero-sub { font-size: 13px !important; }
-  .sheet-frame { height: 400px !important; }
+  .sheet-frame { height: 450px !important; }
 }
 @media (min-width: 769px) {
   .sidebar, .sidebar-overlay { display: none !important; }
@@ -126,7 +130,10 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .info-box .ib-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
 
 /* Spreadsheet Frame */
-.sheet-frame { width: 100%; height: 550px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+.sheet-frame { width: 100%; height: 600px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
+.mode-toggle { display: inline-flex; border: 1px solid var(--border); box-shadow: 0 3px 0 #b0b3b8; }
+.mode-toggle button { padding: 7px 14px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; background: linear-gradient(to bottom, #ffffff, #e0e0e0); color: var(--text); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
+.mode-toggle button.on { background: linear-gradient(to bottom, #004080, var(--primary-light)); color: #fff; }
 
 /* Welcome Banner */
 .welcome-banner { background: #fff; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1); }
@@ -285,7 +292,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
       </div>
       <div class="mt-3 flex items-center justify-center gap-2">
         <span class="conn-dot conn-load" id="connDotLogin"></span>
-        <span class="text-xs" style="color:var(--text-muted)" id="connLabelLogin">Menghubungkan...</span>
+        <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav2.23</span>
       </div>
     </div>
   </div>
@@ -356,9 +363,9 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)"><i class="fa-solid fa-database mr-2"></i>Data Pasien</button>
       </nav>
       <div class="topbar-right">
-        <div class="hidden sm:flex items-center gap-2 px-2 py-1" style="background:rgba(0,0,0,.2);border:1px solid rgba(0,0,0,0.3)">
+        <div class="conn-badge">
           <span class="conn-dot conn-load" id="connDot"></span>
-          <span class="text-white text-xs font-bold" id="connLabel">MEMUAT</span>
+          <span class="conn-version">sidarajav2.23</span>
         </div>
         <button class="bo" onclick="refreshData()" title="Refresh"><i class="fa-solid fa-arrows-rotate" id="refreshIcon"></i></button>
         <div class="topbar-user" id="hdrUserProfile" onclick="doLogout()" title="Logout">
@@ -392,7 +399,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
   </nav>
   <div class="sidebar-conn">
     <span class="conn-dot conn-load" id="sbConnDot"></span>
-    <span id="sbConnLabel">MEMUAT</span>
+    <span>sidarajav2.23</span>
   </div>
   <button class="sidebar-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
 </aside>
@@ -415,7 +422,6 @@ table.dt tbody tr:hover td { background: #e0effa; }
 <main id="slide1" class="px-4 sm:px-8 pb-16" style="display:none">
   <div class="max-w-5xl mx-auto mt-6">
 
-    <!-- Hero -->
     <div class="hero">
       <img src="logosidaraja.png" alt="Logo SIDARAJA" class="hero-logo">
       <h1 class="hero-title">SIDARAJA</h1>
@@ -423,11 +429,10 @@ table.dt tbody tr:hover td { background: #e0effa; }
       <div class="hero-tagline"><i class="fa-solid fa-hospital mr-1"></i> Instalasi Dialisis RSUD dr. Saiful Anwar Provinsi Jawa Timur</div>
     </div>
 
-    <!-- Statistik Ringkas -->
     <div class="info-strip" id="homeInfoStrip">
       <div class="info-box"><div class="ib-num" id="infoTotal">0</div><div class="ib-label">Total Pasien Terdaftar</div></div>
       <div class="info-box" style="border-top-color:#3b82f6"><div class="ib-num" id="infoMenunggu" style="color:#3b82f6">0</div><div class="ib-label">Sedang Menunggu</div></div>
-      <div class="info-box" style="border-top-color:#10b981"><div class="ib-num" id="infoTerjadwal" style="color:#10b981">0</div><div class="ib-label">Terjadwal HD</div></div>
+      <div class="info-box" style="border-top-color:#f59e0b"><div class="ib-num" id="infoHdlain" style="color:#f59e0b">0</div><div class="ib-label">HD di RS Lain</div></div>
     </div>
 
     <!-- Latar Belakang -->
@@ -497,7 +502,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
           <div>
             <div class="panduan-step">Langkah 4</div>
             <div class="panduan-title">Update Status di Menu Data Pasien</div>
-            <div class="panduan-desc">Buka menu <strong>Data Pasien</strong>, lihat pratinjau spreadsheet langsung di aplikasi, lalu ubah kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> sesuai hasil konfirmasi pasien.</div>
+            <div class="panduan-desc">Buka menu <strong>Data Pasien</strong>, aktifkan <strong>Mode Edit</strong> pada pratinjau spreadsheet, lalu ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> sesuai hasil konfirmasi pasien.</div>
           </div>
         </div>
         <div class="panduan-item">
@@ -547,7 +552,6 @@ table.dt tbody tr:hover td { background: #e0effa; }
     </div>
 
     <div id="dashboardPrintArea">
-      <!-- Grid Kartu 3D (8 Kolom di Desktop, 2 Kolom di Mobile) -->
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
         <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
           <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/hourglass-sand-timer.png" alt="Menunggu"></div>
@@ -630,15 +634,21 @@ table.dt tbody tr:hover td { background: #e0effa; }
     <div class="card mb-4">
       <div class="card-header" style="background:linear-gradient(to bottom, #34d399, var(--green));border-bottom:2px solid #047857">
         <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</span>
-        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Spreadsheet</a>
+        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tab Baru</a>
       </div>
       <div class="p-4">
-        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-eye mr-1"></i>Pratinjau langsung isi spreadsheet di bawah ini — data dapat di-scroll dan dilihat tanpa meninggalkan aplikasi:</p>
-        <iframe class="sheet-frame" id="sheetFrame" src="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/htmlembed?gid=1588121083&single=true" loading="lazy" frameborder="0" allowfullscreen></iframe>
-        <div class="flex gap-2 mt-3 flex-wrap">
-          <button class="bo" onclick="reloadSheetFrame()"><i class="fa-solid fa-arrows-rotate"></i> Muat Ulang Pratinjau</button>
-          <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bp"><i class="fa-solid fa-pen-to-square"></i> Edit di Google Sheets</a>
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
+          <div class="mode-toggle">
+            <button id="btnModeRead" class="on" onclick="setSheetMode('read')"><i class="fa-solid fa-eye"></i> Mode Baca</button>
+            <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+          </div>
+          <div class="flex gap-2 flex-wrap">
+            <button class="bo" onclick="reloadSheetFrame()"><i class="fa-solid fa-arrows-rotate"></i> Muat Ulang</button>
+            <button class="bp" onclick="refreshData()"><i class="fa-solid fa-bolt"></i> Sinkron ke AKSI SIDARAJA</button>
+          </div>
         </div>
+        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong> (pastikan sudah login Google dengan akun yang punya akses edit).</p>
+        <iframe class="sheet-frame" id="sheetFrame" src="" loading="lazy" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -653,33 +663,32 @@ table.dt tbody tr:hover td { background: #e0effa; }
       </div>
       <div class="instruction-step">
         <div class="instruction-num">2</div>
-        <div style="font-size:12px;color:#78350f"><strong>Buka spreadsheet</strong> melalui tombol "Edit di Google Sheets" di atas (pratinjau hanya untuk melihat).</div>
+        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> langsung di pratinjau — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
       </div>
       <div class="instruction-step">
         <div class="instruction-num">3</div>
-        <div style="font-size:12px;color:#78350f"><strong>Ubah pada kolom Q (Status)</strong> — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
+        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan (misal: nama ruangan atau RS lain tempat pasien menjalani HD).</div>
       </div>
       <div class="instruction-step">
         <div class="instruction-num">4</div>
-        <div style="font-size:12px;color:#78350f"><strong>Isi kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan (misal: Teuku Umar).</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">5</div>
-        <div style="font-size:12px;color:#78350f"><strong>Kembali ke halaman AKSI SIDARAJA</strong> dan klik tombol <i class="fa-solid fa-arrows-rotate"></i> Refresh untuk melihat perubahan.</div>
+        <div style="font-size:12px;color:#78350f">Setelah selesai edit, klik tombol <strong>Sinkron ke AKSI SIDARAJA</strong> (atau tombol Refresh di kanan atas) untuk melihat perubahan pada kartu status.</div>
       </div>
       <div style="margin-top:10px;padding:8px;background:#fee2e2;border:1px solid #fecaca;display:flex;gap:8px">
         <i class="fa-solid fa-triangle-exclamation" style="color:#dc2626"></i>
-        <span style="font-size:11px;color:#991b1b"><strong>Penting:</strong> Perubahan pada kolom Q dan R akan mengubah kartu status di AKSI SIDARAJA.</span>
+        <span style="font-size:11px;color:#991b1b"><strong>Penting:</strong> Perubahan pada kolom Q dan R akan langsung mengubah kartu status di AKSI SIDARAJA setelah data disinkronkan.</span>
       </div>
     </div>
   </div>
 </main>
 
 <script>
+var APP_VERSION = 'sidarajav2.23';
 var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
 var GID = '1588121083';
 var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
-var SHEET_EMBED_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
+var SHEET_READ_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
+var SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + GID + '#gid=' + GID;
+var sheetMode = 'read';
 
 var allData = [];
 var currentFilter = 'menunggu';
@@ -700,13 +709,11 @@ function toast(msg, type) {
   setTimeout(function() { el.remove(); }, 3500);
 }
 
-function setConnState(dotId, labelId, state) {
-  var pairs = [['connDot','connLabel'],['sbConnDot','sbConnLabel']];
-  pairs.forEach(function(p) {
-    var dot = $(p[0]), lbl = $(p[1]);
-    if (!dot || !lbl) return;
-    dot.className = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
-    lbl.textContent = state === 'ok' ? 'TERHUBUNG' : state === 'fail' ? 'GAGAL' : 'MEMUAT';
+// ===== Status koneksi: dot warna + label versi tetap =====
+function setConnState(state) {
+  var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
+  ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
+    var dot = $(id); if (dot) dot.className = dotCls;
   });
 }
 
@@ -721,9 +728,17 @@ function closeSidebar() {
 }
 function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
 
+// ===== Mode pratinjau spreadsheet (Baca / Edit) =====
+function setSheetMode(mode) {
+  sheetMode = mode;
+  $('btnModeRead').classList.toggle('on', mode === 'read');
+  $('btnModeEdit').classList.toggle('on', mode === 'edit');
+  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL) + (mode === 'read' ? '&t=' + Date.now() : '');
+  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diklik & diedit langsung' : 'Mode Baca aktif', 'info');
+}
+
 function reloadSheetFrame() {
-  var f = $('sheetFrame'); if (!f) return;
-  f.src = SHEET_EMBED_URL + '&t=' + Date.now();
+  $('sheetFrame').src = (sheetMode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
   toast('Pratinjau spreadsheet dimuat ulang', 'info');
 }
 
@@ -737,13 +752,23 @@ function parseGvizDate(val) {
   return isNaN(d.getTime()) ? null : d;
 }
 
+// ===== Deteksi status lebih fleksibel =====
 function getStatusKey(status) {
   if (!status) return 'other';
   var s = String(status).toUpperCase().trim();
+  // Normalisasi spasi ganda dan karakter umum
+  s = s.replace(/\s+/g, ' ');
   if (s.includes('MENINGGAL')) return 'meninggal';
-  if (s.includes('NO RESPON') || s.includes('NORESPON')) return 'norespon';
+  if (s.includes('NO RESPON') || s.includes('NORESPON') || s.includes('NO RESPONS') || s.includes('TIDAK RESPON')) return 'norespon';
   if (s.includes('BATAL')) return 'batal';
-  if (s.includes('HD LAIN')) return 'hdlain';
+  // HD LAIN — mendeteksi semua variasi penulisan:
+  // "HD LAIN", "HDLAIN", "HD DI LAIN", "HD DI RS LAIN", "HD DI RUMAH SAKIT LAIN",
+  // "DI RUMAH SAKIT LAIN", "RS LAIN", "TERJADWAL HD LAIN", dll.
+  var hasHD = s.includes('HD') || s.includes('HEMODIALISIS') || s.includes('HEMODIALISA');
+  var hasLain = s.includes('LAIN');
+  if (hasHD && hasLain) return 'hdlain';
+  if (s.includes('HDLAIN')) return 'hdlain';
+  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN') || s.includes('HOSPITAL LAIN')) return 'hdlain';
   if (s.includes('TERJADWAL')) return 'terjadwal';
   if (s.includes('MENUNGGU')) return 'menunggu';
   return 'other';
@@ -842,10 +867,14 @@ function switchSlide(n) {
     if (sbTab) sbTab.classList.toggle('active', i === n);
     $('slide' + i).style.display = i === n ? 'block' : 'none';
   }
+  // Muat pratinjau spreadsheet saat pertama kali membuka slide 3
+  if (n === 3 && !$('sheetFrame').src) {
+    $('sheetFrame').src = SHEET_READ_URL;
+  }
 }
 
 function fetchSheetData() {
-  setConnState('connDot', 'connLabel', 'load');
+  setConnState('load');
   fetch(DATA_URL).then(function(r) { return r.text(); }).then(function(text) {
     var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
     if (!match) throw new Error('Format gviz tidak valid');
@@ -860,10 +889,10 @@ function fetchSheetData() {
         hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
       });
     });
-    setConnState('connDot', 'connLabel', 'ok');
+    setConnState('ok');
     updateStatusCounts(); renderDashboard();
   }).catch(function(err) {
-    setConnState('connDot', 'connLabel', 'fail');
+    setConnState('fail');
     toast('Gagal memuat data: ' + err.message, 'error');
   });
 }
@@ -877,12 +906,13 @@ function clickStatusCard(key) {
       c.classList.toggle('active', c.getAttribute('data-key') === key);
     }
   });
-  $('filterLabel').textContent = key === 'all' ? '(Semua Data)' : '(' + key.charAt(0).toUpperCase() + key.slice(1) + ')';
+  var labelMap = { menunggu:'(Menunggu)', terjadwal:'(Terjadwal)', hdlain:'(HD Lain)', batal:'(Batal)', meninggal:'(Meninggal)', norespon:'(No Respon)', all:'(Semua Data)' };
+  $('filterLabel').textContent = labelMap[key] || '(Semua Data)';
   renderDashboard();
 }
 
 function updateStatusCounts() {
-  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
+  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0, other: 0 };
   allData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
   $('scMenunggu').textContent = counts.menunggu; $('scTerjadwal').textContent = counts.terjadwal;
   $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
@@ -891,7 +921,7 @@ function updateStatusCounts() {
   // Statistik ringkas di halaman Home
   $('infoTotal').textContent = allData.length;
   $('infoMenunggu').textContent = counts.menunggu;
-  $('infoTerjadwal').textContent = counts.terjadwal;
+  $('infoHdlain').textContent = counts.hdlain;
 }
 
 function renderDashboard() {
@@ -986,7 +1016,7 @@ function kirimPDF() {
 function kirimWA() {
   var c = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
   allData.forEach(function(d) { var k = getStatusKey(d.status); if (c.hasOwnProperty(k)) c[k]++; });
-  var text = "*AKSI SIDARAJA - Laporan*\nTotal: " + allData.length + "\nMenunggu: " + c.menunggu + "\nTerjadwal: " + c.terjadwal;
+  var text = "*AKSI SIDARAJA - Laporan*\nTotal: " + allData.length + "\nMenunggu: " + c.menunggu + "\nTerjadwal: " + c.terjadwal + "\nHD Lain: " + c.hdlain;
   window.open("https://wa.me/?text=" + encodeURIComponent(text), '_blank');
 }
 

@@ -43,7 +43,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
 .topbar-username { color: #fff; font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ===== Versi / Status Koneksi ===== */
+/* ===== Versi / Status Koneksi (hanya tampil di header PC) ===== */
 .conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
 .conn-version { color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
 
@@ -75,6 +75,8 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 @media (max-width: 768px) {
   .topbar-menu { display: none; }
   .topbar-username { display: none; }
+  /* Versi hanya di sidebar pada mode HP — hilangkan dari header */
+  .conn-badge { display: none; }
   .hamburger-btn { display: flex; }
   .topbar-inner { height: 80px; padding: 0 12px; }
   .topbar-logo img { height: 56px; }
@@ -363,6 +365,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)"><i class="fa-solid fa-database mr-2"></i>Data Pasien</button>
       </nav>
       <div class="topbar-right">
+        <!-- Badge versi: tampil HANYA di PC, otomatis hilang di HP via CSS -->
         <div class="conn-badge">
           <span class="conn-dot conn-load" id="connDot"></span>
           <span class="conn-version">sidarajav2.23</span>
@@ -378,7 +381,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
   </div>
 </header>
 
-<!-- ===== SIDEBAR MOBILE (Drawer) ===== -->
+<!-- ===== SIDEBAR MOBILE (Drawer) — versi hanya tampil di sini saat mode HP ===== -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 <aside class="sidebar" id="mobileSidebar">
   <div class="sidebar-hdr">
@@ -709,7 +712,7 @@ function toast(msg, type) {
   setTimeout(function() { el.remove(); }, 3500);
 }
 
-// ===== Status koneksi: dot warna + label versi tetap =====
+// ===== Status koneksi: hanya dot warna, label versi statis via HTML =====
 function setConnState(state) {
   var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
   ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
@@ -733,7 +736,7 @@ function setSheetMode(mode) {
   sheetMode = mode;
   $('btnModeRead').classList.toggle('on', mode === 'read');
   $('btnModeEdit').classList.toggle('on', mode === 'edit');
-  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL) + (mode === 'read' ? '&t=' + Date.now() : '');
+  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
   toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diklik & diedit langsung' : 'Mode Baca aktif', 'info');
 }
 
@@ -756,14 +759,10 @@ function parseGvizDate(val) {
 function getStatusKey(status) {
   if (!status) return 'other';
   var s = String(status).toUpperCase().trim();
-  // Normalisasi spasi ganda dan karakter umum
   s = s.replace(/\s+/g, ' ');
   if (s.includes('MENINGGAL')) return 'meninggal';
   if (s.includes('NO RESPON') || s.includes('NORESPON') || s.includes('NO RESPONS') || s.includes('TIDAK RESPON')) return 'norespon';
   if (s.includes('BATAL')) return 'batal';
-  // HD LAIN — mendeteksi semua variasi penulisan:
-  // "HD LAIN", "HDLAIN", "HD DI LAIN", "HD DI RS LAIN", "HD DI RUMAH SAKIT LAIN",
-  // "DI RUMAH SAKIT LAIN", "RS LAIN", "TERJADWAL HD LAIN", dll.
   var hasHD = s.includes('HD') || s.includes('HEMODIALISIS') || s.includes('HEMODIALISA');
   var hasLain = s.includes('LAIN');
   if (hasHD && hasLain) return 'hdlain';
@@ -867,7 +866,6 @@ function switchSlide(n) {
     if (sbTab) sbTab.classList.toggle('active', i === n);
     $('slide' + i).style.display = i === n ? 'block' : 'none';
   }
-  // Muat pratinjau spreadsheet saat pertama kali membuka slide 3
   if (n === 3 && !$('sheetFrame').src) {
     $('sheetFrame').src = SHEET_READ_URL;
   }
@@ -918,7 +916,6 @@ function updateStatusCounts() {
   $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
   $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
   $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
-  // Statistik ringkas di halaman Home
   $('infoTotal').textContent = allData.length;
   $('infoMenunggu').textContent = counts.menunggu;
   $('infoHdlain').textContent = counts.hdlain;
@@ -951,7 +948,7 @@ function renderDashboard() {
 }
 
 function openMenungguWaModal() {
-  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
+  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'meninggal' ? false : getStatusKey(d.status) === 'menunggu'; });
   var container = $('menungguWaList');
   if (list.length === 0) {
     container.innerHTML = '<div style="text-align:center;padding:20px">Tidak ada pasien menunggu</div>';

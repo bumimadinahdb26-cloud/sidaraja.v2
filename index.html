@@ -11,63 +11,103 @@
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
 <style>
 :root {
-  --primary: #001f3f;
-  --primary-light: #003366;
-  --primary-accent: #004080;
-  --secondary: #f0f0f0;
-  --border: #d1d5db;
-  --text: #333333;
-  --text-muted: #666666;
-  --bg: #f3f4f6;
+  /* ===== Palet Kayu Jati 100 Tahun ===== */
+  --primary: #4a2c17;        /* jati tua gelap */
+  --primary-light: #6b4423;  /* jati medium */
+  --primary-accent: #8b5a2b; /* jati terang */
+  --secondary: #efe6d8;      /* kayu muda / krem */
+  --border: #b08968;         /* bingkai kayu */
+  --text: #3a2a1a;
+  --text-muted: #8a7660;
+  --bg: #f5f0e8;             /* latar krem hangat */
   --green: #059669;
   --green-light: #34d399;
   --red: #dc2626;
   --yellow: #d97706;
+  --cream: #f5e6d3;
+  --cream-dim: #d9c4a5;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 4px !important; }
 body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); font-size: 13px; min-height: 100vh; }
 
-/* ===== Top Navbar 3D Style (Desktop) ===== */
-.topbar { background: linear-gradient(to bottom, var(--primary), var(--primary-light)); border-bottom: 3px solid #001a33; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+/* ===== Tekstur Motif Serat Kayu Jati ===== */
+.wood {
+  background-color: #6b4423;
+  background-image:
+    repeating-linear-gradient(90deg,
+      rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px,
+      transparent 2px, transparent 9px,
+      rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px,
+      transparent 11px, transparent 22px),
+    repeating-linear-gradient(88deg,
+      rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px,
+      transparent 1px, transparent 38px),
+    repeating-linear-gradient(91deg,
+      rgba(74,44,23,0.25) 0px, transparent 3px, transparent 55px),
+    linear-gradient(to bottom, #7a4f2a, #54331b);
+}
+.wood-dark {
+  background-color: #4a2c17;
+  background-image:
+    repeating-linear-gradient(90deg,
+      rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 2px,
+      transparent 2px, transparent 10px,
+      rgba(255,255,255,0.04) 10px, rgba(255,255,255,0.04) 12px,
+      transparent 12px, transparent 24px),
+    repeating-linear-gradient(89deg,
+      rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px,
+      transparent 1px, transparent 44px),
+    linear-gradient(to bottom, #5c3a21, #3b2314);
+}
+
+/* ===== Top Navbar (Kayu Jati) ===== */
+.topbar { background: none; background-color: transparent; border-bottom: 4px solid #2a1810; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
+.topbar { background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17); }
 .topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 100px; }
-.topbar-logo { color: #fff; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,.4); }
+.topbar-logo { color: var(--cream); font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
 .topbar-logo img { height: 70px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
 .topbar-menu { display: flex; gap: 0; height: 100px; }
-.topbar-menu-item { padding: 0 18px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; }
-.topbar-menu-item:hover { background: rgba(255,255,255,0.1); }
-.topbar-menu-item.active { background: var(--bg); color: var(--primary); box-shadow: inset 0 4px 0 var(--primary-accent); }
+.topbar-menu-item { padding: 0 18px; color: var(--cream); font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; text-shadow: 1px 1px 2px rgba(0,0,0,.4); }
+.topbar-menu-item:hover { background: rgba(0,0,0,0.25); }
+.topbar-menu-item.active { background: var(--secondary); color: var(--primary); box-shadow: inset 0 4px 0 var(--primary-accent); text-shadow: none; }
 .topbar-right { display: flex; align-items: center; gap: 10px; }
-.topbar-user { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
-.topbar-user:hover { background: rgba(0,0,0,0.3); }
-.topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
-.topbar-username { color: #fff; font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar-user { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,0,0,0.4); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+.topbar-user:hover { background: rgba(0,0,0,0.45); }
+.topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: var(--cream); font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
+.topbar-username { color: var(--cream); font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ===== Versi / Status Koneksi (hanya tampil di header PC) ===== */
-.conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
-.conn-version { color: #fff; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
+/* ===== Versi / Status Koneksi ===== */
+.conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+.conn-version { color: var(--cream); font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
 
-/* ===== Tombol Hamburger (hanya mobile) ===== */
-.hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
-.hamburger-btn:active { background: rgba(255,255,255,0.3); }
+/* ===== Tombol Hamburger ===== */
+.hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.25); color: var(--cream); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+.hamburger-btn:active { background: rgba(0,0,0,0.45); }
 
-/* ===== Sidebar Mobile ===== */
+/* ===== Sidebar Mobile (Kayu) ===== */
 .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
 .sidebar-overlay.open { opacity: 1; visibility: visible; }
-.sidebar { position: fixed; top: 0; left: 0; width: 270px; max-width: 82vw; height: 100vh; height: 100dvh; background: linear-gradient(to bottom, var(--primary), var(--primary-light)); z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,.4); }
+.sidebar { position: fixed; top: 0; left: 0; width: 270px; max-width: 82vw; height: 100vh; height: 100dvh; z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,.45); border-right: 3px solid #2a1810;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    repeating-linear-gradient(89deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px),
+    linear-gradient(to bottom, #6b4423, #3b2314); }
 .sidebar.open { transform: translateX(0); }
 .sidebar-hdr { padding: 18px 16px; border-bottom: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 12px; }
 .sidebar-hdr img { height: 60px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
 .sidebar-user { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 10px; }
-.sidebar-avatar { width: 36px; height: 36px; background: rgba(255,255,255,0.2); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); font-size: 16px; flex-shrink: 0; }
-.sidebar-username { color: #fff; font-size: 14px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sidebar-role { color: #a4caee; font-size: 11px; }
+.sidebar-avatar { width: 36px; height: 36px; background: rgba(255,255,255,0.2); color: var(--cream); font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); font-size: 16px; flex-shrink: 0; }
+.sidebar-username { color: var(--cream); font-size: 14px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sidebar-role { color: var(--cream-dim); font-size: 11px; }
 .sidebar-menu { padding: 10px 0; flex: 1; overflow-y: auto; }
-.sidebar-menu-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 20px; color: #fff; font-size: 14px; font-weight: bold; cursor: pointer; background: none; border: none; text-align: left; text-decoration: none; transition: background 0.2s; }
+.sidebar-menu-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 20px; color: var(--cream); font-size: 14px; font-weight: bold; cursor: pointer; background: none; border: none; text-align: left; text-decoration: none; transition: background 0.2s; text-shadow: 1px 1px 2px rgba(0,0,0,.4); }
 .sidebar-menu-item i { width: 22px; text-align: center; font-size: 16px; }
-.sidebar-menu-item:hover { background: rgba(255,255,255,0.1); }
-.sidebar-menu-item.active { background: var(--bg); color: var(--primary); box-shadow: inset 4px 0 0 var(--primary-accent); }
-.sidebar-conn { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 8px; color: #fff; font-size: 12px; font-weight: bold; }
+.sidebar-menu-item:hover { background: rgba(0,0,0,0.25); }
+.sidebar-menu-item.active { background: var(--secondary); color: var(--primary); box-shadow: inset 4px 0 0 var(--primary-accent); text-shadow: none; }
+.sidebar-conn { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 8px; color: var(--cream); font-size: 12px; font-weight: bold; }
 .sidebar-logout { margin: 0 16px 16px; padding: 12px; background: linear-gradient(to bottom, #dc2626, #b91c1c); border: 1px solid #991b1b; color: #fff; font-weight: bold; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 0 #991b1b; }
 .sidebar-logout:active { transform: translateY(1px); box-shadow: 0 1px 0 #991b1b; }
 
@@ -75,7 +115,6 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 @media (max-width: 768px) {
   .topbar-menu { display: none; }
   .topbar-username { display: none; }
-  /* Versi hanya di sidebar pada mode HP — hilangkan dari header */
   .conn-badge { display: none; }
   .hamburger-btn { display: flex; }
   .topbar-inner { height: 80px; padding: 0 12px; }
@@ -89,78 +128,93 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
   .hero-title { font-size: 26px !important; }
   .hero-sub { font-size: 13px !important; }
   .sheet-frame { height: 450px !important; }
+  .room-card img { height: 90px !important; }
 }
 @media (min-width: 769px) {
   .sidebar, .sidebar-overlay { display: none !important; }
 }
 
-/* ===== Hero Pengenalan ===== */
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--primary-accent) 100%); border: 1px solid #001a33; border-bottom: 4px solid #001a33; padding: 40px 24px; text-align: center; color: #fff; position: relative; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+/* ===== Hero Pengenalan (Kayu Jati) ===== */
+.hero { background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    repeating-linear-gradient(89deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 42px),
+    linear-gradient(135deg, #4a2c17 0%, #6b4423 55%, #8b5a2b 100%);
+  border: 1px solid #2a1810; border-bottom: 5px solid #2a1810; padding: 40px 24px; text-align: center; color: var(--cream); position: relative; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
 .hero::before { content:''; position:absolute; inset:0; background-image:url('logosidaraja.png'); background-size: 300px; background-position: center; background-repeat: no-repeat; opacity: 0.08; pointer-events:none; }
 .hero-logo { height: 110px; filter: drop-shadow(3px 4px 6px rgba(0,0,0,0.4)); margin-bottom: 16px; }
-.hero-title { font-size: 40px; font-weight: 900; letter-spacing: 3px; text-shadow: 2px 3px 4px rgba(0,0,0,0.5); line-height: 1.1; }
-.hero-sub { font-size: 16px; color: #a4caee; margin-top: 8px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
-.hero-tagline { display: inline-block; margin-top: 16px; padding: 8px 18px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); font-size: 12px; color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,0.15); }
+.hero-title { font-size: 40px; font-weight: 900; letter-spacing: 3px; color: #ffe9c9; text-shadow: 2px 3px 4px rgba(0,0,0,0.6); line-height: 1.1; }
+.hero-sub { font-size: 16px; color: #e8cfa8; margin-top: 8px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+.hero-tagline { display: inline-block; margin-top: 16px; padding: 8px 18px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); font-size: 12px; color: var(--cream); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15); }
+
+/* ===== Kartu Ruangan (Foto + Jumlah Pasien) ===== */
+.room-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.room-card { background: #fff; border: 3px solid var(--border); border-bottom: 5px solid #8a6240; padding: 0; text-align: center; overflow: hidden; box-shadow: 0 4px 0 #a3855f, 0 8px 14px rgba(0,0,0,0.15); transition: all 0.2s; cursor: default; }
+.room-card:hover { transform: translateY(-4px); box-shadow: 0 8px 0 #8a6240, 0 14px 22px rgba(0,0,0,0.22); }
+.room-card img { width: 100%; height: 120px; object-fit: cover; display: block; border-bottom: 2px solid var(--border); }
+.room-card .rc-body { padding: 10px 8px 12px; }
+.room-card .rc-num { font-size: 26px; font-weight: 900; color: var(--primary); line-height: 1; }
+.room-card .rc-label { font-size: 12px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }
+.room-card .rc-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
 
 /* ===== Bagian Pengenalan ===== */
 .about-section { margin-bottom: 24px; }
-.about-header { display: flex; align-items: center; gap: 12px; padding: 12px 15px; background: linear-gradient(to bottom, #003366, var(--primary-light)); border: 1px solid #001a33; border-bottom: 3px solid #001a33; color: #fff; font-size: 15px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.about-header { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border: 1px solid #2a1810; border-bottom: 3px solid #2a1810; color: var(--cream); font-size: 15px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.4); box-shadow: 0 4px 6px rgba(0,0,0,0.12);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17); }
 .about-header .ah-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.about-body { background: #fff; border: 1px solid var(--border); border-top: none; padding: 18px 20px; line-height: 1.8; font-size: 13px; color: var(--text); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.about-body { background: #fffdf8; border: 1px solid var(--border); border-top: none; padding: 18px 20px; line-height: 1.8; font-size: 13px; color: var(--text); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .about-body p { margin-bottom: 10px; text-align: justify; }
 .about-body p:last-child { margin-bottom: 0; }
 
 /* Tujuan list */
 .tujuan-list { list-style: none; }
-.tujuan-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed #e5e7eb; }
+.tujuan-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed #e0d3c0; }
 .tujuan-list li:last-child { border-bottom: none; }
-.tujuan-num { width: 26px; height: 26px; background: linear-gradient(to bottom, #004080, var(--primary-light)); color: #fff; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #001a33; box-shadow: 0 2px 0 #001a33; }
+.tujuan-num { width: 26px; height: 26px; background: linear-gradient(to bottom, #8b5a2b, #5c3a21); color: var(--cream); font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #3b2314; box-shadow: 0 2px 0 #3b2314; }
 .tujuan-text { font-size: 13px; padding-top: 3px; }
 
 /* Panduan */
-.panduan-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: #fff; border: 1px solid var(--border); margin-bottom: 10px; box-shadow: 0 3px 0 #d1d5db; transition: all 0.2s; }
+.panduan-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: #fffdf8; border: 1px solid var(--border); margin-bottom: 10px; box-shadow: 0 3px 0 var(--border); transition: all 0.2s; }
 .panduan-item:hover { transform: translateX(4px); box-shadow: 0 3px 0 var(--primary-accent); border-color: var(--primary-accent); }
-.panduan-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid var(--border); background: #f0f7ff; color: var(--primary-accent); }
+.panduan-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid var(--border); background: var(--secondary); color: var(--primary); }
 .panduan-step { font-size: 10px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .panduan-title { font-size: 14px; font-weight: bold; color: var(--primary); margin: 2px 0 4px; }
 .panduan-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
-/* Info strip */
-.info-strip { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-.info-box { flex: 1; min-width: 180px; background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--primary-accent); padding: 14px; text-align: center; box-shadow: 0 4px 0 #d1d5db; }
-.info-box .ib-num { font-size: 22px; font-weight: 900; color: var(--primary); }
-.info-box .ib-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
-
 /* Spreadsheet Frame */
 .sheet-frame { width: 100%; height: 600px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
-.mode-toggle { display: inline-flex; border: 1px solid var(--border); box-shadow: 0 3px 0 #b0b3b8; }
-.mode-toggle button { padding: 7px 14px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; background: linear-gradient(to bottom, #ffffff, #e0e0e0); color: var(--text); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
-.mode-toggle button.on { background: linear-gradient(to bottom, #004080, var(--primary-light)); color: #fff; }
+.mode-toggle { display: inline-flex; border: 1px solid var(--border); box-shadow: 0 3px 0 #a3855f; }
+.mode-toggle button { padding: 7px 14px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; background: linear-gradient(to bottom, #ffffff, #efe6d8); color: var(--text); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
+.mode-toggle button.on { background: linear-gradient(to bottom, #8b5a2b, #5c3a21); color: var(--cream); }
 
 /* Welcome Banner */
-.welcome-banner { background: #fff; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1); }
+.welcome-banner { background: #fffdf8; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1); }
 .welcome-title { font-size: 18px; font-weight: bold; color: var(--primary); }
 .welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
 
 /* 3D Style Cards Grid */
-.em-card { background: #fff; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #d1d5db, 0 6px 12px rgba(0,0,0,0.1); }
-.em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #b0b3b8, 0 10px 20px rgba(0,0,0,0.15); }
-.em-card.active { border: 2px solid var(--primary); background: #f0f7ff; box-shadow: 0 4px 0 var(--primary-accent), 0 6px 12px rgba(0,0,0,0.15); }
+.em-card { background: #fffdf8; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #a3855f, 0 6px 12px rgba(0,0,0,0.1); }
+.em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #8a6240, 0 10px 20px rgba(0,0,0,0.15); }
+.em-card.active { border: 2px solid var(--primary); background: #f7efe2; box-shadow: 0 4px 0 var(--primary-accent), 0 6px 12px rgba(0,0,0,0.15); }
 .em-card-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
 .em-card-icon img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2)); }
 .em-card-num { font-size: 24px; font-weight: bold; color: var(--text); line-height: 1; text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
 .em-card-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; }
 
-/* Login */
+/* Login (Kayu) */
 .login-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
-.login-box { background: #fff; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); margin:auto; }
+.login-box { background: #fffdf8; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); margin:auto; }
 .login-logo-area { height: 100px; background-image: url('logosidaraja.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: var(--primary); }
-.login-header-text { background: var(--primary-light); padding: 15px; text-align: center; border-bottom: 2px solid var(--primary-accent); }
+.login-header-text { background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17);
+  padding: 15px; text-align: center; border-bottom: 2px solid #2a1810; }
 .login-body { padding: 20px; }
-.mode-card { border: 1px solid var(--border); padding: 15px; cursor: pointer; text-align: center; background: #fff; box-shadow: 0 3px 0 #d1d5db; transition: all 0.2s; }
-.mode-card:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #b0b3b8; }
-.mode-card.sel-admin { border: 2px solid var(--primary); background: #f0f7ff; }
+.mode-card { border: 1px solid var(--border); padding: 15px; cursor: pointer; text-align: center; background: #fff; box-shadow: 0 3px 0 #a3855f; transition: all 0.2s; }
+.mode-card:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #8a6240; }
+.mode-card.sel-admin { border: 2px solid var(--primary); background: #f7efe2; }
 .mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
 .mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
@@ -168,34 +222,40 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 
 /* Inputs */
 .si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
-.si2:focus { border-color: var(--primary); box-shadow: 0 0 3px rgba(0,64,128,.2); }
+.si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(139,90,43,.3); }
 .form-label { display: block; font-size: 11px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
 
-/* 3D Buttons */
+/* 3D Buttons (Kayu) */
 .bp, .bg2, .bo { padding: 6px 12px; font-size: 12px; font-weight: bold; border: 1px solid; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.1s; font-family: inherit; text-decoration: none; line-height: 1.4; }
-.bp { background: linear-gradient(to bottom, #004080, var(--primary-light)); border-color: #001a33; color: #fff; box-shadow: 0 3px 0 #001a33, 0 4px 6px rgba(0,0,0,0.2); }
-.bp:hover { transform: translateY(1px); box-shadow: 0 2px 0 #001a33, 0 3px 4px rgba(0,0,0,0.2); }
+.bp { background: linear-gradient(to bottom, #8b5a2b, #5c3a21); border-color: #3b2314; color: var(--cream); box-shadow: 0 3px 0 #3b2314, 0 4px 6px rgba(0,0,0,0.2); }
+.bp:hover { transform: translateY(1px); box-shadow: 0 2px 0 #3b2314, 0 3px 4px rgba(0,0,0,0.2); }
 .bg2 { background: linear-gradient(to bottom, #34d399, var(--green)); border-color: #047857; color: #fff; box-shadow: 0 3px 0 #047857, 0 4px 6px rgba(0,0,0,0.2); }
 .bg2:hover { transform: translateY(1px); box-shadow: 0 2px 0 #047857, 0 3px 4px rgba(0,0,0,0.2); }
-.bo { background: linear-gradient(to bottom, #ffffff, #e0e0e0); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #b0b3b8, 0 4px 6px rgba(0,0,0,0.1); }
-.bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #b0b3b8, 0 3px 4px rgba(0,0,0,0.1); }
+.bo { background: linear-gradient(to bottom, #ffffff, #efe6d8); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #a3855f, 0 4px 6px rgba(0,0,0,0.1); }
+.bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #a3855f, 0 3px 4px rgba(0,0,0,0.1); }
 
-/* Cards */
-.card { background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,0.1); }
-.card-header { background: linear-gradient(to bottom, #003366, var(--primary-light)); border-bottom: 2px solid #001a33; padding: 8px 15px; font-weight: bold; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+/* Cards (Kayu) */
+.card { background: #fffdf8; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,0.1); }
+.card-header { border-bottom: 2px solid #2a1810; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17); }
 
 .tc2 { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
 .tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); max-width: 350px; pointer-events: auto; border: 1px solid; }
 .tt-s { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
 .tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
-.tt-i { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+.tt-i { background: #fdf6ec; border-color: #e0d3c0; color: #7a5c33; }
 
-/* Tables 3D */
+/* Tables (Kayu) */
 table.dt { width: 100%; border-collapse: collapse; }
-table.dt thead th { background: linear-gradient(to bottom, #003366, var(--primary-light)); border: 1px solid #001a33; padding: 8px; text-align: left; font-size: 12px; color: #fff; font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.3); }
-table.dt tbody td { border: 1px solid #ddd; padding: 8px; font-size: 12px; color: var(--text); background: #fff; }
-table.dt tbody tr:nth-child(even) td { background: #f9f9f9; }
-table.dt tbody tr:hover td { background: #e0effa; }
+table.dt thead th { border: 1px solid #3b2314; padding: 8px; text-align: left; font-size: 12px; color: var(--cream); font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17); }
+table.dt tbody td { border: 1px solid #e0d3c0; padding: 8px; font-size: 12px; color: var(--text); background: #fffdf8; }
+table.dt tbody tr:nth-child(even) td { background: #f7efe2; }
+table.dt tbody tr:hover td { background: #efe0c8; }
 
 .badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .badge-menunggu { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
@@ -214,7 +274,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
 .btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
 
-/* Excel & Instructions */
+/* Instructions */
 .excel-link-card { border: 1px solid var(--green); box-shadow: 0 4px 0 #047857; }
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
@@ -232,15 +292,18 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .ok-box { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
 
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 16px; }
-.modal-box { background: #fff; border: 1px solid var(--border); max-width: 600px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); max-height: 90vh; overflow-y: auto; }
-.modal-hdr { padding: 10px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, #003366, var(--primary-light)); color: #fff; }
-.modal-hdr h3 { font-size: 14px; font-weight: bold; color: #fff; }
-.modal-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; }
+.modal-box { background: #fffdf8; border: 1px solid var(--border); max-width: 600px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); max-height: 90vh; overflow-y: auto; }
+.modal-hdr { padding: 10px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; color: var(--cream);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
+    linear-gradient(to bottom, #6b4423, #4a2c17); }
+.modal-hdr h3 { font-size: 14px; font-weight: bold; color: var(--cream); }
+.modal-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: var(--cream); }
 .modal-close:hover { background: #dc2626; border-color: #fecaca; }
 .modal-body { padding: 15px; }
 
 @media print{body>*{display:none!important}#printArea{display:block!important}}
-::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#f1f1f1}::-webkit-scrollbar-thumb{background:#c4c4c4}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#efe6d8}::-webkit-scrollbar-thumb{background:#a3855f}
 </style>
 </head>
 <body>
@@ -252,14 +315,14 @@ table.dt tbody tr:hover td { background: #e0effa; }
   <div class="login-box">
     <div class="login-logo-area"></div>
     <div class="login-header-text">
-      <h2 class="text-lg font-black text-white">SIDARAJA</h2>
-      <p class="text-blue-200 text-xs mt-1">Sistem Pendaftaran Hemodialisis Rawat Jalan<br>Instalasi Dialisis RSSA</p>
+      <h2 class="text-lg font-black" style="color:#ffe9c9">SIDARAJA</h2>
+      <p class="text-xs mt-1" style="color:#e8cfa8">Sistem Pendaftaran Hemodialisis Rawat Jalan<br>Instalasi Dialisis RSSA</p>
     </div>
     <div class="login-body">
       <p class="text-center font-bold text-sm mb-4" style="color:var(--text)">Pilih Mode Akses</p>
       <div class="grid grid-cols-2 gap-3 mb-4">
         <div class="mode-card" id="modeAdmin" onclick="selectMode('admin')">
-          <div class="mc-icon" style="background:#dbeafe;color:#2563eb"><i class="fa-solid fa-user-shield"></i></div>
+          <div class="mc-icon" style="background:#f7efe2;color:#8b5a2b"><i class="fa-solid fa-user-shield"></i></div>
           <div class="mc-title">Petugas</div>
           <div class="mc-desc">Login email & data</div>
         </div>
@@ -344,7 +407,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <textarea id="waText" rows="10" class="si2" style="resize:vertical;font-size:12px;line-height:1.5"></textarea>
       </div>
     </div>
-    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px;background:#f9f9f9;color:#333">
+    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px;background:#f7efe2;color:#3a2a1a;text-shadow:none;background-image:none">
       <button class="bo mr-2" onclick="closeWaModal()">Batal</button>
       <button class="bg2" onclick="sendWaMessage()"><i class="fa-brands fa-whatsapp"></i> Kirim WhatsApp</button>
     </div>
@@ -365,7 +428,6 @@ table.dt tbody tr:hover td { background: #e0effa; }
         <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)"><i class="fa-solid fa-database mr-2"></i>Data Pasien</button>
       </nav>
       <div class="topbar-right">
-        <!-- Badge versi: tampil HANYA di PC, otomatis hilang di HP via CSS -->
         <div class="conn-badge">
           <span class="conn-dot conn-load" id="connDot"></span>
           <span class="conn-version">sidarajav2.23</span>
@@ -381,7 +443,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
   </div>
 </header>
 
-<!-- ===== SIDEBAR MOBILE (Drawer) — versi hanya tampil di sini saat mode HP ===== -->
+<!-- ===== SIDEBAR MOBILE ===== -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 <aside class="sidebar" id="mobileSidebar">
   <div class="sidebar-hdr">
@@ -432,10 +494,32 @@ table.dt tbody tr:hover td { background: #e0effa; }
       <div class="hero-tagline"><i class="fa-solid fa-hospital mr-1"></i> Instalasi Dialisis RSUD dr. Saiful Anwar Provinsi Jawa Timur</div>
     </div>
 
-    <div class="info-strip" id="homeInfoStrip">
-      <div class="info-box"><div class="ib-num" id="infoTotal">0</div><div class="ib-label">Total Pasien Terdaftar</div></div>
-      <div class="info-box" style="border-top-color:#3b82f6"><div class="ib-num" id="infoMenunggu" style="color:#3b82f6">0</div><div class="ib-label">Sedang Menunggu</div></div>
-      <div class="info-box" style="border-top-color:#f59e0b"><div class="ib-num" id="infoHdlain" style="color:#f59e0b">0</div><div class="ib-label">HD di RS Lain</div></div>
+    <!-- Kartu Ruangan HD (Foto Ruangan + Jumlah Pasien) -->
+    <div class="room-strip">
+      <div class="room-card">
+        <img src="teukuumar.png" alt="Ruangan Teuku Umar">
+        <div class="rc-body">
+          <div class="rc-num" id="infoTeukuUmar">0</div>
+          <div class="rc-label">Teuku Umar</div>
+          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="malahayati.png" alt="Ruangan Malahayati">
+        <div class="rc-body">
+          <div class="rc-num" id="infoMalahayati">0</div>
+          <div class="rc-label">Malahayati</div>
+          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="cutnyakdien.png" alt="Ruangan Cut Nyak Dien">
+        <div class="rc-body">
+          <div class="rc-num" id="infoCutNyakDien">0</div>
+          <div class="rc-label">Cut Nyak Dien</div>
+          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+        </div>
+      </div>
     </div>
 
     <!-- Latar Belakang -->
@@ -453,7 +537,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 
     <!-- Tujuan -->
     <div class="about-section">
-      <div class="about-header" style="background:linear-gradient(to bottom, #047857, var(--green));border-color:#047857;border-bottom-color:#047857">
+      <div class="about-header">
         <div class="ah-icon"><i class="fa-solid fa-bullseye"></i></div>
         <span>Tujuan</span>
       </div>
@@ -471,7 +555,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 
     <!-- Panduan -->
     <div class="about-section">
-      <div class="about-header" style="background:linear-gradient(to bottom, #b45309, var(--yellow));border-color:#b45309;border-bottom-color:#92400e">
+      <div class="about-header">
         <div class="ah-icon"><i class="fa-solid fa-map-signs"></i></div>
         <span>Panduan Penggunaan</span>
       </div>
@@ -501,7 +585,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
           </div>
         </div>
         <div class="panduan-item">
-          <div class="panduan-icon" style="background:#fffbeb;color:#b45309"><i class="fa-solid fa-file-excel"></i></div>
+          <div class="panduan-icon"><i class="fa-solid fa-file-excel"></i></div>
           <div>
             <div class="panduan-step">Langkah 4</div>
             <div class="panduan-title">Update Status di Menu Data Pasien</div>
@@ -509,7 +593,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
           </div>
         </div>
         <div class="panduan-item">
-          <div class="panduan-icon" style="background:#eff6ff;color:#1d4ed8"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <div class="panduan-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
           <div>
             <div class="panduan-step">Langkah 5</div>
             <div class="panduan-title">Refresh & Unduh Laporan</div>
@@ -557,32 +641,32 @@ table.dt tbody tr:hover td { background: #e0effa; }
     <div id="dashboardPrintArea">
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
         <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/hourglass-sand-timer.png" alt="Menunggu"></div>
+          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/205-2051461_hourglass.png" alt="Menunggu"></div>
           <div class="em-card-num" id="scMenunggu">0</div>
           <div class="em-card-label">Menunggu</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/check-calendar.png" alt="Terjadwal"></div>
+          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/110-1108218_managment-booking-calendar-check-icon.png" alt="Terjadwal"></div>
           <div class="em-card-num" id="scTerjadwal">0</div>
           <div class="em-card-label">Terjadwal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/exchange.png" alt="HD Lain"></div>
+          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/239-2397496_free-to-use-public-domain-hospital-clip-art-hospital-hospital-clipart.png" alt="HD Lain"></div>
           <div class="em-card-num" id="scHdlain">0</div>
           <div class="em-card-label">HD Lain</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/cancel.png" alt="Batal"></div>
+          <div class="em-card-icon"><img src="https://thenounproject.com/icon/cancelled-appointment-2712895/" alt="Batal"></div>
           <div class="em-card-num" id="scBatal">0</div>
           <div class="em-card-label">Batal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/broken-heart.png" alt="Meninggal"></div>
+          <div class="em-card-icon"><img src="https://www.pngkit.com/png/detail/386-3860553_candle-icon-memorial-candle-png.png" alt="Meninggal"></div>
           <div class="em-card-num" id="scMeninggal">0</div>
           <div class="em-card-label">Meninggal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
-          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/no-phones.png" alt="No Respon"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/color/96/missed-call.png" alt="No Respon"></div>
           <div class="em-card-num" id="scNorespon">0</div>
           <div class="em-card-label">No Respon</div>
         </div>
@@ -600,7 +684,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
 
       <div class="card">
         <div class="card-header">
-          <span>Daftar Pasien <span id="filterLabel" style="color:#a4caee">(Menunggu)</span></span>
+          <span>Daftar Pasien <span id="filterLabel" style="color:#e8cfa8">(Menunggu)</span></span>
         </div>
         <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
           <table class="dt">
@@ -635,7 +719,7 @@ table.dt tbody tr:hover td { background: #e0effa; }
     </div>
 
     <div class="card mb-4">
-      <div class="card-header" style="background:linear-gradient(to bottom, #34d399, var(--green));border-bottom:2px solid #047857">
+      <div class="card-header" style="background-image:none;background:linear-gradient(to bottom, #34d399, #059669);border-bottom:2px solid #047857">
         <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</span>
         <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tab Baru</a>
       </div>
@@ -712,7 +796,6 @@ function toast(msg, type) {
   setTimeout(function() { el.remove(); }, 3500);
 }
 
-// ===== Status koneksi: hanya dot warna, label versi statis via HTML =====
 function setConnState(state) {
   var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
   ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
@@ -731,7 +814,7 @@ function closeSidebar() {
 }
 function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
 
-// ===== Mode pratinjau spreadsheet (Baca / Edit) =====
+// ===== Mode pratinjau spreadsheet =====
 function setSheetMode(mode) {
   sheetMode = mode;
   $('btnModeRead').classList.toggle('on', mode === 'read');
@@ -755,7 +838,6 @@ function parseGvizDate(val) {
   return isNaN(d.getTime()) ? null : d;
 }
 
-// ===== Deteksi status lebih fleksibel =====
 function getStatusKey(status) {
   if (!status) return 'other';
   var s = String(status).toUpperCase().trim();
@@ -771,6 +853,14 @@ function getStatusKey(status) {
   if (s.includes('TERJADWAL')) return 'terjadwal';
   if (s.includes('MENUNGGU')) return 'menunggu';
   return 'other';
+}
+
+// ===== Hitung pasien per ruangan (dari kolom Keterangan/R) =====
+function countRoom(namaRuangan) {
+  var key = namaRuangan.toUpperCase().replace(/\s+/g, ' ');
+  return allData.filter(function(d) {
+    return String(d.keterangan || '').toUpperCase().includes(key);
+  }).length;
 }
 
 function renderHbsAgBadge(val) {
@@ -916,9 +1006,10 @@ function updateStatusCounts() {
   $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
   $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
   $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
-  $('infoTotal').textContent = allData.length;
-  $('infoMenunggu').textContent = counts.menunggu;
-  $('infoHdlain').textContent = counts.hdlain;
+  // Kartu ruangan di Home
+  $('infoTeukuUmar').textContent = countRoom('Teuku Umar');
+  $('infoMalahayati').textContent = countRoom('Malahayati');
+  $('infoCutNyakDien').textContent = countRoom('Cut Nyak Dien');
 }
 
 function renderDashboard() {
@@ -948,7 +1039,7 @@ function renderDashboard() {
 }
 
 function openMenungguWaModal() {
-  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'meninggal' ? false : getStatusKey(d.status) === 'menunggu'; });
+  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
   var container = $('menungguWaList');
   if (list.length === 0) {
     container.innerHTML = '<div style="text-align:center;padding:20px">Tidak ada pasien menunggu</div>';
@@ -956,7 +1047,7 @@ function openMenungguWaModal() {
     var html = '';
     list.forEach(function(d, i) {
       var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
-      html += '<div style="background:#f9f9f9;border:1px solid #ddd;padding:10px;margin-bottom:8px">';
+      html += '<div style="background:#f7efe2;border:1px solid #e0d3c0;padding:10px;margin-bottom:8px">';
       html += '<div style="font-weight:bold;margin-bottom:5px">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
       html += '<div style="display:flex;gap:5px;flex-wrap:wrap">';
       if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</button>';

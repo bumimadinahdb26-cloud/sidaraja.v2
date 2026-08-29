@@ -11,17 +11,15 @@
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
 <style>
 :root {
-  /* ===== Palet Kayu Jati 100 Tahun ===== */
-  --primary: #4a2c17;        /* jati tua gelap */
-  --primary-light: #6b4423;  /* jati medium */
-  --primary-accent: #8b5a2b; /* jati terang */
-  --secondary: #efe6d8;      /* kayu muda / krem */
-  --border: #b08968;         /* bingkai kayu */
+  --primary: #4a2c17;
+  --primary-light: #6b4423;
+  --primary-accent: #8b5a2b;
+  --secondary: #efe6d8;
+  --border: #b08968;
   --text: #3a2a1a;
   --text-muted: #8a7660;
-  --bg: #f5f0e8;             /* latar krem hangat */
+  --bg: #f5f0e8;
   --green: #059669;
-  --green-light: #34d399;
   --red: #dc2626;
   --yellow: #d97706;
   --cream: #f5e6d3;
@@ -31,41 +29,11 @@
 * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 4px !important; }
 body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); font-size: 13px; min-height: 100vh; }
 
-/* ===== Tekstur Motif Serat Kayu Jati ===== */
-.wood {
-  background-color: #6b4423;
-  background-image:
-    repeating-linear-gradient(90deg,
-      rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px,
-      transparent 2px, transparent 9px,
-      rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px,
-      transparent 11px, transparent 22px),
-    repeating-linear-gradient(88deg,
-      rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px,
-      transparent 1px, transparent 38px),
-    repeating-linear-gradient(91deg,
-      rgba(74,44,23,0.25) 0px, transparent 3px, transparent 55px),
-    linear-gradient(to bottom, #7a4f2a, #54331b);
-}
-.wood-dark {
-  background-color: #4a2c17;
-  background-image:
-    repeating-linear-gradient(90deg,
-      rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 2px,
-      transparent 2px, transparent 10px,
-      rgba(255,255,255,0.04) 10px, rgba(255,255,255,0.04) 12px,
-      transparent 12px, transparent 24px),
-    repeating-linear-gradient(89deg,
-      rgba(0,0,0,0.07) 0px, rgba(0,0,0,0.07) 1px,
-      transparent 1px, transparent 44px),
-    linear-gradient(to bottom, #5c3a21, #3b2314);
-}
-
 /* ===== Top Navbar (Kayu Jati) ===== */
-.topbar { background: none; background-color: transparent; border-bottom: 4px solid #2a1810; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
 .topbar { background-image:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
-    linear-gradient(to bottom, #6b4423, #4a2c17); }
+    linear-gradient(to bottom, #6b4423, #4a2c17);
+  border-bottom: 4px solid #2a1810; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
 .topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 100px; }
 .topbar-logo { color: var(--cream); font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
 .topbar-logo img { height: 70px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
@@ -79,21 +47,18 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.2); color: var(--cream); font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); }
 .topbar-username { color: var(--cream); font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ===== Versi / Status Koneksi ===== */
 .conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
 .conn-version { color: var(--cream); font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
 
-/* ===== Tombol Hamburger ===== */
 .hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.25); color: var(--cream); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
 .hamburger-btn:active { background: rgba(0,0,0,0.45); }
 
-/* ===== Sidebar Mobile (Kayu) ===== */
+/* ===== Sidebar Mobile ===== */
 .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
 .sidebar-overlay.open { opacity: 1; visibility: visible; }
 .sidebar { position: fixed; top: 0; left: 0; width: 270px; max-width: 82vw; height: 100vh; height: 100dvh; z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,.45); border-right: 3px solid #2a1810;
   background-image:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
-    repeating-linear-gradient(89deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 40px),
     linear-gradient(to bottom, #6b4423, #3b2314); }
 .sidebar.open { transform: translateX(0); }
 .sidebar-hdr { padding: 18px 16px; border-bottom: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 12px; }
@@ -111,7 +76,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .sidebar-logout { margin: 0 16px 16px; padding: 12px; background: linear-gradient(to bottom, #dc2626, #b91c1c); border: 1px solid #991b1b; color: #fff; font-weight: bold; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 0 #991b1b; }
 .sidebar-logout:active { transform: translateY(1px); box-shadow: 0 1px 0 #991b1b; }
 
-/* ===== Responsif Mobile ===== */
+/* ===== Responsif ===== */
 @media (max-width: 768px) {
   .topbar-menu { display: none; }
   .topbar-username { display: none; }
@@ -128,16 +93,16 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
   .hero-title { font-size: 26px !important; }
   .hero-sub { font-size: 13px !important; }
   .sheet-frame { height: 450px !important; }
-  .room-card img { height: 90px !important; }
+  .room-strip { grid-template-columns: 1fr !important; }
+  .room-card img { height: 140px !important; }
 }
 @media (min-width: 769px) {
   .sidebar, .sidebar-overlay { display: none !important; }
 }
 
-/* ===== Hero Pengenalan (Kayu Jati) ===== */
+/* ===== Hero ===== */
 .hero { background-image:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 9px, rgba(255,255,255,0.05) 9px, rgba(255,255,255,0.05) 11px, transparent 11px, transparent 22px),
-    repeating-linear-gradient(89deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 42px),
     linear-gradient(135deg, #4a2c17 0%, #6b4423 55%, #8b5a2b 100%);
   border: 1px solid #2a1810; border-bottom: 5px solid #2a1810; padding: 40px 24px; text-align: center; color: var(--cream); position: relative; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
 .hero::before { content:''; position:absolute; inset:0; background-image:url('logosidaraja.png'); background-size: 300px; background-position: center; background-repeat: no-repeat; opacity: 0.08; pointer-events:none; }
@@ -146,15 +111,25 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .hero-sub { font-size: 16px; color: #e8cfa8; margin-top: 8px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
 .hero-tagline { display: inline-block; margin-top: 16px; padding: 8px 18px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); font-size: 12px; color: var(--cream); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15); }
 
-/* ===== Kartu Ruangan (Foto + Jumlah Pasien) ===== */
+/* ===== Kartu Ruangan (Foto + Kapasitas + Sisa Bed) ===== */
 .room-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
-.room-card { background: #fff; border: 3px solid var(--border); border-bottom: 5px solid #8a6240; padding: 0; text-align: center; overflow: hidden; box-shadow: 0 4px 0 #a3855f, 0 8px 14px rgba(0,0,0,0.15); transition: all 0.2s; cursor: default; }
+.room-card { background: #fffdf8; border: 3px solid var(--border); border-bottom: 5px solid #8a6240; padding: 0; text-align: center; overflow: hidden; box-shadow: 0 4px 0 #a3855f, 0 8px 14px rgba(0,0,0,0.15); transition: all 0.2s; }
 .room-card:hover { transform: translateY(-4px); box-shadow: 0 8px 0 #8a6240, 0 14px 22px rgba(0,0,0,0.22); }
-.room-card img { width: 100%; height: 120px; object-fit: cover; display: block; border-bottom: 2px solid var(--border); }
-.room-card .rc-body { padding: 10px 8px 12px; }
-.room-card .rc-num { font-size: 26px; font-weight: 900; color: var(--primary); line-height: 1; }
-.room-card .rc-label { font-size: 12px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }
-.room-card .rc-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.room-card img { width: 100%; height: 130px; object-fit: cover; display: block; border-bottom: 2px solid var(--border); }
+.room-card .rc-body { padding: 12px 10px 14px; }
+.rc-name { font-weight: 900; color: var(--primary); font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; }
+.rc-cap { display: inline-block; margin-top: 6px; padding: 4px 12px; background: linear-gradient(to bottom, #8b5a2b, #5c3a21); color: var(--cream); font-size: 12px; font-weight: bold; border: 1px solid #3b2314; box-shadow: 0 2px 0 #3b2314; }
+.rc-detail { list-style: none; margin-top: 10px; text-align: left; }
+.rc-detail li { font-size: 11px; color: var(--text); padding: 3px 0 3px 16px; position: relative; border-bottom: 1px dashed #e0d3c0; }
+.rc-detail li:last-child { border-bottom: none; }
+.rc-detail li::before { content: '▸'; position: absolute; left: 2px; color: var(--primary-accent); font-weight: bold; }
+.bed-label { margin-top: 12px; font-size: 10px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid #e0d3c0; padding-top: 10px; }
+.bed-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-top: 6px; }
+.bed-day { background: #f7efe2; border: 1px solid var(--border); text-align: center; padding: 5px 2px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); }
+.bed-day span { font-size: 9px; display: block; color: var(--text-muted); font-weight: bold; text-transform: uppercase; }
+.bed-day b { font-size: 15px; color: var(--primary); }
+.bed-day b.empty { color: var(--text-muted); font-weight: normal; }
+.bed-edit-btn { margin-top: 10px; width: 100%; justify-content: center; }
 
 /* ===== Bagian Pengenalan ===== */
 .about-section { margin-bottom: 24px; }
@@ -167,14 +142,12 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .about-body p { margin-bottom: 10px; text-align: justify; }
 .about-body p:last-child { margin-bottom: 0; }
 
-/* Tujuan list */
 .tujuan-list { list-style: none; }
 .tujuan-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed #e0d3c0; }
 .tujuan-list li:last-child { border-bottom: none; }
 .tujuan-num { width: 26px; height: 26px; background: linear-gradient(to bottom, #8b5a2b, #5c3a21); color: var(--cream); font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #3b2314; box-shadow: 0 2px 0 #3b2314; }
 .tujuan-text { font-size: 13px; padding-top: 3px; }
 
-/* Panduan */
 .panduan-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: #fffdf8; border: 1px solid var(--border); margin-bottom: 10px; box-shadow: 0 3px 0 var(--border); transition: all 0.2s; }
 .panduan-item:hover { transform: translateX(4px); box-shadow: 0 3px 0 var(--primary-accent); border-color: var(--primary-accent); }
 .panduan-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid var(--border); background: var(--secondary); color: var(--primary); }
@@ -182,19 +155,16 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .panduan-title { font-size: 14px; font-weight: bold; color: var(--primary); margin: 2px 0 4px; }
 .panduan-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
-/* Spreadsheet Frame */
 .sheet-frame { width: 100%; height: 600px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
 .mode-toggle { display: inline-flex; border: 1px solid var(--border); box-shadow: 0 3px 0 #a3855f; }
 .mode-toggle button { padding: 7px 14px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; background: linear-gradient(to bottom, #ffffff, #efe6d8); color: var(--text); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
 .mode-toggle button.on { background: linear-gradient(to bottom, #8b5a2b, #5c3a21); color: var(--cream); }
 
-/* Welcome Banner */
 .welcome-banner { background: #fffdf8; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1); }
 .welcome-title { font-size: 18px; font-weight: bold; color: var(--primary); }
 .welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
 
-/* 3D Style Cards Grid */
 .em-card { background: #fffdf8; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #a3855f, 0 6px 12px rgba(0,0,0,0.1); }
 .em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #8a6240, 0 10px 20px rgba(0,0,0,0.15); }
 .em-card.active { border: 2px solid var(--primary); background: #f7efe2; box-shadow: 0 4px 0 var(--primary-accent), 0 6px 12px rgba(0,0,0,0.15); }
@@ -203,7 +173,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .em-card-num { font-size: 24px; font-weight: bold; color: var(--text); line-height: 1; text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
 .em-card-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; }
 
-/* Login (Kayu) */
+/* Login */
 .login-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
 .login-box { background: #fffdf8; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.5); margin:auto; }
 .login-logo-area { height: 100px; background-image: url('logosidaraja.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: var(--primary); }
@@ -220,12 +190,10 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
 .auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
 
-/* Inputs */
 .si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
 .si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(139,90,43,.3); }
 .form-label { display: block; font-size: 11px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
 
-/* 3D Buttons (Kayu) */
 .bp, .bg2, .bo { padding: 6px 12px; font-size: 12px; font-weight: bold; border: 1px solid; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.1s; font-family: inherit; text-decoration: none; line-height: 1.4; }
 .bp { background: linear-gradient(to bottom, #8b5a2b, #5c3a21); border-color: #3b2314; color: var(--cream); box-shadow: 0 3px 0 #3b2314, 0 4px 6px rgba(0,0,0,0.2); }
 .bp:hover { transform: translateY(1px); box-shadow: 0 2px 0 #3b2314, 0 3px 4px rgba(0,0,0,0.2); }
@@ -234,7 +202,6 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .bo { background: linear-gradient(to bottom, #ffffff, #efe6d8); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #a3855f, 0 4px 6px rgba(0,0,0,0.1); }
 .bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #a3855f, 0 3px 4px rgba(0,0,0,0.1); }
 
-/* Cards (Kayu) */
 .card { background: #fffdf8; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,0.1); }
 .card-header { border-bottom: 2px solid #2a1810; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
   background-image:
@@ -247,7 +214,6 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .tt-i { background: #fdf6ec; border-color: #e0d3c0; color: #7a5c33; }
 
-/* Tables (Kayu) */
 table.dt { width: 100%; border-collapse: collapse; }
 table.dt thead th { border: 1px solid #3b2314; padding: 8px; text-align: left; font-size: 12px; color: var(--cream); font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
   background-image:
@@ -268,14 +234,11 @@ table.dt tbody tr:hover td { background: #efe0c8; }
 .badge-hbsag-pos { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
 .badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 
-/* WA Buttons */
 .btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; }
 .btn-wa:hover { transform: translateY(1px); box-shadow: 0 1px 0 #0a6b58; }
 .btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
 .btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
 
-/* Instructions */
-.excel-link-card { border: 1px solid var(--green); box-shadow: 0 4px 0 #047857; }
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
 .instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
@@ -358,6 +321,36 @@ table.dt tbody tr:hover td { background: #efe0c8; }
       <div class="mt-3 flex items-center justify-center gap-2">
         <span class="conn-dot conn-load" id="connDotLogin"></span>
         <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav2.23</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL EDIT SISA BED ===== -->
+<div class="modal-overlay" id="bedEditModal" style="display:none" onclick="if(event.target===this)closeBedEdit()">
+  <div class="modal-box" style="max-width:480px">
+    <div class="modal-hdr">
+      <h3><i class="fa-solid fa-bed mr-2"></i>Edit Sisa Bed — <span id="bedEditRoomName"></span></h3>
+      <button class="modal-close" onclick="closeBedEdit()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-key mr-1"></i>Password Ruangan</label>
+        <input type="password" id="bedEditPass" class="si2" placeholder="Masukkan password ruangan">
+      </div>
+      <div class="err-box" id="bedEditError"><i class="fa-solid fa-circle-xmark"></i><span id="bedEditErrorMsg"></span></div>
+      <label class="form-label"><i class="fa-solid fa-calendar-week mr-1"></i>Sisa Bed Kosong per Hari</label>
+      <div class="grid grid-cols-3 gap-2">
+        <div><label class="form-label" style="font-size:10px">Senin</label><input type="number" min="0" id="bedIn_sen" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Selasa</label><input type="number" min="0" id="bedIn_sel" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Rabu</label><input type="number" min="0" id="bedIn_rab" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Kamis</label><input type="number" min="0" id="bedIn_kam" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Jumat</label><input type="number" min="0" id="bedIn_jum" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Sabtu</label><input type="number" min="0" id="bedIn_sab" class="si2" placeholder="0"></div>
+      </div>
+      <div class="flex gap-2 mt-4 justify-end">
+        <button class="bo" onclick="closeBedEdit()">Batal</button>
+        <button class="bg2" onclick="submitBedEdit()"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
       </div>
     </div>
   </div>
@@ -483,7 +476,7 @@ table.dt tbody tr:hover td { background: #efe0c8; }
   </div>
 </main>
 
-<!-- ===== SLIDE 1: HOME (PENGENALAN APLIKASI) ===== -->
+<!-- ===== SLIDE 1: HOME ===== -->
 <main id="slide1" class="px-4 sm:px-8 pb-16" style="display:none">
   <div class="max-w-5xl mx-auto mt-6">
 
@@ -494,32 +487,75 @@ table.dt tbody tr:hover td { background: #efe0c8; }
       <div class="hero-tagline"><i class="fa-solid fa-hospital mr-1"></i> Instalasi Dialisis RSUD dr. Saiful Anwar Provinsi Jawa Timur</div>
     </div>
 
-    <!-- Kartu Ruangan HD (Foto Ruangan + Jumlah Pasien) -->
+    <!-- Kartu Ruangan HD: Foto + Kapasitas Mesin/Bed + Sisa Bed per Hari -->
     <div class="room-strip">
+
       <div class="room-card">
-        <img src="teukuumar.png" alt="Ruangan Teuku Umar">
+        <img src="teukuumar.png" alt="Ruangan HD Teuku Umar">
         <div class="rc-body">
-          <div class="rc-num" id="infoTeukuUmar">0</div>
-          <div class="rc-label">Teuku Umar</div>
-          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+          <div class="rc-name">HD Teuku Umar</div>
+          <div class="rc-cap">Kapasitas 33 Bed / Mesin</div>
+          <ul class="rc-detail">
+            <li>3 mesin khusus pasien HbsAg <strong>Positif</strong></li>
+            <li>2 mesin di ruang <strong>Airborne</strong></li>
+            <li>28 mesin <strong>reguler</strong></li>
+          </ul>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_teukuumar_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_teukuumar_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_teukuumar_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_teukuumar_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_teukuumar_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_teukuumar_sab">–</b></div>
+          </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('teukuumar')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
+
       <div class="room-card">
-        <img src="malahayati.png" alt="Ruangan Malahayati">
+        <img src="malahayati.png" alt="Ruangan HD Malahayati">
         <div class="rc-body">
-          <div class="rc-num" id="infoMalahayati">0</div>
-          <div class="rc-label">Malahayati</div>
-          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+          <div class="rc-name">HD Malahayati</div>
+          <div class="rc-cap">Kapasitas 29 Bed / Mesin</div>
+          <ul class="rc-detail">
+            <li>29 mesin <strong>reguler</strong> semua</li>
+          </ul>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_malahayati_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_malahayati_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_malahayati_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_malahayati_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_malahayati_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_malahayati_sab">–</b></div>
+          </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('malahayati')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
+
       <div class="room-card">
-        <img src="cutnyakdien.png" alt="Ruangan Cut Nyak Dien">
+        <img src="cutnyakdien.png" alt="Ruangan HD Cut Nyak Dien">
         <div class="rc-body">
-          <div class="rc-num" id="infoCutNyakDien">0</div>
-          <div class="rc-label">Cut Nyak Dien</div>
-          <div class="rc-sub">Pasien terjadwal di ruangan ini</div>
+          <div class="rc-name">HD Cut Nyak Dien</div>
+          <div class="rc-cap">Kapasitas 27 Bed / Mesin</div>
+          <ul class="rc-detail">
+            <li>1 mesin khusus <strong>HDF</strong></li>
+            <li>26 mesin <strong>reguler</strong></li>
+          </ul>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_cutnyakdien_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_cutnyakdien_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_cutnyakdien_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_cutnyakdien_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_cutnyakdien_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_cutnyakdien_sab">–</b></div>
+          </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('cutnyakdien')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
+
     </div>
 
     <!-- Latar Belakang -->
@@ -569,9 +605,17 @@ table.dt tbody tr:hover td { background: #efe0c8; }
           </div>
         </div>
         <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="panduan-icon"><i class="fa-solid fa-bed"></i></div>
           <div>
             <div class="panduan-step">Langkah 2</div>
+            <div class="panduan-title">Pantau Sisa Bed Kosong di Home</div>
+            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Klik <strong>Edit Sisa Bed</strong> dan masukkan password ruangan untuk memperbarui.</div>
+          </div>
+        </div>
+        <div class="panduan-item">
+          <div class="panduan-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div class="panduan-step">Langkah 3</div>
             <div class="panduan-title">Buka Menu AKSI SIDARAJA</div>
             <div class="panduan-desc">Pantau kartu status antrian (Menunggu, Terjadwal, HD Lain, dll). Klik salah satu kartu untuk menampilkan rincian daftar pasien sesuai status tersebut.</div>
           </div>
@@ -579,7 +623,7 @@ table.dt tbody tr:hover td { background: #efe0c8; }
         <div class="panduan-item">
           <div class="panduan-icon" style="background:#f0fdf4;color:#047857"><i class="fa-brands fa-whatsapp"></i></div>
           <div>
-            <div class="panduan-step">Langkah 3</div>
+            <div class="panduan-step">Langkah 4</div>
             <div class="panduan-title">Hubungi Pasien via WhatsApp</div>
             <div class="panduan-desc">Klik tombol WA pada kolom paling kanan tabel, pilih ruangan HD yang kosong, lalu kirim pesan penawaran jadwal kepada pasien atau keluarganya.</div>
           </div>
@@ -587,17 +631,9 @@ table.dt tbody tr:hover td { background: #efe0c8; }
         <div class="panduan-item">
           <div class="panduan-icon"><i class="fa-solid fa-file-excel"></i></div>
           <div>
-            <div class="panduan-step">Langkah 4</div>
+            <div class="panduan-step">Langkah 5</div>
             <div class="panduan-title">Update Status di Menu Data Pasien</div>
             <div class="panduan-desc">Buka menu <strong>Data Pasien</strong>, aktifkan <strong>Mode Edit</strong> pada pratinjau spreadsheet, lalu ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> sesuai hasil konfirmasi pasien.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 5</div>
-            <div class="panduan-title">Refresh & Unduh Laporan</div>
-            <div class="panduan-desc">Klik tombol <strong>Refresh</strong> di pojok kanan atas agar data terbaru tampil. Gunakan tombol <strong>Cetak</strong>, <strong>PDF</strong>, atau <strong>WA</strong> untuk mengarsipkan dan membagikan laporan.</div>
           </div>
         </div>
         <div class="panduan-item" style="border:1px solid #fca5a5;box-shadow:0 3px 0 #fca5a5;background:#fef2f2">
@@ -641,32 +677,32 @@ table.dt tbody tr:hover td { background: #efe0c8; }
     <div id="dashboardPrintArea">
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
         <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
-          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/205-2051461_hourglass.png" alt="Menunggu"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/hourglass-sand-timer.png" alt="Menunggu"></div>
           <div class="em-card-num" id="scMenunggu">0</div>
           <div class="em-card-label">Menunggu</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
-          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/110-1108218_managment-booking-calendar-check-icon.png" alt="Terjadwal"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/check-calendar.png" alt="Terjadwal"></div>
           <div class="em-card-num" id="scTerjadwal">0</div>
           <div class="em-card-label">Terjadwal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon"><img src="https://www.clipartmax.com/png/middle/239-2397496_free-to-use-public-domain-hospital-clip-art-hospital-hospital-clipart.png" alt="HD Lain"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/exchange.png" alt="HD Lain"></div>
           <div class="em-card-num" id="scHdlain">0</div>
           <div class="em-card-label">HD Lain</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon"><img src="https://thenounproject.com/icon/cancelled-appointment-2712895/" alt="Batal"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/cancel.png" alt="Batal"></div>
           <div class="em-card-num" id="scBatal">0</div>
           <div class="em-card-label">Batal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon"><img src="https://www.pngkit.com/png/detail/386-3860553_candle-icon-memorial-candle-png.png" alt="Meninggal"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/broken-heart.png" alt="Meninggal"></div>
           <div class="em-card-num" id="scMeninggal">0</div>
           <div class="em-card-label">Meninggal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
-          <div class="em-card-icon"><img src="https://img.icons8.com/color/96/missed-call.png" alt="No Respon"></div>
+          <div class="em-card-icon"><img src="https://img.icons8.com/3d-fluent/96/no-phones.png" alt="No Respon"></div>
           <div class="em-card-num" id="scNorespon">0</div>
           <div class="em-card-label">No Respon</div>
         </div>
@@ -734,7 +770,7 @@ table.dt tbody tr:hover td { background: #efe0c8; }
             <button class="bp" onclick="refreshData()"><i class="fa-solid fa-bolt"></i> Sinkron ke AKSI SIDARAJA</button>
           </div>
         </div>
-        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong> (pastikan sudah login Google dengan akun yang punya akses edit).</p>
+        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong>.</p>
         <iframe class="sheet-frame" id="sheetFrame" src="" loading="lazy" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
@@ -746,23 +782,19 @@ table.dt tbody tr:hover td { background: #efe0c8; }
       </div>
       <div class="instruction-step">
         <div class="instruction-num">1</div>
-        <div style="font-size:12px;color:#78350f"><strong>Hubungi pasien</strong> melalui WhatsApp atau telepon pada tombol WA di kolom paling kanan tabel pada halaman <strong>AKSI SIDARAJA</strong>.</div>
+        <div style="font-size:12px;color:#78350f"><strong>Hubungi pasien</strong> melalui WhatsApp pada tombol WA di halaman <strong>AKSI SIDARAJA</strong>.</div>
       </div>
       <div class="instruction-step">
         <div class="instruction-num">2</div>
-        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> langsung di pratinjau — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
+        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
       </div>
       <div class="instruction-step">
         <div class="instruction-num">3</div>
-        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan (misal: nama ruangan atau RS lain tempat pasien menjalani HD).</div>
+        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan.</div>
       </div>
       <div class="instruction-step">
         <div class="instruction-num">4</div>
-        <div style="font-size:12px;color:#78350f">Setelah selesai edit, klik tombol <strong>Sinkron ke AKSI SIDARAJA</strong> (atau tombol Refresh di kanan atas) untuk melihat perubahan pada kartu status.</div>
-      </div>
-      <div style="margin-top:10px;padding:8px;background:#fee2e2;border:1px solid #fecaca;display:flex;gap:8px">
-        <i class="fa-solid fa-triangle-exclamation" style="color:#dc2626"></i>
-        <span style="font-size:11px;color:#991b1b"><strong>Penting:</strong> Perubahan pada kolom Q dan R akan langsung mengubah kartu status di AKSI SIDARAJA setelah data disinkronkan.</span>
+        <div style="font-size:12px;color:#78350f">Klik <strong>Sinkron ke AKSI SIDARAJA</strong> untuk melihat perubahan pada kartu status.</div>
       </div>
     </div>
   </div>
@@ -776,6 +808,23 @@ var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?
 var SHEET_READ_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
 var SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + GID + '#gid=' + GID;
 var sheetMode = 'read';
+
+/* ====== KONFIGURASI SISA BED ONLINE ======
+   Untuk sinkron online antar user:
+   1. Buka https://script.google.com > New Project
+   2. Tempel kode Apps Script (lihat petunjuk di bawah halaman)
+   3. Deploy > New deployment > Web app
+      - Execute as: Me
+      - Who has access: Anyone
+   4. Salin URL Web App ke variabel di bawah ini.
+   Jika dikosongkan, data tersimpan lokal (localStorage) per perangkat. */
+var BED_API_URL = '';
+
+var ROOM_PASSWORDS = { teukuumar: 'apik', malahayati: 'bagus', cutnyakdien: 'cakep' };
+var ROOM_NAMES = { teukuumar: 'HD Teuku Umar', malahayati: 'HD Malahayati', cutnyakdien: 'HD Cut Nyak Dien' };
+var BED_DAYS = ['sen','sel','rab','kam','jum','sab'];
+var bedData = { teukuumar: {}, malahayati: {}, cutnyakdien: {} };
+var currentBedRoom = null;
 
 var allData = [];
 var currentFilter = 'menunggu';
@@ -803,7 +852,86 @@ function setConnState(state) {
   });
 }
 
-// ===== Sidebar Mobile =====
+/* ================= SISA BED KOSONG ================= */
+function renderBedData() {
+  Object.keys(bedData).forEach(function(room) {
+    BED_DAYS.forEach(function(day) {
+      var el = $('bed_' + room + '_' + day);
+      if (!el) return;
+      var v = bedData[room][day];
+      if (v === undefined || v === '' || v === null) {
+        el.textContent = '–'; el.classList.add('empty');
+      } else {
+        el.textContent = v; el.classList.remove('empty');
+      }
+    });
+  });
+}
+
+function loadBedData() {
+  var fallbackLocal = function() {
+    try {
+      var s = localStorage.getItem('sidaraja_bed');
+      if (s) bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, JSON.parse(s));
+    } catch(e) {}
+    renderBedData();
+  };
+  if (BED_API_URL) {
+    fetch(BED_API_URL).then(function(r) { return r.json(); }).then(function(d) {
+      bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, d);
+      renderBedData();
+    }).catch(fallbackLocal);
+  } else fallbackLocal();
+}
+
+function saveBedData() {
+  if (BED_API_URL) {
+    fetch(BED_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(bedData)
+    }).then(function() {
+      toast('Data sisa bed tersimpan online — terlihat semua user', 'success');
+    }).catch(function() {
+      localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
+      toast('Server online gagal — data disimpan lokal sementara', 'info');
+    });
+  } else {
+    localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
+    toast('Data sisa bed tersimpan di perangkat ini (set BED_API_URL untuk online)', 'success');
+  }
+}
+
+function openBedEdit(room) {
+  currentBedRoom = room;
+  $('bedEditRoomName').textContent = ROOM_NAMES[room];
+  $('bedEditPass').value = '';
+  hideErr('bedEditError');
+  BED_DAYS.forEach(function(day) { $('bedIn_' + day).value = (bedData[room][day] !== undefined ? bedData[room][day] : ''); });
+  $('bedEditModal').style.display = 'flex';
+  setTimeout(function() { $('bedEditPass').focus(); }, 100);
+}
+function closeBedEdit() { $('bedEditModal').style.display = 'none'; }
+
+function submitBedEdit() {
+  var pass = $('bedEditPass').value;
+  if (pass !== ROOM_PASSWORDS[currentBedRoom]) {
+    showErr('bedEditError', 'Password salah! Hubungi petugas ruangan ' + ROOM_NAMES[currentBedRoom] + '.');
+    return;
+  }
+  BED_DAYS.forEach(function(day) {
+    bedData[currentBedRoom][day] = $('bedIn_' + day).value.trim();
+  });
+  saveBedData();
+  renderBedData();
+  closeBedEdit();
+}
+// Enter pada password langsung simpan
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && $('bedEditModal').style.display === 'flex') submitBedEdit();
+});
+
+/* ================= SIDEBAR ================= */
 function openSidebar() {
   $('mobileSidebar').classList.add('open');
   $('sidebarOverlay').classList.add('open');
@@ -814,15 +942,14 @@ function closeSidebar() {
 }
 function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
 
-// ===== Mode pratinjau spreadsheet =====
+/* ================= SPREADSHEET MODE ================= */
 function setSheetMode(mode) {
   sheetMode = mode;
   $('btnModeRead').classList.toggle('on', mode === 'read');
   $('btnModeEdit').classList.toggle('on', mode === 'edit');
   $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
-  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diklik & diedit langsung' : 'Mode Baca aktif', 'info');
+  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diedit langsung' : 'Mode Baca aktif', 'info');
 }
-
 function reloadSheetFrame() {
   $('sheetFrame').src = (sheetMode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
   toast('Pratinjau spreadsheet dimuat ulang', 'info');
@@ -849,18 +976,10 @@ function getStatusKey(status) {
   var hasLain = s.includes('LAIN');
   if (hasHD && hasLain) return 'hdlain';
   if (s.includes('HDLAIN')) return 'hdlain';
-  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN') || s.includes('HOSPITAL LAIN')) return 'hdlain';
+  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN')) return 'hdlain';
   if (s.includes('TERJADWAL')) return 'terjadwal';
   if (s.includes('MENUNGGU')) return 'menunggu';
   return 'other';
-}
-
-// ===== Hitung pasien per ruangan (dari kolom Keterangan/R) =====
-function countRoom(namaRuangan) {
-  var key = namaRuangan.toUpperCase().replace(/\s+/g, ' ');
-  return allData.filter(function(d) {
-    return String(d.keterangan || '').toUpperCase().includes(key);
-  }).length;
 }
 
 function renderHbsAgBadge(val) {
@@ -985,7 +1104,11 @@ function fetchSheetData() {
   });
 }
 
-function refreshData() { var icon = $('refreshIcon'); if (icon) icon.classList.add('fa-spin'); fetchSheetData(); setTimeout(function() { if (icon) icon.classList.remove('fa-spin'); }, 2000); }
+function refreshData() {
+  var icon = $('refreshIcon'); if (icon) icon.classList.add('fa-spin');
+  fetchSheetData(); loadBedData();
+  setTimeout(function() { if (icon) icon.classList.remove('fa-spin'); }, 2000);
+}
 
 function clickStatusCard(key) {
   currentFilter = key;
@@ -1000,16 +1123,12 @@ function clickStatusCard(key) {
 }
 
 function updateStatusCounts() {
-  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0, other: 0 };
+  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
   allData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
   $('scMenunggu').textContent = counts.menunggu; $('scTerjadwal').textContent = counts.terjadwal;
   $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
   $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
   $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
-  // Kartu ruangan di Home
-  $('infoTeukuUmar').textContent = countRoom('Teuku Umar');
-  $('infoMalahayati').textContent = countRoom('Malahayati');
-  $('infoCutNyakDien').textContent = countRoom('Cut Nyak Dien');
 }
 
 function renderDashboard() {
@@ -1128,6 +1247,7 @@ function patientSearch() {
 
 // Init
 checkAuth();
+loadBedData();
 </script>
 </body>
 </html>

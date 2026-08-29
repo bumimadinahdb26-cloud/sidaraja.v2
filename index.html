@@ -2,10 +2,6 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SIDARAJA — Sistem Pendaftaran Hemodialisis Rawat Jalan RSSA</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -29,1262 +25,6 @@
   --cream: #f7e9d2;
   --cream-dim: #d4bb92;
   --gold: #ffd894;
-
-  --wood-grain:
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.30) 0px, rgba(0,0,0,0.30) 1px, transparent 1px, transparent 8px),
-    repeating-linear-gradient(90deg, transparent 0px, transparent 9px, rgba(255,220,170,0.09) 9px, rgba(255,220,170,0.09) 11px, transparent 11px, transparent 25px),
-    repeating-linear-gradient(88deg, rgba(0,0,0,0.18) 0px, transparent 2px, transparent 42px, rgba(0,0,0,0.10) 44px, transparent 47px),
-    repeating-linear-gradient(91deg, transparent 0px, transparent 70px, rgba(255,210,150,0.05) 70px, transparent 74px),
-    radial-gradient(ellipse at 18% 8%, rgba(255,214,150,0.17), transparent 55%),
-    radial-gradient(ellipse at 85% 100%, rgba(0,0,0,0.5), transparent 62%);
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 4px !important; }
-body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); font-size: 13px; min-height: 100vh; }
-
-/* ===== Top Navbar ===== */
-.topbar { background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); border-bottom: 5px solid #1a0d04; position: sticky; top: 0; z-index: 50; box-shadow: 0 5px 12px rgba(0,0,0,.45); }
-.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 100px; }
-.topbar-logo { color: var(--cream); font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,.6); }
-.topbar-logo img { height: 70px; max-width: 200px; object-fit: contain; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.6)); }
-.topbar-menu { display: flex; gap: 0; height: 100px; }
-.topbar-menu-item { padding: 0 18px; color: var(--cream); font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; text-shadow: 1px 1px 2px rgba(0,0,0,.6); }
-.topbar-menu-item:hover { background: rgba(0,0,0,0.3); }
-.topbar-menu-item.active { background: var(--secondary); color: var(--primary); box-shadow: inset 0 4px 0 var(--primary-accent); text-shadow: none; }
-.topbar-right { display: flex; align-items: center; gap: 10px; }
-.topbar-user { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: rgba(0,0,0,0.35); border: 1px solid rgba(0,0,0,0.5); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
-.topbar-user:hover { background: rgba(0,0,0,0.5); }
-.topbar-avatar { width: 28px; height: 28px; background: rgba(255,255,255,0.15); color: var(--cream); font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.35); }
-.topbar-username { color: var(--cream); font-size: 13px; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-.conn-badge { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,0.35); border: 1px solid rgba(0,0,0,0.5); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
-.conn-version { color: var(--gold); font-size: 12px; font-weight: bold; letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
-
-.hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.22); color: var(--cream); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
-.hamburger-btn:active { background: rgba(0,0,0,0.5); }
-
-/* ===== Sidebar Mobile ===== */
-.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
-.sidebar-overlay.open { opacity: 1; visibility: visible; }
-.sidebar { position: fixed; top: 0; left: 0; width: 270px; max-width: 82vw; height: 100vh; height: 100dvh; z-index: 999; transform: translateX(-100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,.5); border-right: 4px solid #1a0d04;
-  background-image: var(--wood-grain), linear-gradient(to bottom, #4a2a12, #1f1006); }
-.sidebar.open { transform: translateX(0); }
-.sidebar-hdr { padding: 18px 16px; border-bottom: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 12px; }
-.sidebar-hdr img { height: 60px; max-width: 140px; object-fit: contain; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.6)); }
-.sidebar-user { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 10px; }
-.sidebar-avatar { width: 36px; height: 36px; background: rgba(255,255,255,0.15); color: var(--cream); font-weight: bold; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.35); font-size: 16px; flex-shrink: 0; }
-.sidebar-username { color: var(--cream); font-size: 14px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sidebar-role { color: var(--cream-dim); font-size: 11px; }
-.sidebar-menu { padding: 10px 0; flex: 1; overflow-y: auto; }
-.sidebar-menu-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 20px; color: var(--cream); font-size: 14px; font-weight: bold; cursor: pointer; background: none; border: none; text-align: left; text-decoration: none; transition: background 0.2s; text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
-.sidebar-menu-item i { width: 22px; text-align: center; font-size: 16px; }
-.sidebar-menu-item:hover { background: rgba(0,0,0,0.3); }
-.sidebar-menu-item.active { background: var(--secondary); color: var(--primary); box-shadow: inset 4px 0 0 var(--primary-accent); text-shadow: none; }
-.sidebar-conn { padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; gap: 8px; color: var(--gold); font-size: 12px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,.5); }
-.sidebar-logout { margin: 0 16px 16px; padding: 12px; background: linear-gradient(to bottom, #dc2626, #991b1b); border: 1px solid #7f1d1d; color: #fff; font-weight: bold; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 0 #7f1d1d; }
-.sidebar-logout:active { transform: translateY(1px); box-shadow: 0 1px 0 #7f1d1d; }
-
-/* ===== Responsif ===== */
-@media (max-width: 768px) {
-  .topbar-menu { display: none; }
-  .topbar-username { display: none; }
-  .conn-badge { display: none; }
-  .hamburger-btn { display: flex; }
-  .topbar-inner { height: 80px; padding: 0 12px; }
-  .topbar-logo img { height: 52px; }
-  .topbar-user { padding: 4px; }
-  .topbar-avatar { width: 36px; height: 36px; font-size: 15px; }
-  #statusCards { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .em-card { min-height: 100px; }
-  .welcome-banner { flex-direction: column; align-items: flex-start; }
-  table.dt thead th, table.dt tbody td { padding: 6px 5px; font-size: 11px; }
-  .hero-title { font-size: 26px !important; }
-  .hero-sub { font-size: 13px !important; }
-  .sheet-frame { height: 450px !important; }
-  .room-strip { grid-template-columns: 1fr !important; }
-  /* Gambar fit & tidak error di mobile: contain + tinggi wajar */
-  .room-card img { height: 170px !important; padding: 8px !important; }
-}
-@media (min-width: 769px) {
-  .sidebar, .sidebar-overlay { display: none !important; }
-}
-
-/* ===== Hero ===== */
-.hero { background-image: var(--wood-grain), linear-gradient(135deg, #3b2010 0%, #5a3418 55%, #7a4a22 100%); border: 1px solid #1a0d04; border-bottom: 6px solid #1a0d04; padding: 40px 24px; text-align: center; color: var(--cream); position: relative; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
-.hero::before { content:''; position:absolute; inset:0; background-image:url('logosidaraja.png'); background-size: 300px; background-position: center; background-repeat: no-repeat; opacity: 0.09; pointer-events:none; }
-.hero-logo { height: 110px; filter: drop-shadow(3px 4px 6px rgba(0,0,0,0.55)); margin-bottom: 16px; }
-.hero-title { font-size: 40px; font-weight: 900; letter-spacing: 3px; color: var(--gold); text-shadow: 2px 3px 5px rgba(0,0,0,0.7); line-height: 1.1; }
-.hero-sub { font-size: 16px; color: #e8cfa8; margin-top: 8px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }
-.hero-tagline { display: inline-block; margin-top: 16px; padding: 8px 18px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,220,170,0.35); font-size: 12px; color: var(--cream); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); }
-
-/* ===== Kartu Ruangan — GAMBAR FIT (contain) ===== */
-.room-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
-.room-card { background: #fbf6ec; border: 3px solid var(--border); border-bottom: 6px solid #5c3a18; padding: 0; text-align: center; overflow: hidden; box-shadow: 0 4px 0 #6d4c26, 0 10px 16px rgba(0,0,0,0.22); transition: all 0.2s; }
-.room-card:hover { transform: translateY(-4px); box-shadow: 0 9px 0 #5c3a18, 0 16px 24px rgba(0,0,0,0.3); }
-.room-img-box { position: relative; width: 100%; height: 150px; overflow: hidden; border-bottom: 3px solid var(--border);
-  /* latar kayu gelap sebagai bingkai gambar */
-  background-image: var(--wood-grain), linear-gradient(to bottom, #4a2a12, #241206);
-  display: flex; align-items: center; justify-content: center; }
-.room-img-box img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; padding: 6px; }
-/* Placeholder saat gambar error — teks nama ruangan di atas kayu */
-.room-img-box .img-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 100%; color: var(--cream); text-align: center; padding: 12px; }
-.room-img-box .img-fallback i { font-size: 34px; color: var(--gold); }
-.room-img-box .img-fallback span { font-size: 13px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,.6); }
-.room-img-box.no-img img { display: none; }
-.room-img-box.no-img .img-fallback { display: flex; }
-.room-card .rc-body { padding: 12px 10px 14px; }
-.rc-name { font-weight: 900; color: var(--primary); font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; }
-.rc-cap { display: inline-block; margin-top: 6px; padding: 4px 12px; background: linear-gradient(to bottom, #7a4a22, #452612); color: var(--cream); font-size: 12px; font-weight: bold; border: 1px solid #2b1608; box-shadow: 0 2px 0 #2b1608, inset 0 1px 0 rgba(255,220,170,0.2); }
-.rc-detail { list-style: none; margin-top: 10px; text-align: left; }
-.rc-detail li { font-size: 11px; color: var(--text); padding: 3px 0 3px 16px; position: relative; border-bottom: 1px dashed #dcc9a8; }
-.rc-detail li:last-child { border-bottom: none; }
-.rc-detail li::before { content: '▸'; position: absolute; left: 2px; color: var(--primary-accent); font-weight: bold; }
-.bed-label { margin-top: 12px; font-size: 10px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid #dcc9a8; padding-top: 10px; }
-.bed-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-top: 6px; }
-.bed-day { background: #f0e6d0; border: 1px solid var(--border); text-align: center; padding: 5px 2px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.08); }
-.bed-day span { font-size: 9px; display: block; color: var(--text-muted); font-weight: bold; text-transform: uppercase; }
-.bed-day b { font-size: 15px; color: var(--primary); }
-.bed-day b.empty { color: var(--text-muted); font-weight: normal; }
-.bed-edit-btn { margin-top: 10px; width: 100%; justify-content: center; }
-
-/* ===== Bagian Pengenalan ===== */
-.about-section { margin-bottom: 24px; }
-.about-header { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border: 1px solid #1a0d04; border-bottom: 4px solid #1a0d04; color: var(--cream); font-size: 15px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); box-shadow: 0 5px 8px rgba(0,0,0,0.18);
-  background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
-.about-header .ah-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,220,170,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; color: var(--gold); }
-.about-body { background: #fbf6ec; border: 1px solid var(--border); border-top: none; padding: 18px 20px; line-height: 1.8; font-size: 13px; color: var(--text); box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
-.about-body p { margin-bottom: 10px; text-align: justify; }
-.about-body p:last-child { margin-bottom: 0; }
-
-.tujuan-list { list-style: none; }
-.tujuan-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed #dcc9a8; }
-.tujuan-list li:last-child { border-bottom: none; }
-.tujuan-num { width: 26px; height: 26px; background: linear-gradient(to bottom, #7a4a22, #3b2010); color: var(--cream); font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid #1a0d04; box-shadow: 0 2px 0 #1a0d04; }
-.tujuan-text { font-size: 13px; padding-top: 3px; }
-
-.panduan-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px; background: #fbf6ec; border: 1px solid var(--border); margin-bottom: 10px; box-shadow: 0 3px 0 #96703f; transition: all 0.2s; }
-.panduan-item:hover { transform: translateX(4px); box-shadow: 0 3px 0 var(--primary-accent); border-color: var(--primary-accent); }
-.panduan-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; border: 1px solid var(--border); background: #f0e6d0; color: var(--primary); }
-.panduan-step { font-size: 10px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-.panduan-title { font-size: 14px; font-weight: bold; color: var(--primary); margin: 2px 0 4px; }
-.panduan-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-
-.sheet-frame { width: 100%; height: 600px; border: 1px solid var(--border); background: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); }
-.mode-toggle { display: inline-flex; border: 1px solid var(--border); box-shadow: 0 3px 0 #6d4c26; }
-.mode-toggle button { padding: 7px 14px; font-size: 12px; font-weight: bold; cursor: pointer; border: none; background: linear-gradient(to bottom, #ffffff, #e8dcc4); color: var(--text); font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
-.mode-toggle button.on { background: linear-gradient(to bottom, #7a4a22, #3b2010); color: var(--cream); }
-
-.welcome-banner { background: #fbf6ec; border: 1px solid var(--border); padding: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1); }
-.welcome-title { font-size: 18px; font-weight: bold; color: var(--primary); }
-.welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-.welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); }
-
-/* ===== Kartu Status ===== */
-.em-card { background: #fbf6ec; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #96703f, 0 7px 12px rgba(0,0,0,0.13); }
-.em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #6d4c26, 0 12px 20px rgba(0,0,0,0.2); }
-.em-card.active { border: 2px solid var(--primary); background: #f0e2c6; box-shadow: 0 4px 0 var(--primary-accent), 0 7px 12px rgba(0,0,0,0.18); }
-.em-card-icon { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; font-size: 20px; border: 2px solid; box-shadow: inset 0 2px 4px rgba(0,0,0,0.15), 0 2px 3px rgba(0,0,0,0.15); }
-.em-card-num { font-size: 24px; font-weight: bold; color: var(--text); line-height: 1; text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
-.em-card-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; }
-
-/* Login */
-.login-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.82); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
-.login-box { background: #fbf6ec; border: 1px solid var(--border); max-width: 420px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.55); margin:auto; }
-.login-logo-area { height: 100px; background-image: url('logosidaraja.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: var(--primary); }
-.login-header-text { background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); padding: 15px; text-align: center; border-bottom: 3px solid #1a0d04; }
-.login-body { padding: 20px; }
-.mode-card { border: 1px solid var(--border); padding: 15px; cursor: pointer; text-align: center; background: #fbf6ec; box-shadow: 0 3px 0 #96703f; transition: all 0.2s; }
-.mode-card:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #6d4c26; }
-.mode-card.sel-admin { border: 2px solid var(--primary); background: #f0e2c6; }
-.mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
-.mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
-.auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
-.auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
-
-.si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); }
-.si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(122,74,34,.35); }
-.form-label { display: block; font-size: 11px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
-
-.bp, .bg2, .bo { padding: 6px 12px; font-size: 12px; font-weight: bold; border: 1px solid; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.1s; font-family: inherit; text-decoration: none; line-height: 1.4; }
-.bp { background: linear-gradient(to bottom, #7a4a22, #3b2010); border-color: #1a0d04; color: var(--cream); box-shadow: 0 3px 0 #1a0d04, 0 4px 6px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,220,170,0.25); }
-.bp:hover { transform: translateY(1px); box-shadow: 0 2px 0 #1a0d04, 0 3px 4px rgba(0,0,0,0.2); }
-.bg2 { background: linear-gradient(to bottom, #34d399, var(--green)); border-color: #047857; color: #fff; box-shadow: 0 3px 0 #047857, 0 4px 6px rgba(0,0,0,0.2); }
-.bg2:hover { transform: translateY(1px); box-shadow: 0 2px 0 #047857, 0 3px 4px rgba(0,0,0,0.2); }
-.bo { background: linear-gradient(to bottom, #ffffff, #e8dcc4); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #96703f, 0 4px 6px rgba(0,0,0,0.12); }
-.bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #96703f, 0 3px 4px rgba(0,0,0,0.1); }
-
-.card { background: #fbf6ec; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,0.1); }
-.card-header { border-bottom: 3px solid #1a0d04; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-  background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
-
-.tc2 { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); max-width: 350px; pointer-events: auto; border: 1px solid; }
-.tt-s { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
-.tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
-.tt-i { background: #fdf3e2; border-color: #dcc9a8; color: #7a5c33; }
-
-table.dt { width: 100%; border-collapse: collapse; }
-table.dt thead th { border: 1px solid #1a0d04; padding: 8px; text-align: left; font-size: 12px; color: var(--cream); font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-  background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
-table.dt tbody td { border: 1px solid #dcc9a8; padding: 8px; font-size: 12px; color: var(--text); background: #fbf6ec; }
-table.dt tbody tr:nth-child(even) td { background: #f0e6d0; }
-table.dt tbody tr:hover td { background: #e6d3ac; }
-
-.badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-.badge-menunggu { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
-.badge-terjadwal { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
-.badge-hdlain { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
-.badge-batal { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-.badge-meninggal { background: #f3f4f6; color: #374151; border-color: #d1d5db; }
-.badge-norespon { background: #cffafe; color: #155e75; border-color: #67e8f9; }
-.badge-other { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
-.badge-hbsag-pos { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-.badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
-
-.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; }
-.btn-wa:hover { transform: translateY(1px); box-shadow: 0 1px 0 #0a6b58; }
-.btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
-.btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
-
-.instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
-.instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-.instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
-
-.conn-dot { width: 8px; height: 8px; display: inline-block; }
-.conn-ok { background: #10b981; }
-.conn-fail { background: #ef4444; }
-.conn-load { background: #f59e0b; animation:pulse2 1s infinite; }
-@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.3}}
-
-.err-box, .ok-box { padding: 8px 10px; font-size: 12px; font-weight: 600; margin-bottom: 10px; display: none; border: 1px solid; }
-.err-box.show, .ok-box.show { display: flex; align-items: center; gap: 8px; }
-.err-box { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
-.ok-box { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
-
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 16px; }
-.modal-box { background: #fbf6ec; border: 1px solid var(--border); max-width: 600px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.55); max-height: 90vh; overflow-y: auto; }
-.modal-hdr { padding: 10px 15px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; color: var(--cream);
-  background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
-.modal-hdr h3 { font-size: 14px; font-weight: bold; color: var(--cream); }
-.modal-close { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: var(--cream); }
-.modal-close:hover { background: #dc2626; border-color: #fecaca; }
-.modal-body { padding: 15px; }
-
-@media print{body>*{display:none!important}#printArea{display:block!important}}
-::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#e8dcc4}::-webkit-scrollbar-thumb{background:#7a5a33}
-</style>
-</head>
-<body>
-<div class="tc2" id="toastC"></div>
-<div id="printArea" style="display:none"></div>
-
-<!-- ===== LOGIN OVERLAY ===== -->
-<div class="login-overlay" id="loginOverlay">
-  <div class="login-box">
-    <div class="login-logo-area"></div>
-    <div class="login-header-text">
-      <h2 class="text-lg font-black" style="color:var(--gold)">SIDARAJA</h2>
-      <p class="text-xs mt-1" style="color:#e8cfa8">Sistem Pendaftaran Hemodialisis Rawat Jalan<br>Instalasi Dialisis RSSA</p>
-    </div>
-    <div class="login-body">
-      <p class="text-center font-bold text-sm mb-4" style="color:var(--text)">Pilih Mode Akses</p>
-      <div class="grid grid-cols-2 gap-3 mb-4">
-        <div class="mode-card" id="modeAdmin" onclick="selectMode('admin')">
-          <div class="mc-icon" style="background:#f0e2c6;color:#7a4a22"><i class="fa-solid fa-user-shield"></i></div>
-          <div class="mc-title">Petugas</div>
-          <div class="mc-desc">Login email & data</div>
-        </div>
-        <div class="mode-card" id="modeUser" onclick="selectMode('user')">
-          <div class="mc-icon" style="background:#d1fae5;color:#059669"><i class="fa-solid fa-users"></i></div>
-          <div class="mc-title">Pasien</div>
-          <div class="mc-desc">Cek antrian</div>
-        </div>
-      </div>
-      <div id="adminSection" style="display:none">
-        <div class="auth-tabs">
-          <button class="auth-tab active" id="authTabLogin" onclick="switchAuthTab('login')">Masuk</button>
-          <button class="auth-tab" id="authTabRegister" onclick="switchAuthTab('register')">Daftar</button>
-        </div>
-        <div id="authLoginForm">
-          <div class="mb-3"><label class="form-label">Email</label><div class="relative"><i class="fa-solid fa-envelope absolute left-2 top-2 text-gray-400"></i><input type="email" id="loginEmail" class="si2" style="padding-left:30px" placeholder="email@contoh.com"></div></div>
-          <div class="mb-3"><label class="form-label">Kata Sandi</label><div class="relative"><i class="fa-solid fa-lock absolute left-2 top-2 text-gray-400"></i><input type="password" id="loginPass" class="si2" style="padding-left:30px" placeholder="Kata sandi"></div></div>
-          <div class="err-box" id="loginError"><i class="fa-solid fa-circle-xmark"></i><span id="loginErrorMsg"></span></div>
-          <button class="bp w-full justify-center" onclick="doPetugasLogin()" id="btnLogin"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
-        </div>
-        <div id="authRegisterForm" style="display:none">
-          <div class="mb-3"><label class="form-label">Nama</label><input type="text" id="regNama" class="si2" placeholder="Nama lengkap"></div>
-          <div class="mb-3"><label class="form-label">Email</label><input type="email" id="regEmail" class="si2" placeholder="email@contoh.com"></div>
-          <div class="mb-3"><label class="form-label">Sandi</label><input type="password" id="regPass" class="si2" placeholder="Min 6 karakter"></div>
-          <div class="err-box" id="regError"><i class="fa-solid fa-circle-xmark"></i><span id="regErrorMsg"></span></div>
-          <div class="ok-box" id="regOk"><i class="fa-solid fa-circle-check"></i><span id="regOkMsg"></span></div>
-          <button class="bp w-full justify-center" onclick="doPetugasRegister()" id="btnRegister"><i class="fa-solid fa-user-plus"></i> Daftar</button>
-        </div>
-      </div>
-      <div id="userSection" style="display:none">
-        <button class="bg2 w-full justify-center" onclick="doUserLogin()"><i class="fa-solid fa-arrow-right"></i> Lanjut Cek Antrian</button>
-      </div>
-      <div class="mt-3 flex items-center justify-center gap-2">
-        <span class="conn-dot conn-load" id="connDotLogin"></span>
-        <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav2.23</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL EDIT SISA BED ===== -->
-<div class="modal-overlay" id="bedEditModal" style="display:none" onclick="if(event.target===this)closeBedEdit()">
-  <div class="modal-box" style="max-width:480px">
-    <div class="modal-hdr">
-      <h3><i class="fa-solid fa-bed mr-2"></i>Edit Sisa Bed — <span id="bedEditRoomName"></span></h3>
-      <button class="modal-close" onclick="closeBedEdit()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="mb-3">
-        <label class="form-label"><i class="fa-solid fa-key mr-1"></i>Password Ruangan</label>
-        <input type="password" id="bedEditPass" class="si2" placeholder="Masukkan password ruangan">
-      </div>
-      <div class="err-box" id="bedEditError"><i class="fa-solid fa-circle-xmark"></i><span id="bedEditErrorMsg"></span></div>
-      <label class="form-label"><i class="fa-solid fa-calendar-week mr-1"></i>Sisa Bed Kosong per Hari</label>
-      <div class="grid grid-cols-3 gap-2">
-        <div><label class="form-label" style="font-size:10px">Senin</label><input type="number" min="0" id="bedIn_sen" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Selasa</label><input type="number" min="0" id="bedIn_sel" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Rabu</label><input type="number" min="0" id="bedIn_rab" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Kamis</label><input type="number" min="0" id="bedIn_kam" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Jumat</label><input type="number" min="0" id="bedIn_jum" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Sabtu</label><input type="number" min="0" id="bedIn_sab" class="si2" placeholder="0"></div>
-      </div>
-      <div class="flex gap-2 mt-4 justify-end">
-        <button class="bo" onclick="closeBedEdit()">Batal</button>
-        <button class="bg2" onclick="submitBedEdit()"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL WHATSAPP PASIEN MENUNGGU ===== -->
-<div class="modal-overlay" id="menungguWaModal" style="display:none" onclick="if(event.target===this)closeMenungguWaModal()">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <h3><i class="fa-solid fa-phone-volume mr-2"></i>Hubungi Pasien Menunggu</h3>
-      <button class="modal-close" onclick="closeMenungguWaModal()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <p class="text-xs mb-3" style="color:var(--text-muted)">Klik tombol WhatsApp untuk menghubungi nomor pasien (kolom O) atau keluarga (kolom P).</p>
-      <div id="menungguWaList" style="max-height:60vh;overflow-y:auto"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL KIRIM WHATSAPP ===== -->
-<div class="modal-overlay" id="waModal" style="display:none" onclick="if(event.target===this)closeWaModal()">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <h3><i class="fa-brands fa-whatsapp mr-2"></i>Kirim WhatsApp Pasien</h3>
-      <button class="modal-close" onclick="closeWaModal()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="mb-3">
-        <label class="form-label">Nama Pasien</label>
-        <input type="text" id="waNama" class="si2" readonly>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Nomor WhatsApp</label>
-        <input type="text" id="waNomor" class="si2" readonly>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Pilih Ruangan HD yang Kosong</label>
-        <select id="waRuangan" class="si2" onchange="generateWaText()">
-          <option value="">-- Pilih Ruangan --</option>
-          <option value="Teuku Umar">Teuku Umar</option>
-          <option value="Malahayati">Malahayati</option>
-          <option value="Cut Nyak Dien">Cut Nyak Dien</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Pesan WhatsApp</label>
-        <textarea id="waText" rows="10" class="si2" style="resize:vertical;font-size:12px;line-height:1.5"></textarea>
-      </div>
-    </div>
-    <div class="modal-hdr" style="border-top:1px solid var(--border);border-bottom:none;justify-content:flex-end;padding:10px 15px;background:#f0e6d0;color:#33220f;text-shadow:none;background-image:none">
-      <button class="bo mr-2" onclick="closeWaModal()">Batal</button>
-      <button class="bg2" onclick="sendWaMessage()"><i class="fa-brands fa-whatsapp"></i> Kirim WhatsApp</button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== TOP NAVBAR ===== -->
-<header id="mainHeader" style="display:none">
-  <div class="topbar">
-    <div class="topbar-inner">
-      <button class="hamburger-btn" onclick="openSidebar()" title="Menu"><i class="fa-solid fa-bars"></i></button>
-      <div class="topbar-logo">
-        <img src="logosidaraja.png" alt="Logo SIDARAJA" onerror="this.style.display='none'">
-      </div>
-      <nav class="topbar-menu">
-        <button class="topbar-menu-item active" id="tab1" onclick="switchSlide(1)"><i class="fa-solid fa-house mr-2"></i>Home</button>
-        <button class="topbar-menu-item" id="tab2" onclick="switchSlide(2)"><i class="fa-solid fa-bolt mr-2"></i>AKSI SIDARAJA</button>
-        <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)"><i class="fa-solid fa-database mr-2"></i>Data Pasien</button>
-      </nav>
-      <div class="topbar-right">
-        <div class="conn-badge">
-          <span class="conn-dot conn-load" id="connDot"></span>
-          <span class="conn-version">sidarajav2.23</span>
-        </div>
-        <button class="bo" onclick="refreshData()" title="Refresh"><i class="fa-solid fa-arrows-rotate" id="refreshIcon"></i></button>
-        <div class="topbar-user" id="hdrUserProfile" onclick="doLogout()" title="Logout">
-          <div class="topbar-avatar" id="hdrUserAvatar">?</div>
-          <span class="topbar-username" id="hdrUserName">Petugas</span>
-        </div>
-        <button id="patientLogoutBtn" class="bo" style="display:none" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ===== SIDEBAR MOBILE ===== -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-<aside class="sidebar" id="mobileSidebar">
-  <div class="sidebar-hdr">
-    <img src="logosidaraja.png" alt="Logo SIDARAJA" onerror="this.style.display='none'">
-    <button class="hamburger-btn" onclick="closeSidebar()" style="margin-left:auto"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <div class="sidebar-user">
-    <div class="sidebar-avatar" id="sbUserAvatar">?</div>
-    <div style="overflow:hidden">
-      <div class="sidebar-username" id="sbUserName">Petugas</div>
-      <div class="sidebar-role" id="sbUserRole">Petugas</div>
-    </div>
-  </div>
-  <nav class="sidebar-menu">
-    <button class="sidebar-menu-item active" id="sbTab1" onclick="switchSlideMobile(1)"><i class="fa-solid fa-house"></i> Home</button>
-    <button class="sidebar-menu-item" id="sbTab2" onclick="switchSlideMobile(2)"><i class="fa-solid fa-bolt"></i> AKSI SIDARAJA</button>
-    <button class="sidebar-menu-item" id="sbTab3" onclick="switchSlideMobile(3)"><i class="fa-solid fa-database"></i> Data Pasien</button>
-  </nav>
-  <div class="sidebar-conn">
-    <span class="conn-dot conn-load" id="sbConnDot"></span>
-    <span>sidarajav2.23</span>
-  </div>
-  <button class="sidebar-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-</aside>
-
-<!-- ===== PATIENT VIEW ===== -->
-<main id="patientView" style="display:none" class="px-4 sm:px-8 pb-16">
-  <div class="max-w-3xl mx-auto">
-    <div class="card mt-6">
-      <div class="card-header"><h3>Cek Antrian Anda</h3></div>
-      <div class="p-5">
-        <input type="text" id="pSearchNama" class="si2 mb-3" placeholder="Ketik Nama Pasien...">
-        <button class="bg2 w-full justify-center" onclick="patientSearch()"><i class="fa-solid fa-search"></i> Cari Antrian</button>
-      </div>
-    </div>
-    <div id="patientResults" class="mt-4"></div>
-  </div>
-</main>
-
-<!-- ===== SLIDE 1: HOME ===== -->
-<main id="slide1" class="px-4 sm:px-8 pb-16" style="display:none">
-  <div class="max-w-5xl mx-auto mt-6">
-
-    <div class="hero">
-      <img src="logosidaraja.png" alt="Logo SIDARAJA" class="hero-logo" onerror="this.style.display='none'">
-      <h1 class="hero-title">SIDARAJA</h1>
-      <div class="hero-sub">Sistem Pendaftaran Hemodialisis Rawat Jalan</div>
-      <div class="hero-tagline"><i class="fa-solid fa-hospital mr-1"></i> Instalasi Dialisis RSUD dr. Saiful Anwar Provinsi Jawa Timur</div>
-    </div>
-
-    <!-- Kartu Ruangan HD — Gambar FIT (utuh) + Fallback jika error -->
-    <div class="room-strip">
-
-      <div class="room-card">
-        <div class="room-img-box">
-          <img src="teukuumar.png" alt="Ruangan HD Teuku Umar" onerror="imgFallback(this)">
-          <div class="img-fallback"><i class="fa-solid fa-hospital"></i><span>Ruangan HD Teuku Umar<br>(foto belum tersedia)</span></div>
-        </div>
-        <div class="rc-body">
-          <div class="rc-name">HD Teuku Umar</div>
-          <div class="rc-cap">Kapasitas 33 Bed / Mesin</div>
-          <ul class="rc-detail">
-            <li>3 mesin khusus pasien HbsAg <strong>Positif</strong></li>
-            <li>2 mesin di ruang <strong>Airborne</strong></li>
-            <li>28 mesin <strong>reguler</strong></li>
-          </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_teukuumar_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_teukuumar_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_teukuumar_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_teukuumar_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_teukuumar_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_teukuumar_sab">–</b></div>
-          </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('teukuumar')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
-        </div>
-      </div>
-
-      <div class="room-card">
-        <div class="room-img-box">
-          <img src="malahayati.png" alt="Ruangan HD Malahayati" onerror="imgFallback(this)">
-          <div class="img-fallback"><i class="fa-solid fa-hospital"></i><span>Ruangan HD Malahayati<br>(foto belum tersedia)</span></div>
-        </div>
-        <div class="rc-body">
-          <div class="rc-name">HD Malahayati</div>
-          <div class="rc-cap">Kapasitas 29 Bed / Mesin</div>
-          <ul class="rc-detail">
-            <li>29 mesin <strong>reguler</strong> semua</li>
-          </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_malahayati_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_malahayati_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_malahayati_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_malahayati_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_malahayati_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_malahayati_sab">–</b></div>
-          </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('malahayati')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
-        </div>
-      </div>
-
-      <div class="room-card">
-        <div class="room-img-box">
-          <img src="cutnyakdien.png" alt="Ruangan HD Cut Nyak Dien" onerror="imgFallback(this)">
-          <div class="img-fallback"><i class="fa-solid fa-hospital"></i><span>Ruangan HD Cut Nyak Dien<br>(foto belum tersedia)</span></div>
-        </div>
-        <div class="rc-body">
-          <div class="rc-name">HD Cut Nyak Dien</div>
-          <div class="rc-cap">Kapasitas 27 Bed / Mesin</div>
-          <ul class="rc-detail">
-            <li>1 mesin khusus <strong>HDF</strong></li>
-            <li>26 mesin <strong>reguler</strong></li>
-          </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_cutnyakdien_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_cutnyakdien_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_cutnyakdien_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_cutnyakdien_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_cutnyakdien_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_cutnyakdien_sab">–</b></div>
-          </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('cutnyakdien')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Latar Belakang -->
-    <div class="about-section mt-6">
-      <div class="about-header">
-        <div class="ah-icon"><i class="fa-solid fa-book-open"></i></div>
-        <span>Latar Belakang</span>
-      </div>
-      <div class="about-body">
-        <p>Penyakit Gagal Ginjal Kronis (GGK) merupakan salah satu masalah kesehatan yang jumlah penderitanya terus meningkat setiap tahunnya. Pasien GGK memerlukan terapi pengganti ginjal berupa <strong>Hemodialisis (HD)</strong> secara rutin dan berkesinambungan, umumnya 2–3 kali per minggu, sehingga pengelolaan antrian dan penjadwalan pasien menjadi kebutuhan yang sangat krusial.</p>
-        <p>Instalasi Dialisis RSUD dr. Saiful Anwar (RSSA) melayani jumlah pasien hemodialisis yang besar dengan kapasitas ruangan dan mesin HD yang terbatas. Selama ini, proses pendataan dan penjadwalan pasien masih dilakukan secara manual melalui pencatatan di lembar kerja, sehingga sering menimbulkan beberapa permasalahan, antara lain: <strong>duplikasi data pasien</strong>, <strong>kesulitan memantau status antrian secara real-time</strong>, <strong>proses komunikasi kepada pasien yang lambat</strong> (harus menghubungi satu per satu), serta <strong>risiko kehilangan data</strong>.</p>
-        <p>Berdasarkan permasalahan tersebut, dibangunlah aplikasi <strong>SIDARAJA (Sistem Pendaftaran Hemodialisis Rawat Jalan)</strong> — sebuah sistem informasi berbasis web yang terintegrasi dengan Google Spreadsheet untuk membantu petugas Instalasi Dialisis RSSA dalam mengelola data dan antrian pasien hemodialisis secara cepat, akurat, dan terpusat.</p>
-      </div>
-    </div>
-
-    <!-- Tujuan -->
-    <div class="about-section">
-      <div class="about-header">
-        <div class="ah-icon"><i class="fa-solid fa-bullseye"></i></div>
-        <span>Tujuan</span>
-      </div>
-      <div class="about-body">
-        <ul class="tujuan-list">
-          <li><div class="tujuan-num">1</div><div class="tujuan-text"><strong>Mendigitalkan pendataan pasien</strong> hemodialisis rawat jalan agar data tersimpan rapi, terpusat, dan mudah diakses kapan saja.</div></li>
-          <li><div class="tujuan-num">2</div><div class="tujuan-text"><strong>Memantau antrian dan status pasien secara real-time</strong> (Menunggu, Terjadwal, HD Lain, Batal, Meninggal, No Respon) dalam satu tampilan dashboard.</div></li>
-          <li><div class="tujuan-num">3</div><div class="tujuan-text"><strong>Mempercepat komunikasi antara petugas dan pasien</strong> melalui integrasi pesan WhatsApp otomatis, sehingga informasi jadwal ruangan kosong dapat segera disampaikan.</div></li>
-          <li><div class="tujuan-num">4</div><div class="tujuan-text"><strong>Meningkatkan efisiensi dan akurasi penjadwalan</strong> ruangan hemodialisis (Teuku Umar, Malahayati, Cut Nyak Dien) dengan meminimalkan kesalahan pencatatan manual.</div></li>
-          <li><div class="tujuan-num">5</div><div class="tujuan-text"><strong>Menyediakan transparansi bagi pasien</strong> untuk mengecek status antriannya sendiri secara mandiri tanpa harus datang ke rumah sakit.</div></li>
-          <li><div class="tujuan-num">6</div><div class="tujuan-text"><strong>Menghasilkan laporan</strong> jumlah dan distribusi status pasien yang dapat dicetak, diunduh PDF, maupun dibagikan melalui WhatsApp.</div></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Panduan -->
-    <div class="about-section">
-      <div class="about-header">
-        <div class="ah-icon"><i class="fa-solid fa-map-signs"></i></div>
-        <span>Panduan Penggunaan</span>
-      </div>
-      <div class="about-body">
-        <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-user-shield"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 1</div>
-            <div class="panduan-title">Login sebagai Petugas</div>
-            <div class="panduan-desc">Pilih mode <strong>Petugas</strong> pada halaman masuk, lalu isi email dan kata sandi untuk masuk ke dashboard aplikasi.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-bed"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 2</div>
-            <div class="panduan-title">Pantau Sisa Bed Kosong di Home</div>
-            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Klik <strong>Edit Sisa Bed</strong> dan masukkan password ruangan untuk memperbarui.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-bolt"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 3</div>
-            <div class="panduan-title">Buka Menu AKSI SIDARAJA</div>
-            <div class="panduan-desc">Pantau kartu status antrian (Menunggu, Terjadwal, HD Lain, dll). Klik salah satu kartu untuk menampilkan rincian daftar pasien sesuai status tersebut.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon" style="background:#f0fdf4;color:#047857"><i class="fa-brands fa-whatsapp"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 4</div>
-            <div class="panduan-title">Hubungi Pasien via WhatsApp</div>
-            <div class="panduan-desc">Klik tombol WA pada kolom paling kanan tabel, pilih ruangan HD yang kosong, lalu kirim pesan penawaran jadwal kepada pasien atau keluarganya.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon"><i class="fa-solid fa-file-excel"></i></div>
-          <div>
-            <div class="panduan-step">Langkah 5</div>
-            <div class="panduan-title">Update Status di Menu Data Pasien</div>
-            <div class="panduan-desc">Buka menu <strong>Data Pasien</strong>, aktifkan <strong>Mode Edit</strong> pada pratinjau spreadsheet, lalu ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> sesuai hasil konfirmasi pasien.</div>
-          </div>
-        </div>
-        <div class="panduan-item" style="border:1px solid #fca5a5;box-shadow:0 3px 0 #fca5a5;background:#fef2f2">
-          <div class="panduan-icon" style="background:#fee2e2;color:#dc2626"><i class="fa-solid fa-users"></i></div>
-          <div>
-            <div class="panduan-step">Khusus Pasien</div>
-            <div class="panduan-title" style="color:#dc2626">Cek Antrian Mandiri</div>
-            <div class="panduan-desc">Pasien tidak perlu login. Pilih mode <strong>Pasien</strong> pada halaman masuk, ketik nama lengkap, lalu status antrian akan langsung ditampilkan.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</main>
-
-<!-- ===== SLIDE 2: AKSI SIDARAJA ===== -->
-<main id="slide2" class="px-4 sm:px-8 pb-16" style="display:none">
-  <div class="max-w-7xl mx-auto mt-6">
-
-    <div class="welcome-banner">
-      <div>
-        <div class="welcome-title"><i class="fa-solid fa-bolt mr-2" style="color:#d97706"></i>AKSI SIDARAJA</div>
-        <div class="welcome-sub">Pemantauan Antrian & Aksi Penjadwalan Pasien Hemodialisis</div>
-      </div>
-      <div class="welcome-date">
-        <i class="fa-solid fa-calendar-day"></i>
-        <div>
-          <div style="font-size:11px">Hari ini</div>
-          <div id="todayDate" style="font-weight:bold">—</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex gap-2 mb-4 flex-wrap">
-      <button class="bo" onclick="cetakPrint()"><i class="fa-solid fa-print"></i> Cetak</button>
-      <button class="bp" onclick="kirimPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-      <button class="bg2" onclick="kirimWA()"><i class="fa-brands fa-whatsapp"></i> WA</button>
-    </div>
-
-    <div id="dashboardPrintArea">
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
-        <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
-          <div class="em-card-icon" style="background:#dbeafe;color:#1e40af;border-color:#93c5fd"><i class="fa-solid fa-hourglass-half"></i></div>
-          <div class="em-card-num" id="scMenunggu">0</div>
-          <div class="em-card-label">Menunggu</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
-          <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-calendar-check"></i></div>
-          <div class="em-card-num" id="scTerjadwal">0</div>
-          <div class="em-card-label">Terjadwal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-right-left"></i></div>
-          <div class="em-card-num" id="scHdlain">0</div>
-          <div class="em-card-label">HD Lain</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-ban"></i></div>
-          <div class="em-card-num" id="scBatal">0</div>
-          <div class="em-card-label">Batal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon" style="background:#e5e7eb;color:#374151;border-color:#9ca3af"><i class="fa-solid fa-heart-crack"></i></div>
-          <div class="em-card-num" id="scMeninggal">0</div>
-          <div class="em-card-label">Meninggal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
-          <div class="em-card-icon" style="background:#cffafe;color:#155e75;border-color:#67e8f9"><i class="fa-solid fa-phone-slash"></i></div>
-          <div class="em-card-num" id="scNorespon">0</div>
-          <div class="em-card-label">No Respon</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('all')" data-key="all">
-          <div class="em-card-icon" style="background:#f0e2c6;color:#7a4a22;border-color:#96703f"><i class="fa-solid fa-users"></i></div>
-          <div class="em-card-num" id="scTotal">0</div>
-          <div class="em-card-label">Total Pasien</div>
-        </div>
-        <div class="em-card" style="background:#f0fdf4" onclick="openMenungguWaModal()">
-          <div class="em-card-icon" style="background:#d1fae5;color:#047857;border-color:#6ee7b7"><i class="fa-brands fa-whatsapp"></i></div>
-          <div class="em-card-num" id="scWaMenunggu" style="color:#065f46">0</div>
-          <div class="em-card-label" style="color:#047857">Hubungi WA</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span>Daftar Pasien <span id="filterLabel" style="color:#e8cfa8">(Menunggu)</span></span>
-        </div>
-        <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
-          <table class="dt">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>No RM</th>
-                <th>Umur</th>
-                <th>HbsAg</th>
-                <th>Keterangan</th>
-                <th>Status</th>
-                <th style="text-align:center">Kontak WA</th>
-              </tr>
-            </thead>
-            <tbody id="dashBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- ===== SLIDE 3: DATA PASIEN ===== -->
-<main id="slide3" style="display:none" class="px-4 sm:px-8 pb-16">
-  <div class="max-w-6xl mx-auto mt-6">
-    <div class="welcome-banner">
-      <div>
-        <div class="welcome-title" style="color:var(--green)"><i class="fa-solid fa-database mr-2"></i>Master Data Pasien</div>
-        <div class="welcome-sub">Data pasien Instalasi Dialisis RSSA — Google Spreadsheet</div>
-      </div>
-    </div>
-
-    <div class="card mb-4">
-      <div class="card-header" style="background-image:none;background:linear-gradient(to bottom, #34d399, #059669);border-bottom:2px solid #047857">
-        <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</span>
-        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tab Baru</a>
-      </div>
-      <div class="p-4">
-        <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
-          <div class="mode-toggle">
-            <button id="btnModeRead" class="on" onclick="setSheetMode('read')"><i class="fa-solid fa-eye"></i> Mode Baca</button>
-            <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
-          </div>
-          <div class="flex gap-2 flex-wrap">
-            <button class="bo" onclick="reloadSheetFrame()"><i class="fa-solid fa-arrows-rotate"></i> Muat Ulang</button>
-            <button class="bp" onclick="refreshData()"><i class="fa-solid fa-bolt"></i> Sinkron ke AKSI SIDARAJA</button>
-          </div>
-        </div>
-        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong>.</p>
-        <iframe class="sheet-frame" id="sheetFrame" src="" loading="lazy" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="instruction-box">
-      <div class="flex items-center gap-3 mb-4 pb-2" style="border-bottom:1px solid #fcd34d">
-        <i class="fa-solid fa-bell" style="font-size:18px;color:#d97706"></i>
-        <h4 style="font-size:14px;font-weight:bold;color:#92400e;text-transform:uppercase">Petunjuk Update Status Pasien</h4>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">1</div>
-        <div style="font-size:12px;color:#78350f"><strong>Hubungi pasien</strong> melalui WhatsApp pada tombol WA di halaman <strong>AKSI SIDARAJA</strong>.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">2</div>
-        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">3</div>
-        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">4</div>
-        <div style="font-size:12px;color:#78350f">Klik <strong>Sinkron ke AKSI SIDARAJA</strong> untuk melihat perubahan pada kartu status.</div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<script>
-var APP_VERSION = 'sidarajav2.23';
-var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
-var GID = '1588121083';
-var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
-var SHEET_READ_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
-var SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + GID + '#gid=' + GID;
-var sheetMode = 'read';
-
-var BED_API_URL = '';
-var ROOM_PASSWORDS = { teukuumar: 'apik', malahayati: 'bagus', cutnyakdien: 'cakep' };
-var ROOM_NAMES = { teukuumar: 'HD Teuku Umar', malahayati: 'HD Malahayati', cutnyakdien: 'HD Cut Nyak Dien' };
-var BED_DAYS = ['sen','sel','rab','kam','jum','sab'];
-var bedData = { teukuumar: {}, malahayati: {}, cutnyakdien: {} };
-var currentBedRoom = null;
-
-var allData = [];
-var currentFilter = 'menunggu';
-var currentUser = null;
-var currentMode = 'admin';
-
-function $(id) { return document.getElementById(id); }
-function escHtml(s) { if (!s && s !== 0) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-// ===== Fallback gambar: sembunyikan img, tampilkan placeholder =====
-function imgFallback(imgEl) {
-  imgEl.style.display = 'none';
-  if (imgEl.parentElement) imgEl.parentElement.classList.add('no-img');
-}
-
-function toast(msg, type) {
-  var c = $('toastC');
-  var cls = type === 'error' ? 'tt-e' : type === 'info' ? 'tt-i' : 'tt-s';
-  var icon = type === 'error' ? 'fa-circle-xmark' : type === 'info' ? 'fa-circle-info' : 'fa-circle-check';
-  var el = document.createElement('div');
-  el.className = 'tt ' + cls;
-  el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + escHtml(msg) + '</span>';
-  c.appendChild(el);
-  setTimeout(function() { el.remove(); }, 3500);
-}
-
-function setConnState(state) {
-  var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
-  ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
-    var dot = $(id); if (dot) dot.className = dotCls;
-  });
-}
-
-/* ================= SISA BED KOSONG ================= */
-function renderBedData() {
-  Object.keys(bedData).forEach(function(room) {
-    BED_DAYS.forEach(function(day) {
-      var el = $('bed_' + room + '_' + day);
-      if (!el) return;
-      var v = bedData[room][day];
-      if (v === undefined || v === '' || v === null) {
-        el.textContent = '–'; el.classList.add('empty');
-      } else {
-        el.textContent = v; el.classList.remove('empty');
-      }
-    });
-  });
-}
-
-function loadBedData() {
-  var fallbackLocal = function() {
-    try {
-      var s = localStorage.getItem('sidaraja_bed');
-      if (s) bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, JSON.parse(s));
-    } catch(e) {}
-    renderBedData();
-  };
-  if (BED_API_URL) {
-    fetch(BED_API_URL).then(function(r) { return r.json(); }).then(function(d) {
-      bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, d);
-      renderBedData();
-    }).catch(fallbackLocal);
-  } else fallbackLocal();
-}
-
-function saveBedData() {
-  if (BED_API_URL) {
-    fetch(BED_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(bedData)
-    }).then(function() {
-      toast('Data sisa bed tersimpan online — terlihat semua user', 'success');
-    }).catch(function() {
-      localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
-      toast('Server online gagal — data disimpan lokal sementara', 'info');
-    });
-  } else {
-    localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
-    toast('Data sisa bed tersimpan di perangkat ini', 'success');
-  }
-}
-
-function openBedEdit(room) {
-  currentBedRoom = room;
-  $('bedEditRoomName').textContent = ROOM_NAMES[room];
-  $('bedEditPass').value = '';
-  hideErr('bedEditError');
-  BED_DAYS.forEach(function(day) { $('bedIn_' + day).value = (bedData[room][day] !== undefined ? bedData[room][day] : ''); });
-  $('bedEditModal').style.display = 'flex';
-  setTimeout(function() { $('bedEditPass').focus(); }, 100);
-}
-function closeBedEdit() { $('bedEditModal').style.display = 'none'; }
-
-function submitBedEdit() {
-  var pass = $('bedEditPass').value;
-  if (pass !== ROOM_PASSWORDS[currentBedRoom]) {
-    showErr('bedEditError', 'Password salah! Hubungi petugas ruangan ' + ROOM_NAMES[currentBedRoom] + '.');
-    return;
-  }
-  BED_DAYS.forEach(function(day) {
-    bedData[currentBedRoom][day] = $('bedIn_' + day).value.trim();
-  });
-  saveBedData();
-  renderBedData();
-  closeBedEdit();
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && $('bedEditModal').style.display === 'flex') submitBedEdit();
-});
-
-/* ================= SIDEBAR ================= */
-function openSidebar() {
-  $('mobileSidebar').classList.add('open');
-  $('sidebarOverlay').classList.add('open');
-}
-function closeSidebar() {
-  $('mobileSidebar').classList.remove('open');
-  $('sidebarOverlay').classList.remove('open');
-}
-function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
-
-/* ================= SPREADSHEET MODE ================= */
-function setSheetMode(mode) {
-  sheetMode = mode;
-  $('btnModeRead').classList.toggle('on', mode === 'read');
-  $('btnModeEdit').classList.toggle('on', mode === 'edit');
-  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
-  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diedit langsung' : 'Mode Baca aktif', 'info');
-}
-function reloadSheetFrame() {
-  $('sheetFrame').src = (sheetMode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
-  toast('Pratinjau spreadsheet dimuat ulang', 'info');
-}
-
-function parseGvizDate(val) {
-  if (!val) return null;
-  if (typeof val === 'string' && val.startsWith('Date(')) {
-    var m = val.match(/Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)/);
-    if (m) return new Date(+m[1], +m[2], +m[3], m[4]?+m[4]:0, m[5]?+m[5]:0, m[6]?+m[6]:0);
-  }
-  var d = new Date(val);
-  return isNaN(d.getTime()) ? null : d;
-}
-
-function getStatusKey(status) {
-  if (!status) return 'other';
-  var s = String(status).toUpperCase().trim();
-  s = s.replace(/\s+/g, ' ');
-  if (s.includes('MENINGGAL')) return 'meninggal';
-  if (s.includes('NO RESPON') || s.includes('NORESPON') || s.includes('NO RESPONS') || s.includes('TIDAK RESPON')) return 'norespon';
-  if (s.includes('BATAL')) return 'batal';
-  var hasHD = s.includes('HD') || s.includes('HEMODIALISIS') || s.includes('HEMODIALISA');
-  var hasLain = s.includes('LAIN');
-  if (hasHD && hasLain) return 'hdlain';
-  if (s.includes('HDLAIN')) return 'hdlain';
-  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN')) return 'hdlain';
-  if (s.includes('TERJADWAL')) return 'terjadwal';
-  if (s.includes('MENUNGGU')) return 'menunggu';
-  return 'other';
-}
-
-function renderHbsAgBadge(val) {
-  if (!val) return '<span style="color:var(--text-muted)">-</span>';
-  var v = String(val).toUpperCase().trim();
-  if (v.includes('POSITIF') || v === '+') return '<span class="badge badge-hbsag-pos">Positif</span>';
-  if (v.includes('NEGATIF') || v.includes('NON REAKTIF') || v === '-') return '<span class="badge badge-hbsag-neg">Negatif</span>';
-  return '<span class="badge badge-other">' + escHtml(val) + '</span>';
-}
-
-function formatPhone(p) {
-  if (!p) return '';
-  var s = String(p).replace(/[^0-9+]/g, '');
-  if (!s) return '';
-  return s.startsWith('0') ? '62' + s.substring(1) : s;
-}
-
-function selectMode(mode) {
-  currentMode = mode;
-  $('modeAdmin').className = 'mode-card' + (mode === 'admin' ? ' sel-admin' : '');
-  $('modeUser').className = 'mode-card' + (mode === 'user' ? ' sel-user' : '');
-  $('adminSection').style.display = mode === 'admin' ? 'block' : 'none';
-  $('userSection').style.display = mode === 'user' ? 'block' : 'none';
-}
-
-function switchAuthTab(tab) {
-  $('authTabLogin').className = 'auth-tab' + (tab === 'login' ? ' active' : '');
-  $('authTabRegister').className = 'auth-tab' + (tab === 'register' ? ' active' : '');
-  $('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
-  $('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
-}
-
-function showErr(id, msg) { var e = $(id); if (e) { e.querySelector('span').textContent = msg; e.classList.add('show'); } }
-function hideErr(id) { var e = $(id); if (e) e.classList.remove('show'); }
-
-function doPetugasLogin() {
-  var email = $('loginEmail').value.trim(), pass = $('loginPass').value;
-  if (!email || !pass) { showErr('loginError', 'Email dan kata sandi wajib diisi.'); return; }
-  currentUser = { nama: email.split('@')[0], email: email, role: 'Petugas' };
-  localStorage.setItem('sidaraja_user', JSON.stringify(currentUser));
-  enterApp('admin');
-}
-
-function doPetugasRegister() { showErr('regError', 'Fitur daftar sedang maintenance. Hubungi admin.'); }
-function doUserLogin() { currentUser = { nama: 'Pasien', role: 'Pasien' }; enterApp('patient'); }
-
-function doLogout() {
-  closeSidebar();
-  currentUser = null; localStorage.removeItem('sidaraja_user');
-  $('loginOverlay').style.display = 'flex'; $('mainHeader').style.display = 'none';
-  $('slide1').style.display = 'none'; $('slide2').style.display = 'none'; $('slide3').style.display = 'none';
-  $('patientView').style.display = 'none';
-}
-
-function enterApp(mode) {
-  $('loginOverlay').style.display = 'none'; $('mainHeader').style.display = 'block';
-  if (mode === 'admin') {
-    $('slide1').style.display = 'block';
-    $('hdrUserProfile').style.display = 'flex'; $('patientLogoutBtn').style.display = 'none';
-    switchSlide(1); updateProfileUI();
-  } else {
-    $('patientView').style.display = 'block';
-    $('hdrUserProfile').style.display = 'none'; $('patientLogoutBtn').style.display = 'inline-flex';
-    updateProfileUI();
-  }
-  refreshData();
-}
-
-function checkAuth() {
-  var saved = localStorage.getItem('sidaraja_user');
-  if (saved) {
-    try { currentUser = JSON.parse(saved); if (currentUser && currentUser.role === 'Petugas') { selectMode('admin'); enterApp('admin'); } else { localStorage.removeItem('sidaraja_user'); } }
-    catch(e) { localStorage.removeItem('sidaraja_user'); }
-  }
-}
-
-function updateProfileUI() {
-  if (!currentUser) return;
-  var initial = currentUser.nama ? currentUser.nama.charAt(0).toUpperCase() : '?';
-  $('hdrUserAvatar').textContent = initial;
-  $('hdrUserName').textContent = currentUser.nama;
-  $('sbUserAvatar').textContent = initial;
-  $('sbUserName').textContent = currentUser.nama;
-  $('sbUserRole').textContent = currentUser.role || '';
-  var today = new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-  $('todayDate').textContent = today;
-}
-
-function switchSlide(n) {
-  for (var i = 1; i <= 3; i++) {
-    var tab = $('tab' + i), sbTab = $('sbTab' + i);
-    if (tab) tab.classList.toggle('active', i === n);
-    if (sbTab) sbTab.classList.toggle('active', i === n);
-    $('slide' + i).style.display = i === n ? 'block' : 'none';
-  }
-  if (n === 3 && !$('sheetFrame').src) {
-    $('sheetFrame').src = SHEET_READ_URL;
-  }
-}
-
-function fetchSheetData() {
-  setConnState('load');
-  fetch(DATA_URL).then(function(r) { return r.text(); }).then(function(text) {
-    var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
-    if (!match) throw new Error('Format gviz tidak valid');
-    var json = JSON.parse(match[1]); var rows = json.table.rows || [];
-    allData = [];
-    rows.forEach(function(row, idx) {
-      var c = function(ci) { return row.c[ci] ? (row.c[ci].v !== null ? row.c[ci].v : '') : ''; };
-      allData.push({
-        row: idx + 2,
-        timestamp: parseGvizDate(c(0)),
-        nama: c(1), noRM: c(2), umur: c(4),
-        hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
-      });
-    });
-    setConnState('ok');
-    updateStatusCounts(); renderDashboard();
-  }).catch(function(err) {
-    setConnState('fail');
-    toast('Gagal memuat data: ' + err.message, 'error');
-  });
-}
-
-function refreshData() {
-  var icon = $('refreshIcon'); if (icon) icon.classList.add('fa-spin');
-  fetchSheetData(); loadBedData();
-  setTimeout(function() { if (icon) icon.classList.remove('fa-spin'); }, 2000);
-}
-
-function clickStatusCard(key) {
-  currentFilter = key;
-  document.querySelectorAll('#statusCards .em-card').forEach(function(c) {
-    if (c.getAttribute('data-key')) {
-      c.classList.toggle('active', c.getAttribute('data-key') === key);
-    }
-  });
-  var labelMap = { menunggu:'(Menunggu)', terjadwal:'(Terjadwal)', hdlain:'(HD Lain)', batal:'(Batal)', meninggal:'(Meninggal)', norespon:'(No Respon)', all:'(Semua Data)' };
-  $('filterLabel').textContent = labelMap[key] || '(Semua Data)';
-  renderDashboard();
-}
-
-function updateStatusCounts() {
-  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
-  allData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
-  $('scMenunggu').textContent = counts.menunggu; $('scTerjadwal').textContent = counts.terjadwal;
-  $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
-  $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
-  $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
-}
-
-function renderDashboard() {
-  var body = $('dashBody'); if (!body) return;
-  var filtered = allData.filter(function(d) { return currentFilter === 'all' || getStatusKey(d.status) === currentFilter; });
-  if (filtered.length === 0) { body.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:20px">Tidak ada data</td></tr>'; return; }
-  var html = '';
-  filtered.forEach(function(d, i) {
-    var sk = getStatusKey(d.status);
-    var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
-    html += '<tr>';
-    html += '<td>' + (i + 1) + '</td>';
-    html += '<td style="font-weight:bold">' + escHtml(d.nama) + '</td>';
-    html += '<td>' + escHtml(d.noRM) + '</td>';
-    html += '<td>' + escHtml(d.umur) + '</td>';
-    html += '<td>' + renderHbsAgBadge(d.hbsAg) + '</td>';
-    html += '<td>' + escHtml(d.keterangan) + '</td>';
-    html += '<td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td>';
-    html += '<td style="white-space:nowrap;text-align:center">';
-    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa" title="WA Pasien (O)"><i class="fa-brands fa-whatsapp"></i></button>';
-    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2" title="WA Keluarga (P)"><i class="fa-brands fa-whatsapp"></i></button>';
-    if (!wa1 && !wa2) html += '<span style="color:var(--text-muted)">-</span>';
-    html += '</td>';
-    html += '</tr>';
-  });
-  body.innerHTML = html;
-}
-
-function openMenungguWaModal() {
-  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
-  var container = $('menungguWaList');
-  if (list.length === 0) {
-    container.innerHTML = '<div style="text-align:center;padding:20px">Tidak ada pasien menunggu</div>';
-  } else {
-    var html = '';
-    list.forEach(function(d, i) {
-      var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
-      html += '<div style="background:#f0e6d0;border:1px solid #dcc9a8;padding:10px;margin-bottom:8px">';
-      html += '<div style="font-weight:bold;margin-bottom:5px">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
-      html += '<div style="display:flex;gap:5px;flex-wrap:wrap">';
-      if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</button>';
-      if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga (P)</button>';
-      html += '</div></div>';
-    });
-    container.innerHTML = html;
-  }
-  $('menungguWaModal').style.display = 'flex';
-}
-function closeMenungguWaModal() { $('menungguWaModal').style.display = 'none'; }
-
-function openWaModal(row, type) {
-  var d = allData.find(function(x) { return x.row == row; });
-  if (!d) return toast('Data tidak ditemukan', 'error');
-  var phone = type === 1 ? d.noHP : d.noHP2;
-  var wa = formatPhone(phone);
-  if (!wa) return toast('Nomor WhatsApp tidak tersedia', 'error');
-  $('waNama').value = d.nama;
-  $('waNomor').value = wa;
-  $('waRuangan').value = '';
-  generateWaText();
-  $('waModal').style.display = 'flex';
-}
-function closeWaModal() { $('waModal').style.display = 'none'; }
-
-function generateWaText() {
-  var nama = $('waNama').value;
-  var ruangan = $('waRuangan').value;
-  var text = "INSTALASI DIALISIS\nRSUD DR SAIFUL ANWAR\nPROV JAWA TIMUR\n\nSalam sehat kami sampaikan,\n\n";
-  if (ruangan) {
-    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menginformasikan bahwa saat ini di ruangan " + ruangan + " terdapat jadwal kosong untuk pelaksanaan Hemodialisis.\n\n";
-    text += "Apakah Bapak/Ibu " + nama + " bersedia untuk mengisi jadwal tersebut?\n\n";
-  } else {
-    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menghubungi Bapak/Ibu " + nama + " terkait jadwal Hemodialisis.\n\n";
-  }
-  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\nSalam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
-  $('waText').value = text;
-}
-
-function sendWaMessage() {
-  var text = $('waText').value;
-  var wa = $('waNomor').value;
-  if (!text.trim()) return toast('Pesan tidak boleh kosong', 'error');
-  window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), '_blank');
-  closeWaModal();
-}
-
-function cetakPrint() { $('printArea').innerHTML = $('dashboardPrintArea').innerHTML; window.print(); setTimeout(function() { $('printArea').innerHTML = ''; }, 500); }
-function kirimPDF() {
-  html2pdf().set({ margin: 10, filename: 'AKSI_SIDARAJA.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' } })
-  .from($('dashboardPrintArea')).save().then(function() { toast('PDF berhasil diunduh', 'success'); });
-}
-function kirimWA() {
-  var c = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
-  allData.forEach(function(d) { var k = getStatusKey(d.status); if (c.hasOwnProperty(k)) c[k]++; });
-  var text = "*AKSI SIDARAJA - Laporan*\nTotal: " + allData.length + "\nMenunggu: " + c.menunggu + "\nTerjadwal: " + c.terjadwal + "\nHD Lain: " + c.hdlain;
-  window.open("https://wa.me/?text=" + encodeURIComponent(text), '_blank');
-}
-
-function patientSearch() {
-  var nama = $('pSearchNama').value.trim().toLowerCase();
-  if (!nama) { toast('Masukkan nama pasien', 'info'); return; }
-  var results = allData.filter(function(d) { return String(d.nama).toLowerCase().includes(nama); });
-  var container = $('patientResults');
-  if (results.length === 0) { container.innerHTML = '<div class="card p-4 text-center">Tidak ditemukan</div>'; return; }
-  var html = '';
-  results.forEach(function(d, i) {
-    var sk = getStatusKey(d.status);
-    html += '<div class="card p-4 mb-3">';
-    html += '<div style="font-weight:bold;font-size:15px;color:var(--primary)">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
-    html += '<div style="font-size:12px;color:var(--text-muted);margin:4px 0">No RM: ' + escHtml(d.noRM) + '</div>';
-    html += '<div><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
-    html += '</div>';
-  });
-  container.innerHTML = html;
-}
-
-// Init
-checkAuth();
-loadBedData();
-</script>
-</body>
-</html>-width, initial-scale=1.0">
-<title>SIDARAJA — Sistem Pendaftaran Hemodialisis Rawat Jalan RSSA</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
-<style>
-:root {
-  /* ===== Palet Kayu Jati Tua (lebih gelap) ===== */
-  --primary: #2b1608;         /* jati tua sangat gelap */
-  --primary-light: #452612;   /* jati tua */
-  --primary-accent: #7a4a22;  /* aksen jati terang */
-  --secondary: #e8dcc4;
-  --border: #96703f;
-  --text: #33220f;
-  --text-muted: #7d6a4d;
-  --bg: #ede3d0;
-  --green: #059669;
-  --red: #dc2626;
-  --yellow: #d97706;
-  --cream: #f7e9d2;
-  --cream-dim: #d4bb92;
-  --gold: #ffd894;
-
-  /* ===== Motif Serat Kayu Jati + Pencahayaan (dipakai ulang) ===== */
   --wood-grain:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.30) 0px, rgba(0,0,0,0.30) 1px, transparent 1px, transparent 8px),
     repeating-linear-gradient(90deg, transparent 0px, transparent 9px, rgba(255,220,170,0.09) 9px, rgba(255,220,170,0.09) 11px, transparent 11px, transparent 25px),
@@ -1317,6 +57,11 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 
 .hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.22); color: var(--cream); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
 .hamburger-btn:active { background: rgba(0,0,0,0.5); }
+
+/* ===== Mode Pasien ===== */
+body.patient-mode .topbar-menu { display: none !important; }
+body.patient-mode .topbar-user { display: none !important; }
+body.patient-mode #patientLogoutBtn { display: inline-flex !important; }
 
 /* ===== Sidebar Mobile ===== */
 .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
@@ -1423,7 +168,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); }
 
-/* ===== Kartu Status (ikon Font Awesome) ===== */
+/* ===== Kartu Status ===== */
 .em-card { background: #fbf6ec; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #96703f, 0 7px 12px rgba(0,0,0,0.13); }
 .em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #6d4c26, 0 12px 20px rgba(0,0,0,0.2); }
 .em-card.active { border: 2px solid var(--primary); background: #f0e2c6; box-shadow: 0 4px 0 var(--primary-accent), 0 7px 12px rgba(0,0,0,0.18); }
@@ -1442,8 +187,11 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .mode-card.sel-admin { border: 2px solid var(--primary); background: #f0e2c6; }
 .mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
 .mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
+.mc-title { font-weight: bold; font-size: 13px; color: var(--text); }
+.mc-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
 .auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
+.auth-tab.active { border-bottom-color: var(--primary); color: var(--primary); }
 
 .si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); }
 .si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(122,74,34,.35); }
@@ -1460,9 +208,10 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .card { background: #fbf6ec; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,0.1); }
 .card-header { border-bottom: 3px solid #1a0d04; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
+.card-header h3 { font-size: 14px; font-weight: bold; color: var(--cream); }
 
 .tc2 { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); max-width: 350px; pointer-events: auto; border: 1px solid; }
+.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); max-width: 350px; pointer-events: auto; border: 1px solid; transition: opacity .3s; }
 .tt-s { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
 .tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .tt-i { background: #fdf3e2; border-color: #dcc9a8; color: #7a5c33; }
@@ -1473,6 +222,7 @@ table.dt thead th { border: 1px solid #1a0d04; padding: 8px; text-align: left; f
 table.dt tbody td { border: 1px solid #dcc9a8; padding: 8px; font-size: 12px; color: var(--text); background: #fbf6ec; }
 table.dt tbody tr:nth-child(even) td { background: #f0e6d0; }
 table.dt tbody tr:hover td { background: #e6d3ac; }
+.table-wrap { overflow-x: auto; }
 
 .badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .badge-menunggu { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
@@ -1492,6 +242,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
 
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
 .instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.instruction-step:last-child { margin-bottom: 0; }
 .instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
 
 .conn-dot { width: 8px; height: 8px; display: inline-block; }
@@ -1569,7 +320,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       </div>
       <div class="mt-3 flex items-center justify-center gap-2">
         <span class="conn-dot conn-load" id="connDotLogin"></span>
-        <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav2.23</span>
+        <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav3.2</span>
       </div>
     </div>
   </div>
@@ -1672,7 +423,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       <div class="topbar-right">
         <div class="conn-badge">
           <span class="conn-dot conn-load" id="connDot"></span>
-          <span class="conn-version">sidarajav2.23</span>
+          <span class="conn-version">sidarajav3.2</span>
         </div>
         <button class="bo" onclick="refreshData()" title="Refresh"><i class="fa-solid fa-arrows-rotate" id="refreshIcon"></i></button>
         <div class="topbar-user" id="hdrUserProfile" onclick="doLogout()" title="Logout">
@@ -1706,7 +457,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
   </nav>
   <div class="sidebar-conn">
     <span class="conn-dot conn-load" id="sbConnDot"></span>
-    <span>sidarajav2.23</span>
+    <span>sidarajav3.2</span>
   </div>
   <button class="sidebar-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
 </aside>
@@ -1936,17 +687,17 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <div class="em-card-label">Terjadwal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-right-left"></i></div>
+          <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-hospital"></i></div>
           <div class="em-card-num" id="scHdlain">0</div>
           <div class="em-card-label">HD Lain</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-ban"></i></div>
+          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-circle-xmark"></i></div>
           <div class="em-card-num" id="scBatal">0</div>
           <div class="em-card-label">Batal</div>
         </div>
         <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon" style="background:#e5e7eb;color:#374151;border-color:#9ca3af"><i class="fa-solid fa-heart-crack"></i></div>
+          <div class="em-card-icon" style="background:#f3f4f6;color:#374151;border-color:#d1d5db"><i class="fa-solid fa-ribbon"></i></div>
           <div class="em-card-num" id="scMeninggal">0</div>
           <div class="em-card-label">Meninggal</div>
         </div>
@@ -1955,537 +706,523 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <div class="em-card-num" id="scNorespon">0</div>
           <div class="em-card-label">No Respon</div>
         </div>
-        <div class="em-card" onclick="clickStatusCard('all')" data-key="all">
-          <div class="em-card-icon" style="background:#f0e2c6;color:#7a4a22;border-color:#96703f"><i class="fa-solid fa-users"></i></div>
-          <div class="em-card-num" id="scTotal">0</div>
-          <div class="em-card-label">Total Pasien</div>
+        <div class="em-card" onclick="clickStatusCard('hbsagpos')" data-key="hbsagpos">
+          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-biohazard"></i></div>
+          <div class="em-card-num" id="scHbsagPos">0</div>
+          <div class="em-card-label">HBsAg (+)</div>
         </div>
-        <div class="em-card" style="background:#f0fdf4" onclick="openMenungguWaModal()">
-          <div class="em-card-icon" style="background:#d1fae5;color:#047857;border-color:#6ee7b7"><i class="fa-brands fa-whatsapp"></i></div>
-          <div class="em-card-num" id="scWaMenunggu" style="color:#065f46">0</div>
-          <div class="em-card-label" style="color:#047857">Hubungi WA</div>
+        <div class="em-card" onclick="clickStatusCard('hbsagneg')" data-key="hbsagneg">
+          <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-circle-check"></i></div>
+          <div class="em-card-num" id="scHbsagneg">0</div>
+          <div class="em-card-label">HBsAg (−)</div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <span>Daftar Pasien <span id="filterLabel" style="color:#e8cfa8">(Menunggu)</span></span>
+          <h3><i class="fa-solid fa-list-check mr-2"></i>Daftar Pasien — <span id="filterLabel">Menunggu</span></h3>
         </div>
-        <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
-          <table class="dt">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>No RM</th>
-                <th>Umur</th>
-                <th>HbsAg</th>
-                <th>Keterangan</th>
-                <th>Status</th>
-                <th style="text-align:center">Kontak WA</th>
-              </tr>
-            </thead>
-            <tbody id="dashBody"></tbody>
-          </table>
+        <div class="p-3">
+          <div class="flex items-center gap-3 mb-3 flex-wrap">
+            <input type="text" id="pasienSearchInput" class="si2" style="max-width:240px" placeholder="Cari nama di daftar ini..." oninput="filterTableSearch(this.value)">
+            <span id="tableInfo" class="text-xs" style="color:var(--text-muted)">Memuat data…</span>
+          </div>
+          <div class="table-wrap">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th style="width:36px">No</th>
+                  <th>Nama Pasien</th>
+                  <th>No WA — Pasien (O)</th>
+                  <th>No WA — Keluarga (P)</th>
+                  <th>Status (Q)</th>
+                  <th>Keterangan (R)</th>
+                  <th style="width:90px">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="pasienTbody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </main>
 
 <!-- ===== SLIDE 3: DATA PASIEN ===== -->
-<main id="slide3" style="display:none" class="px-4 sm:px-8 pb-16">
-  <div class="max-w-6xl mx-auto mt-6">
+<main id="slide3" class="px-4 sm:px-8 pb-16" style="display:none">
+  <div class="max-w-7xl mx-auto mt-6">
+
     <div class="welcome-banner">
       <div>
-        <div class="welcome-title" style="color:var(--green)"><i class="fa-solid fa-database mr-2"></i>Master Data Pasien</div>
-        <div class="welcome-sub">Data pasien Instalasi Dialisis RSSA — Google Spreadsheet</div>
+        <div class="welcome-title"><i class="fa-solid fa-database mr-2" style="color:#059669"></i>Data Pasien</div>
+        <div class="welcome-sub">Pratinjau Google Spreadsheet — ubah kolom Q (Status) dan R (Keterangan) langsung di sini</div>
+      </div>
+      <div class="mode-toggle">
+        <button id="modeView" class="on" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Mode Lihat</button>
+        <button id="modeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
       </div>
     </div>
 
-    <div class="card mb-4">
-      <div class="card-header" style="background-image:none;background:linear-gradient(to bottom, #34d399, #059669);border-bottom:2px solid #047857">
-        <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</span>
-        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tab Baru</a>
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</h3>
+        <a class="bo" href="https://docs.google.com/spreadsheets/d/18hh3z2CCmfFvKEqQsFGfRXzoLMx0ijoHCtnLY-v13WM/edit" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Buka di Google Sheets</a>
       </div>
-      <div class="p-4">
-        <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
-          <div class="mode-toggle">
-            <button id="btnModeRead" class="on" onclick="setSheetMode('read')"><i class="fa-solid fa-eye"></i> Mode Baca</button>
-            <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+      <div class="p-3">
+        <iframe class="sheet-frame" id="sheetFrame" src="" style="border:1px solid var(--border)" allowfullscreen></iframe>
+        <div class="instruction-box">
+          <div class="instruction-step">
+            <div class="instruction-num">1</div>
+            <div class="text-xs">Aktifkan <strong>Mode Edit</strong> di atas (pastikan sudah login Google dengan akun yang punya akses edit spreadsheet).</div>
           </div>
-          <div class="flex gap-2 flex-wrap">
-            <button class="bo" onclick="reloadSheetFrame()"><i class="fa-solid fa-arrows-rotate"></i> Muat Ulang</button>
-            <button class="bp" onclick="refreshData()"><i class="fa-solid fa-bolt"></i> Sinkron ke AKSI SIDARAJA</button>
+          <div class="instruction-step">
+            <div class="instruction-num">2</div>
+            <div class="text-xs">Ubah langsung <strong>kolom Q (Status)</strong> dan <strong>kolom R (Keterangan)</strong> sesuai hasil konfirmasi pasien. Pilihan status: Menunggu, Terjadwal, HD Lain, Batal, Meninggal, No Respon.</div>
+          </div>
+          <div class="instruction-step">
+            <div class="instruction-num">3</div>
+            <div class="text-xs">Klik tombol <strong>Refresh</strong> di pojok kanan atas aplikasi — kartu status dan tabel di menu AKSI SIDARAJA akan langsung diperbarui.</div>
           </div>
         </div>
-        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong>.</p>
-        <iframe class="sheet-frame" id="sheetFrame" src="" loading="lazy" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-    <div class="instruction-box">
-      <div class="flex items-center gap-3 mb-4 pb-2" style="border-bottom:1px solid #fcd34d">
-        <i class="fa-solid fa-bell" style="font-size:18px;color:#d97706"></i>
-        <h4 style="font-size:14px;font-weight:bold;color:#92400e;text-transform:uppercase">Petunjuk Update Status Pasien</h4>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">1</div>
-        <div style="font-size:12px;color:#78350f"><strong>Hubungi pasien</strong> melalui WhatsApp pada tombol WA di halaman <strong>AKSI SIDARAJA</strong>.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">2</div>
-        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">3</div>
-        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan.</div>
-      </div>
-      <div class="instruction-step">
-        <div class="instruction-num">4</div>
-        <div style="font-size:12px;color:#78350f">Klik <strong>Sinkron ke AKSI SIDARAJA</strong> untuk melihat perubahan pada kartu status.</div>
-      </div>
-    </div>
   </div>
 </main>
 
 <script>
-var APP_VERSION = 'sidarajav2.23';
-var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
-var GID = '1588121083';
-var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
-var SHEET_READ_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
-var SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + GID + '#gid=' + GID;
-var sheetMode = 'read';
+/* =====================================================
+   SIDARAJA v3.2 — KONFIGURASI
+   URL Web App sudah terpasang, tidak perlu diubah lagi
+===================================================== */
+const API_URL   = 'https://script.google.com/macros/s/AKfycbwBEG1QD9bLA-2UpKVbhmCZSfFfuHpO4gWzLE9z2mc9AHv4IdJq325sqSIYqJ7DIcKx/exec';
+const SHEET_ID  = '18hh3z2CCmfFvKEqQsFGfRXzoLMx0ijoHCtnLY-v13WM';
+const DATA_GID  = '0'; // gid sheet data pasien (0 = sheet pertama). Ganti bila perlu.
+const ROOM_KEYS = ['teukuumar','malahayati','cutnyakdien'];
+const DAY_KEYS  = ['sen','sel','rab','kam','jum','sab'];
+const ROOM_LABEL = { teukuumar:'HD Teuku Umar', malahayati:'HD Malahayati', cutnyakdien:'HD Cut Nyak Dien' };
+const FILTER_LABEL = { menunggu:'Menunggu', terjadwal:'Terjadwal', hdlain:'HD Lain', batal:'Batal', meninggal:'Meninggal', norespon:'No Respon', hbsagpos:'HBsAg Positif', hbsagneg:'HBsAg Negatif', other:'Lainnya' };
+const BADGE_CLASS  = { menunggu:'badge-menunggu', terjadwal:'badge-terjadwal', hdlain:'badge-hdlain', batal:'badge-batal', meninggal:'badge-meninggal', norespon:'badge-norespon', hbsagpos:'badge-hbsag-pos', hbsagneg:'badge-hbsag-neg', other:'badge-other' };
 
-var BED_API_URL = '';
-var ROOM_PASSWORDS = { teukuumar: 'apik', malahayati: 'bagus', cutnyakdien: 'cakep' };
-var ROOM_NAMES = { teukuumar: 'HD Teuku Umar', malahayati: 'HD Malahayati', cutnyakdien: 'HD Cut Nyak Dien' };
-var BED_DAYS = ['sen','sel','rab','kam','jum','sab'];
-var bedData = { teukuumar: {}, malahayati: {}, cutnyakdien: {} };
-var currentBedRoom = null;
+/* ===== State ===== */
+let bedData = {}, pasienData = [], currentFilter = 'menunggu', tableSearch = '';
+let currentRole = null, currentUser = null;
 
-var allData = [];
-var currentFilter = 'menunggu';
-var currentUser = null;
-var currentMode = 'admin';
+const $ = (id) => document.getElementById(id);
 
-function $(id) { return document.getElementById(id); }
-function escHtml(s) { if (!s && s !== 0) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-function toast(msg, type) {
-  var c = $('toastC');
-  var cls = type === 'error' ? 'tt-e' : type === 'info' ? 'tt-i' : 'tt-s';
-  var icon = type === 'error' ? 'fa-circle-xmark' : type === 'info' ? 'fa-circle-info' : 'fa-circle-check';
-  var el = document.createElement('div');
-  el.className = 'tt ' + cls;
-  el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + escHtml(msg) + '</span>';
-  c.appendChild(el);
-  setTimeout(function() { el.remove(); }, 3500);
+/* ===== Util ===== */
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function waNumber(n){
+  let d = String(n||'').replace(/[^0-9]/g,'');
+  if(!d) return '';
+  if(d.startsWith('0')) d = '62' + d.slice(1);
+  else if(d.startsWith('8')) d = '62' + d;
+  return d;
 }
-
-function setConnState(state) {
-  var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
-  ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
-    var dot = $(id); if (dot) dot.className = dotCls;
-  });
+function showToast(type, msg){
+  const c = $('toastC'); if(!c) return;
+  const div = document.createElement('div');
+  div.className = 'tt ' + (type==='success'?'tt-s':type==='error'?'tt-e':'tt-i');
+  const ic = type==='success'?'fa-circle-check':type==='error'?'fa-circle-xmark':'fa-circle-info';
+  div.innerHTML = '<i class="fa-solid '+ic+'"></i><span>'+esc(msg)+'</span>';
+  c.appendChild(div);
+  setTimeout(()=>{ div.style.opacity='0'; setTimeout(()=>div.remove(), 350); }, 3500);
 }
-
-/* ================= SISA BED KOSONG ================= */
-function renderBedData() {
-  Object.keys(bedData).forEach(function(room) {
-    BED_DAYS.forEach(function(day) {
-      var el = $('bed_' + room + '_' + day);
-      if (!el) return;
-      var v = bedData[room][day];
-      if (v === undefined || v === '' || v === null) {
-        el.textContent = '–'; el.classList.add('empty');
-      } else {
-        el.textContent = v; el.classList.remove('empty');
-      }
-    });
-  });
-}
-
-function loadBedData() {
-  var fallbackLocal = function() {
-    try {
-      var s = localStorage.getItem('sidaraja_bed');
-      if (s) bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, JSON.parse(s));
-    } catch(e) {}
-    renderBedData();
-  };
-  if (BED_API_URL) {
-    fetch(BED_API_URL).then(function(r) { return r.json(); }).then(function(d) {
-      bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, d);
-      renderBedData();
-    }).catch(fallbackLocal);
-  } else fallbackLocal();
-}
-
-function saveBedData() {
-  if (BED_API_URL) {
-    fetch(BED_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(bedData)
-    }).then(function() {
-      toast('Data sisa bed tersimpan online — terlihat semua user', 'success');
-    }).catch(function() {
-      localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
-      toast('Server online gagal — data disimpan lokal sementara', 'info');
-    });
-  } else {
-    localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
-    toast('Data sisa bed tersimpan di perangkat ini', 'success');
-  }
-}
-
-function openBedEdit(room) {
-  currentBedRoom = room;
-  $('bedEditRoomName').textContent = ROOM_NAMES[room];
-  $('bedEditPass').value = '';
-  hideErr('bedEditError');
-  BED_DAYS.forEach(function(day) { $('bedIn_' + day).value = (bedData[room][day] !== undefined ? bedData[room][day] : ''); });
-  $('bedEditModal').style.display = 'flex';
-  setTimeout(function() { $('bedEditPass').focus(); }, 100);
-}
-function closeBedEdit() { $('bedEditModal').style.display = 'none'; }
-
-function submitBedEdit() {
-  var pass = $('bedEditPass').value;
-  if (pass !== ROOM_PASSWORDS[currentBedRoom]) {
-    showErr('bedEditError', 'Password salah! Hubungi petugas ruangan ' + ROOM_NAMES[currentBedRoom] + '.');
-    return;
-  }
-  BED_DAYS.forEach(function(day) {
-    bedData[currentBedRoom][day] = $('bedIn_' + day).value.trim();
-  });
-  saveBedData();
-  renderBedData();
-  closeBedEdit();
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && $('bedEditModal').style.display === 'flex') submitBedEdit();
-});
-
-/* ================= SIDEBAR ================= */
-function openSidebar() {
-  $('mobileSidebar').classList.add('open');
-  $('sidebarOverlay').classList.add('open');
-}
-function closeSidebar() {
-  $('mobileSidebar').classList.remove('open');
-  $('sidebarOverlay').classList.remove('open');
-}
-function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
-
-/* ================= SPREADSHEET MODE ================= */
-function setSheetMode(mode) {
-  sheetMode = mode;
-  $('btnModeRead').classList.toggle('on', mode === 'read');
-  $('btnModeEdit').classList.toggle('on', mode === 'edit');
-  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
-  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diedit langsung' : 'Mode Baca aktif', 'info');
-}
-function reloadSheetFrame() {
-  $('sheetFrame').src = (sheetMode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
-  toast('Pratinjau spreadsheet dimuat ulang', 'info');
-}
-
-function parseGvizDate(val) {
-  if (!val) return null;
-  if (typeof val === 'string' && val.startsWith('Date(')) {
-    var m = val.match(/Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)/);
-    if (m) return new Date(+m[1], +m[2], +m[3], m[4]?+m[4]:0, m[5]?+m[5]:0, m[6]?+m[6]:0);
-  }
-  var d = new Date(val);
-  return isNaN(d.getTime()) ? null : d;
-}
-
-function getStatusKey(status) {
-  if (!status) return 'other';
-  var s = String(status).toUpperCase().trim();
-  s = s.replace(/\s+/g, ' ');
-  if (s.includes('MENINGGAL')) return 'meninggal';
-  if (s.includes('NO RESPON') || s.includes('NORESPON') || s.includes('NO RESPONS') || s.includes('TIDAK RESPON')) return 'norespon';
-  if (s.includes('BATAL')) return 'batal';
-  var hasHD = s.includes('HD') || s.includes('HEMODIALISIS') || s.includes('HEMODIALISA');
-  var hasLain = s.includes('LAIN');
-  if (hasHD && hasLain) return 'hdlain';
-  if (s.includes('HDLAIN')) return 'hdlain';
-  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN')) return 'hdlain';
-  if (s.includes('TERJADWAL')) return 'terjadwal';
-  if (s.includes('MENUNGGU')) return 'menunggu';
+function showErr(boxId, msgId, msg){ $(msgId).textContent = msg; $(boxId).classList.add('show'); }
+function statusKeyOf(s){
+  const t = String(s||'').toLowerCase().replace(/[^a-z]/g,'');
+  if(!t) return 'other';
+  if(t.includes('hbsag')) return t.includes('pos') ? 'hbsagpos' : 'hbsagneg';
+  if(t.includes('menunggu')) return 'menunggu';
+  if(t.includes('terjadwal')) return 'terjadwal';
+  if(t.includes('hdlain') || (t.includes('hd') && t.includes('lain'))) return 'hdlain';
+  if(t.includes('batal')) return 'batal';
+  if(t.includes('meninggal')) return 'meninggal';
+  if(t.includes('norespon')) return 'norespon';
   return 'other';
 }
 
-function renderHbsAgBadge(val) {
-  if (!val) return '<span style="color:var(--text-muted)">-</span>';
-  var v = String(val).toUpperCase().trim();
-  if (v.includes('POSITIF') || v === '+') return '<span class="badge badge-hbsag-pos">Positif</span>';
-  if (v.includes('NEGATIF') || v.includes('NON REAKTIF') || v === '-') return '<span class="badge badge-hbsag-neg">Negatif</span>';
-  return '<span class="badge badge-other">' + escHtml(val) + '</span>';
+/* =====================================================
+   LOGIN / MODE AKSES
+===================================================== */
+function selectMode(m){
+  $('modeAdmin').classList.toggle('sel-admin', m==='admin');
+  $('modeUser').classList.toggle('sel-user', m==='user');
+  $('adminSection').style.display = m==='admin' ? 'block' : 'none';
+  $('userSection').style.display  = m==='user'  ? 'block' : 'none';
+}
+function switchAuthTab(t){
+  $('authTabLogin').classList.toggle('active', t==='login');
+  $('authTabRegister').classList.toggle('active', t==='register');
+  $('authLoginForm').style.display    = t==='login'    ? 'block' : 'none';
+  $('authRegisterForm').style.display = t==='register' ? 'block' : 'none';
+}
+function getUsers(){ try { return JSON.parse(localStorage.getItem('sidaraja_users')||'[]'); } catch(e){ return []; } }
+function seedDefaultUsers(){
+  let u = getUsers();
+  if(!u.length){ u.push({nama:'Admin RSSA', email:'admin@rssa.id', pass:'admin123'}); localStorage.setItem('sidaraja_users', JSON.stringify(u)); }
+}
+function doPetugasLogin(){
+  $('loginError').classList.remove('show');
+  const email = $('loginEmail').value.trim().toLowerCase();
+  const pass  = $('loginPass').value;
+  if(!email || !pass){ showErr('loginError','loginErrorMsg','Email dan kata sandi wajib diisi.'); return; }
+  const u = getUsers().find(x => x.email.toLowerCase()===email && x.pass===pass);
+  if(!u){ showErr('loginError','loginErrorMsg','Email atau kata sandi salah.'); return; }
+  localStorage.setItem('sidaraja_session', JSON.stringify({role:'petugas', nama:u.nama, email:u.email}));
+  enterApp('petugas', u);
+}
+function doPetugasRegister(){
+  $('regError').classList.remove('show'); $('regOk').classList.remove('show');
+  const nama = $('regNama').value.trim(), email = $('regEmail').value.trim().toLowerCase(), pass = $('regPass').value;
+  if(nama.length < 3){ showErr('regError','regErrorMsg','Nama minimal 3 karakter.'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showErr('regError','regErrorMsg','Format email tidak valid.'); return; }
+  if(pass.length < 6){ showErr('regError','regErrorMsg','Kata sandi minimal 6 karakter.'); return; }
+  const users = getUsers();
+  if(users.some(x => x.email.toLowerCase()===email)){ showErr('regError','regErrorMsg','Email sudah terdaftar, gunakan tab Masuk.'); return; }
+  users.push({nama, email, pass});
+  localStorage.setItem('sidaraja_users', JSON.stringify(users));
+  $('regOkMsg').textContent = 'Pendaftaran berhasil! Silakan masuk dengan email dan sandi Anda.';
+  $('regOk').classList.add('show');
+  setTimeout(()=>{ switchAuthTab('login'); $('loginEmail').value = email; $('loginPass').value=''; }, 1200);
+}
+function doUserLogin(){ enterApp('user', {nama:'Pasien'}); }
+function doLogout(){
+  localStorage.removeItem('sidaraja_session');
+  location.reload();
 }
 
-function formatPhone(p) {
-  if (!p) return '';
-  var s = String(p).replace(/[^0-9+]/g, '');
-  if (!s) return '';
-  return s.startsWith('0') ? '62' + s.substring(1) : s;
-}
-
-function selectMode(mode) {
-  currentMode = mode;
-  $('modeAdmin').className = 'mode-card' + (mode === 'admin' ? ' sel-admin' : '');
-  $('modeUser').className = 'mode-card' + (mode === 'user' ? ' sel-user' : '');
-  $('adminSection').style.display = mode === 'admin' ? 'block' : 'none';
-  $('userSection').style.display = mode === 'user' ? 'block' : 'none';
-}
-
-function switchAuthTab(tab) {
-  $('authTabLogin').className = 'auth-tab' + (tab === 'login' ? ' active' : '');
-  $('authTabRegister').className = 'auth-tab' + (tab === 'register' ? ' active' : '');
-  $('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
-  $('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
-}
-
-function showErr(id, msg) { var e = $(id); if (e) { e.querySelector('span').textContent = msg; e.classList.add('show'); } }
-function hideErr(id) { var e = $(id); if (e) e.classList.remove('show'); }
-
-function doPetugasLogin() {
-  var email = $('loginEmail').value.trim(), pass = $('loginPass').value;
-  if (!email || !pass) { showErr('loginError', 'Email dan kata sandi wajib diisi.'); return; }
-  currentUser = { nama: email.split('@')[0], email: email, role: 'Petugas' };
-  localStorage.setItem('sidaraja_user', JSON.stringify(currentUser));
-  enterApp('admin');
-}
-
-function doPetugasRegister() { showErr('regError', 'Fitur daftar sedang maintenance. Hubungi admin.'); }
-function doUserLogin() { currentUser = { nama: 'Pasien', role: 'Pasien' }; enterApp('patient'); }
-
-function doLogout() {
-  closeSidebar();
-  currentUser = null; localStorage.removeItem('sidaraja_user');
-  $('loginOverlay').style.display = 'flex'; $('mainHeader').style.display = 'none';
-  $('slide1').style.display = 'none'; $('slide2').style.display = 'none'; $('slide3').style.display = 'none';
-  $('patientView').style.display = 'none';
-}
-
-function enterApp(mode) {
-  $('loginOverlay').style.display = 'none'; $('mainHeader').style.display = 'block';
-  if (mode === 'admin') {
-    $('slide1').style.display = 'block';
-    $('hdrUserProfile').style.display = 'flex'; $('patientLogoutBtn').style.display = 'none';
-    switchSlide(1); updateProfileUI();
+/* =====================================================
+   MASUK APLIKASI & NAVIGASI
+===================================================== */
+function enterApp(role, user){
+  currentRole = role; currentUser = user;
+  $('loginOverlay').style.display = 'none';
+  $('mainHeader').style.display = 'block';
+  if(role === 'petugas'){
+    document.body.classList.remove('patient-mode');
+    setUserInfo(user.nama, 'Petugas Instalasi Dialisis');
+    switchSlide(1);
+    refreshData(true);
+    showToast('success', 'Selamat datang, ' + user.nama);
   } else {
+    document.body.classList.add('patient-mode');
+    setUserInfo('Pasien', 'Pasien');
     $('patientView').style.display = 'block';
-    $('hdrUserProfile').style.display = 'none'; $('patientLogoutBtn').style.display = 'inline-flex';
-    updateProfileUI();
-  }
-  refreshData();
-}
-
-function checkAuth() {
-  var saved = localStorage.getItem('sidaraja_user');
-  if (saved) {
-    try { currentUser = JSON.parse(saved); if (currentUser && currentUser.role === 'Petugas') { selectMode('admin'); enterApp('admin'); } else { localStorage.removeItem('sidaraja_user'); } }
-    catch(e) { localStorage.removeItem('sidaraja_user'); }
+    refreshData(true);
+    showToast('success', 'Mode Pasien aktif — ketik nama untuk cek antrian');
   }
 }
-
-function updateProfileUI() {
-  if (!currentUser) return;
-  var initial = currentUser.nama ? currentUser.nama.charAt(0).toUpperCase() : '?';
-  $('hdrUserAvatar').textContent = initial;
-  $('hdrUserName').textContent = currentUser.nama;
-  $('sbUserAvatar').textContent = initial;
-  $('sbUserName').textContent = currentUser.nama;
-  $('sbUserRole').textContent = currentUser.role || '';
-  var today = new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-  $('todayDate').textContent = today;
+function setUserInfo(nama, role){
+  const ini = String(nama||'?').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase() || '?';
+  $('hdrUserName').textContent = nama; $('sbUserName').textContent = nama;
+  $('hdrUserAvatar').textContent = ini; $('sbUserAvatar').textContent = ini;
+  $('sbUserRole').textContent = role;
+}
+function switchSlide(n){
+  if(currentRole !== 'petugas') return;
+  for(let i=1;i<=3;i++){
+    $('slide'+i).style.display = (i===n) ? 'block' : 'none';
+    $('tab'+i).classList.toggle('active', i===n);
+    $('sbTab'+i).classList.toggle('active', i===n);
+  }
+  if(n===2) updateTodayDate();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function switchSlideMobile(n){ closeSidebar(); switchSlide(n); }
+function openSidebar(){ $('mobileSidebar').classList.add('open'); $('sidebarOverlay').classList.add('open'); }
+function closeSidebar(){ $('mobileSidebar').classList.remove('open'); $('sidebarOverlay').classList.remove('open'); }
+function updateTodayDate(){
+  const el = $('todayDate'); if(!el) return;
+  el.textContent = new Date().toLocaleDateString('id-ID',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
 }
 
-function switchSlide(n) {
-  for (var i = 1; i <= 3; i++) {
-    var tab = $('tab' + i), sbTab = $('sbTab' + i);
-    if (tab) tab.classList.toggle('active', i === n);
-    if (sbTab) sbTab.classList.toggle('active', i === n);
-    $('slide' + i).style.display = i === n ? 'block' : 'none';
-  }
-  if (n === 3 && !$('sheetFrame').src) {
-    $('sheetFrame').src = SHEET_READ_URL;
+/* =====================================================
+   DATA DARI SPREADSHEET (SISA BED + PASIEN)
+===================================================== */
+function setConn(ok){
+  ['connDot','sbConnDot','connDotLogin'].forEach(id=>{
+    const el = $(id); if(el) el.className = 'conn-dot ' + (ok ? 'conn-ok' : 'conn-fail');
+  });
+}
+async function refreshData(silent){
+  const icon = $('refreshIcon');
+  if(icon) icon.classList.add('fa-spin');
+  try{
+    const res = await fetch(API_URL + '?t=' + Date.now());
+    const out = await res.json();
+    if(out.status !== 'ok') throw new Error(out.message || 'Respons API tidak valid');
+    setConn(true);
+    if(out.rooms){ bedData = out.rooms; applyBedData(); }
+    if(out.pasien){ pasienData = out.pasien; }
+    else if(!silent){ showToast('info','Data pasien belum tersedia — perbarui kode Apps Script ke versi terbaru (lihat Langkah 1).'); }
+    renderStatusCards();
+    renderPasienTable();
+  }catch(err){
+    setConn(false);
+    if(!silent) showToast('error','Gagal memuat data: ' + err.message);
+  }finally{
+    if(icon) setTimeout(()=>icon.classList.remove('fa-spin'), 600);
   }
 }
-
-function fetchSheetData() {
-  setConnState('load');
-  fetch(DATA_URL).then(function(r) { return r.text(); }).then(function(text) {
-    var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
-    if (!match) throw new Error('Format gviz tidak valid');
-    var json = JSON.parse(match[1]); var rows = json.table.rows || [];
-    allData = [];
-    rows.forEach(function(row, idx) {
-      var c = function(ci) { return row.c[ci] ? (row.c[ci].v !== null ? row.c[ci].v : '') : ''; };
-      allData.push({
-        row: idx + 2,
-        timestamp: parseGvizDate(c(0)),
-        nama: c(1), noRM: c(2), umur: c(4),
-        hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
-      });
+function applyBedData(){
+  ROOM_KEYS.forEach(room=>{
+    const r = bedData[room]; if(!r) return;
+    DAY_KEYS.forEach(d=>{
+      const el = $('bed_'+room+'_'+d); if(!el) return;
+      const v = Number(r[d]);
+      el.textContent = isNaN(v) ? '–' : v;
+      el.className = (!isNaN(v) && v > 0) ? '' : 'empty';
     });
-    setConnState('ok');
-    updateStatusCounts(); renderDashboard();
-  }).catch(function(err) {
-    setConnState('fail');
-    toast('Gagal memuat data: ' + err.message, 'error');
   });
 }
 
-function refreshData() {
-  var icon = $('refreshIcon'); if (icon) icon.classList.add('fa-spin');
-  fetchSheetData(); loadBedData();
-  setTimeout(function() { if (icon) icon.classList.remove('fa-spin'); }, 2000);
+/* ===== Edit Sisa Bed (tersimpan di sheet "ruang" — sinkron semua perangkat) ===== */
+let bedEditCurrentRoom = null;
+function openBedEdit(room){
+  bedEditCurrentRoom = room;
+  $('bedEditRoomName').textContent = ROOM_LABEL[room] || room;
+  $('bedEditPass').value = '';
+  $('bedEditError').classList.remove('show');
+  const r = bedData[room] || {};
+  DAY_KEYS.forEach(d=>{ const inp = $('bedIn_'+d); if(inp) inp.value = (r[d] !== undefined && r[d] !== '') ? r[d] : ''; });
+  $('bedEditModal').style.display = 'flex';
 }
-
-function clickStatusCard(key) {
-  currentFilter = key;
-  document.querySelectorAll('#statusCards .em-card').forEach(function(c) {
-    if (c.getAttribute('data-key')) {
-      c.classList.toggle('active', c.getAttribute('data-key') === key);
+function closeBedEdit(){ $('bedEditModal').style.display = 'none'; bedEditCurrentRoom = null; }
+async function submitBedEdit(){
+  $('bedEditError').classList.remove('show');
+  const pass = $('bedEditPass').value.trim();
+  if(!pass){ showErr('bedEditError','bedEditErrorMsg','Masukkan password ruangan.'); return; }
+  const payload = { ruangan: bedEditCurrentRoom, password: pass };
+  DAY_KEYS.forEach(d => payload[d] = Number($('bedIn_'+d).value) || 0);
+  try{
+    const res = await fetch(API_URL, {
+      method : 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body   : JSON.stringify(payload)
+    });
+    const out = await res.json();
+    if(out.status === 'ok'){
+      showToast('success','Sisa bed tersimpan — sinkron di semua perangkat');
+      closeBedEdit();
+      refreshData(true);
+    } else {
+      showErr('bedEditError','bedEditErrorMsg', out.message || 'Gagal menyimpan.');
     }
-  });
-  var labelMap = { menunggu:'(Menunggu)', terjadwal:'(Terjadwal)', hdlain:'(HD Lain)', batal:'(Batal)', meninggal:'(Meninggal)', norespon:'(No Respon)', all:'(Semua Data)' };
-  $('filterLabel').textContent = labelMap[key] || '(Semua Data)';
-  renderDashboard();
-}
-
-function updateStatusCounts() {
-  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
-  allData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
-  $('scMenunggu').textContent = counts.menunggu; $('scTerjadwal').textContent = counts.terjadwal;
-  $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
-  $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
-  $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
-}
-
-function renderDashboard() {
-  var body = $('dashBody'); if (!body) return;
-  var filtered = allData.filter(function(d) { return currentFilter === 'all' || getStatusKey(d.status) === currentFilter; });
-  if (filtered.length === 0) { body.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:20px">Tidak ada data</td></tr>'; return; }
-  var html = '';
-  filtered.forEach(function(d, i) {
-    var sk = getStatusKey(d.status);
-    var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
-    html += '<tr>';
-    html += '<td>' + (i + 1) + '</td>';
-    html += '<td style="font-weight:bold">' + escHtml(d.nama) + '</td>';
-    html += '<td>' + escHtml(d.noRM) + '</td>';
-    html += '<td>' + escHtml(d.umur) + '</td>';
-    html += '<td>' + renderHbsAgBadge(d.hbsAg) + '</td>';
-    html += '<td>' + escHtml(d.keterangan) + '</td>';
-    html += '<td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td>';
-    html += '<td style="white-space:nowrap;text-align:center">';
-    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa" title="WA Pasien (O)"><i class="fa-brands fa-whatsapp"></i></button>';
-    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2" title="WA Keluarga (P)"><i class="fa-brands fa-whatsapp"></i></button>';
-    if (!wa1 && !wa2) html += '<span style="color:var(--text-muted)">-</span>';
-    html += '</td>';
-    html += '</tr>';
-  });
-  body.innerHTML = html;
-}
-
-function openMenungguWaModal() {
-  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
-  var container = $('menungguWaList');
-  if (list.length === 0) {
-    container.innerHTML = '<div style="text-align:center;padding:20px">Tidak ada pasien menunggu</div>';
-  } else {
-    var html = '';
-    list.forEach(function(d, i) {
-      var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
-      html += '<div style="background:#f0e6d0;border:1px solid #dcc9a8;padding:10px;margin-bottom:8px">';
-      html += '<div style="font-weight:bold;margin-bottom:5px">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
-      html += '<div style="display:flex;gap:5px;flex-wrap:wrap">';
-      if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</button>';
-      if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga (P)</button>';
-      html += '</div></div>';
-    });
-    container.innerHTML = html;
+  }catch(err){
+    showErr('bedEditError','bedEditErrorMsg','Koneksi gagal: ' + err.message);
   }
-  $('menungguWaModal').style.display = 'flex';
 }
-function closeMenungguWaModal() { $('menungguWaModal').style.display = 'none'; }
 
-function openWaModal(row, type) {
-  var d = allData.find(function(x) { return x.row == row; });
-  if (!d) return toast('Data tidak ditemukan', 'error');
-  var phone = type === 1 ? d.noHP : d.noHP2;
-  var wa = formatPhone(phone);
-  if (!wa) return toast('Nomor WhatsApp tidak tersedia', 'error');
-  $('waNama').value = d.nama;
-  $('waNomor').value = wa;
+/* =====================================================
+   KARTU STATUS & TABEL PASIEN
+===================================================== */
+function renderStatusCards(){
+  const counts = {menunggu:0,terjadwal:0,hdlain:0,batal:0,meninggal:0,norespon:0,hbsagpos:0,hbsagneg:0,other:0};
+  pasienData.forEach(p => { const k = statusKeyOf(p.status); counts[k] = (counts[k]||0) + 1; });
+  $('scMenunggu').textContent = counts.menunggu;
+  $('scTerjadwal').textContent = counts.terjadwal;
+  $('scHdlain').textContent = counts.hdlain;
+  $('scBatal').textContent = counts.batal;
+  $('scMeninggal').textContent = counts.meninggal;
+  $('scNorespon').textContent = counts.norespon;
+  $('scHbsagPos').textContent = counts.hbsagpos;
+  $('scHbsagneg').textContent = counts.hbsagneg;
+}
+function clickStatusCard(key){
+  currentFilter = key;
+  document.querySelectorAll('#statusCards .em-card').forEach(c => c.classList.toggle('active', c.dataset.key === key));
+  $('filterLabel').textContent = FILTER_LABEL[key] || key;
+  renderPasienTable();
+  const tbl = document.querySelector('#dashboardPrintArea .card');
+  if(tbl) tbl.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function filterTableSearch(v){ tableSearch = String(v||'').toLowerCase(); renderPasienTable(); }
+function renderPasienTable(){
+  const tbody = $('pasienTbody'), info = $('tableInfo');
+  if(!tbody) return;
+  if(!pasienData.length){
+    info.textContent = 'Belum ada data pasien termuat.';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px">Data pasien belum tersedia. Pastikan Apps Script sudah diperbarui (Langkah 1) dan sheet data pasien terisi, lalu klik Refresh.</td></tr>';
+    return;
+  }
+  const list = pasienData.filter(p =>
+    statusKeyOf(p.status) === currentFilter &&
+    (!tableSearch || String(p.nama).toLowerCase().includes(tableSearch))
+  );
+  info.textContent = 'Menampilkan ' + list.length + ' dari ' + pasienData.filter(p=>statusKeyOf(p.status)===currentFilter).length +
+    ' pasien berstatus "' + (FILTER_LABEL[currentFilter]||currentFilter) + '" — total data: ' + pasienData.length;
+  if(!list.length){
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px">Tidak ada pasien yang cocok.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(p=>{
+    const i = pasienData.indexOf(p);
+    const badge = BADGE_CLASS[statusKeyOf(p.status)] || 'badge-other';
+    const waBtn = (p.wa || p.wa2)
+      ? '<button class="btn-wa" onclick="openWaModal('+i+',false)"><i class="fa-brands fa-whatsapp"></i> WA</button>'
+      : '<span style="color:var(--text-muted)">—</span>';
+    return '<tr>' +
+      '<td>' + (i+1) + '</td>' +
+      '<td><strong>' + esc(p.nama) + '</strong></td>' +
+      '<td>' + (esc(p.wa) || '—') + '</td>' +
+      '<td>' + (esc(p.wa2) || '—') + '</td>' +
+      '<td><span class="badge ' + badge + '">' + (esc(p.status) || '-') + '</span></td>' +
+      '<td>' + (esc(p.ket) || '—') + '</td>' +
+      '<td>' + waBtn + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+function openWaModal(idx, useFamily){
+  const p = pasienData[idx]; if(!p) return;
+  $('waNama').value  = p.nama || '-';
+  $('waNomor').value = (useFamily && p.wa2) ? p.wa2 : (p.wa || p.wa2 || '');
   $('waRuangan').value = '';
   generateWaText();
+  closeMenungguWaModal();
   $('waModal').style.display = 'flex';
 }
-function closeWaModal() { $('waModal').style.display = 'none'; }
-
-function generateWaText() {
-  var nama = $('waNama').value;
-  var ruangan = $('waRuangan').value;
-  var text = "INSTALASI DIALISIS\nRSUD DR SAIFUL ANWAR\nPROV JAWA TIMUR\n\nSalam sehat kami sampaikan,\n\n";
-  if (ruangan) {
-    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menginformasikan bahwa saat ini di ruangan " + ruangan + " terdapat jadwal kosong untuk pelaksanaan Hemodialisis.\n\n";
-    text += "Apakah Bapak/Ibu " + nama + " bersedia untuk mengisi jadwal tersebut?\n\n";
-  } else {
-    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menghubungi Bapak/Ibu " + nama + " terkait jadwal Hemodialisis.\n\n";
-  }
-  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\nSalam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
-  $('waText').value = text;
+function closeWaModal(){ $('waModal').style.display = 'none'; }
+function generateWaText(){
+  const nama = $('waNama').value;
+  const ruangan = $('waRuangan').value || '[Nama Ruangan]';
+  const tgl = new Date().toLocaleDateString('id-ID',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  $('waText').value =
+'Kepada Yth. Bapak/Ibu ' + nama + ',\n\n' +
+'Kami dari Instalasi Dialisis RSUD dr. Saiful Anwar (RSSA) Malang ingin menginformasikan bahwa saat ini terdapat jadwal hemodialisis yang tersedia di:\n\n' +
+'*Ruang : ' + ruangan + '*\n' +
+'Hari/Tanggal : ' + tgl + '\n\n' +
+'Apabila Bapak/Ibu berkenan mengisi jadwal tersebut, mohon melakukan konfirmasi melalui balasan pesan WhatsApp ini.\n\n' +
+'Terima kasih atas perhatian dan kerja samanya.\n\n' +
+'Hormat kami,\nPetugas Instalasi Dialisis RSSA\n(SIDARAJA)';
 }
-
-function sendWaMessage() {
-  var text = $('waText').value;
-  var wa = $('waNomor').value;
-  if (!text.trim()) return toast('Pesan tidak boleh kosong', 'error');
-  window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), '_blank');
+function sendWaMessage(){
+  const num = waNumber($('waNomor').value);
+  if(!num){ showToast('error','Nomor WhatsApp pasien tidak tersedia.'); return; }
+  window.open('https://wa.me/' + num + '?text=' + encodeURIComponent($('waText').value), '_blank');
   closeWaModal();
 }
 
-function cetakPrint() { $('printArea').innerHTML = $('dashboardPrintArea').innerHTML; window.print(); setTimeout(function() { $('printArea').innerHTML = ''; }, 500); }
-function kirimPDF() {
-  html2pdf().set({ margin: 10, filename: 'AKSI_SIDARAJA.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' } })
-  .from($('dashboardPrintArea')).save().then(function() { toast('PDF berhasil diunduh', 'success'); });
+/* ===== Modal daftar pasien menunggu ===== */
+function kirimWA(){ openMenungguWaModal(); }
+function openMenungguWaModal(){
+  const box = $('menungguWaList');
+  if(!pasienData.length){
+    box.innerHTML = '<p class="text-xs" style="color:var(--text-muted)">Data pasien belum termuat. Klik Refresh lalu coba lagi.</p>';
+  } else {
+    const list = pasienData.filter(p => statusKeyOf(p.status) === 'menunggu');
+    if(!list.length){
+      box.innerHTML = '<p class="text-xs" style="color:var(--text-muted)">Tidak ada pasien berstatus Menunggu.</p>';
+    } else {
+      box.innerHTML = list.map(p=>{
+        const i = pasienData.indexOf(p);
+        return '<div class="panduan-item" style="align-items:center;margin-bottom:8px">' +
+          '<div class="panduan-icon" style="width:38px;height:38px;font-size:15px"><i class="fa-solid fa-user"></i></div>' +
+          '<div style="flex:1;min-width:0"><div style="font-weight:bold;color:var(--primary)">'+esc(p.nama)+'</div>' +
+          '<div class="text-xs" style="color:var(--text-muted)">'+(esc(p.ket)||'-')+'</div></div>' +
+          '<div style="flex-shrink:0">' +
+            (p.wa  ? '<button class="btn-wa" onclick="openWaModal('+i+',false)"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
+            (p.wa2 ? '<button class="btn-wa btn-wa2" onclick="openWaModal('+i+',true)"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
+          '</div></div>';
+      }).join('');
+    }
+  }
+  $('menungguWaModal').style.display = 'flex';
 }
-function kirimWA() {
-  var c = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
-  allData.forEach(function(d) { var k = getStatusKey(d.status); if (c.hasOwnProperty(k)) c[k]++; });
-  var text = "*AKSI SIDARAJA - Laporan*\nTotal: " + allData.length + "\nMenunggu: " + c.menunggu + "\nTerjadwal: " + c.terjadwal + "\nHD Lain: " + c.hdlain;
-  window.open("https://wa.me/?text=" + encodeURIComponent(text), '_blank');
+function closeMenungguWaModal(){ $('menungguWaModal').style.display = 'none'; }
+
+/* =====================================================
+   CEK ANTRIAN PASIEN (MODE PASIEN)
+===================================================== */
+function patientSearch(){
+  const q = $('pSearchNama').value.trim().toLowerCase();
+  const box = $('patientResults');
+  if(!q){ box.innerHTML = infoPatient('Ketik nama pasien terlebih dahulu.'); return; }
+  if(!pasienData.length){ box.innerHTML = infoPatient('Data belum termuat. Tunggu beberapa saat lalu coba lagi.'); return; }
+  const res = pasienData.filter(p => String(p.nama||'').toLowerCase().includes(q));
+  if(!res.length){ box.innerHTML = infoPatient('Pasien dengan nama tersebut tidak ditemukan. Periksa ejaan nama atau hubungi petugas Instalasi Dialisis RSSA.'); return; }
+  box.innerHTML = res.map(p=>{
+    const k = statusKeyOf(p.status), b = BADGE_CLASS[k] || 'badge-other';
+    return '<div class="card mb-3">' +
+      '<div class="card-header"><h3><i class="fa-solid fa-user mr-2"></i>' + esc(p.nama) + '</h3></div>' +
+      '<div class="p-4">' +
+        '<div class="flex items-center gap-3 flex-wrap">' +
+          '<span class="badge ' + b + '">' + (esc(p.status) || 'Status belum diisi') + '</span>' +
+          '<span class="text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-calendar-day mr-1"></i>' + new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) + '</span>' +
+        '</div>' +
+        (p.ket ? '<p class="mt-3 text-xs" style="color:var(--text)"><strong>Keterangan:</strong> ' + esc(p.ket) + '</p>' : '') +
+      '</div></div>';
+  }).join('');
+}
+function infoPatient(msg){
+  return '<div class="card"><div class="p-4 text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i>' + esc(msg) + '</div></div>';
 }
 
-function patientSearch() {
-  var nama = $('pSearchNama').value.trim().toLowerCase();
-  if (!nama) { toast('Masukkan nama pasien', 'info'); return; }
-  var results = allData.filter(function(d) { return String(d.nama).toLowerCase().includes(nama); });
-  var container = $('patientResults');
-  if (results.length === 0) { container.innerHTML = '<div class="card p-4 text-center">Tidak ditemukan</div>'; return; }
-  var html = '';
-  results.forEach(function(d, i) {
-    var sk = getStatusKey(d.status);
-    html += '<div class="card p-4 mb-3">';
-    html += '<div style="font-weight:bold;font-size:15px;color:var(--primary)">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
-    html += '<div style="font-size:12px;color:var(--text-muted);margin:4px 0">No RM: ' + escHtml(d.noRM) + '</div>';
-    html += '<div><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
-    html += '</div>';
+/* =====================================================
+   CETAK / PDF
+===================================================== */
+function cetakPrint(){
+  const area = $('printArea');
+  area.innerHTML = '<h2 style="font-family:Arial;text-align:center;margin-bottom:6px">LAPORAN ANTRIAN PASIEN HEMODIALISIS — SIDARAJA RSSA</h2>' +
+    '<p style="text-align:center;font-size:11px;margin-bottom:14px">' + $('todayDate').textContent + '</p>' +
+    $('dashboardPrintArea').innerHTML;
+  setTimeout(()=>window.print(), 150);
+}
+function kirimPDF(){
+  showToast('info','Menyiapkan PDF, mohon tunggu...');
+  const el = $('dashboardPrintArea');
+  html2pdf().from(el).set({
+    margin: [8,8,8,8],
+    filename: 'Laporan-SIDARAJA-' + new Date().toISOString().slice(0,10) + '.pdf',
+    image: { type:'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit:'mm', format:'a4', orientation:'landscape' }
+  }).save();
+}
+
+/* =====================================================
+   SHEET DATA PASIEN (SLIDE 3)
+===================================================== */
+function setSheetMode(mode){
+  const isEdit = mode === 'edit';
+  $('modeView').classList.toggle('on', !isEdit);
+  $('modeEdit').classList.toggle('on', isEdit);
+  $('sheetFrame').src = isEdit
+    ? 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + DATA_GID + '&single=true&widget=true&chrome=false'
+    : 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + DATA_GID + '&single=true&widget=true&headers=false';
+  if(isEdit) showToast('info','Mode Edit aktif — pastikan login Google akun yang berhak mengedit spreadsheet.');
+}
+
+/* =====================================================
+   INIT
+===================================================== */
+document.addEventListener('DOMContentLoaded', function(){
+  seedDefaultUsers();
+  selectMode('admin');
+  updateTodayDate();
+  setSheetMode('view');
+  // muat data awal (silent) — berguna juga untuk mode pasien
+  refreshData(true);
+  // auto refresh tiap 60 detik
+  setInterval(function(){
+    if(currentRole) refreshData(true);
+  }, 60000);
+  // tombol ESC menutup modal
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeBedEdit(); closeWaModal(); closeMenungguWaModal(); }
   });
-  container.innerHTML = html;
-}
-
-// Init
-checkAuth();
-loadBedData();
+  // restore sesi petugas
+  try{
+    const s = JSON.parse(localStorage.getItem('sidaraja_session') || 'null');
+    if(s && s.role === 'petugas') enterApp('petugas', s);
+  }catch(e){}
+});
 </script>
 </body>
 </html>

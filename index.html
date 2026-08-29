@@ -25,6 +25,7 @@
   --cream: #f7e9d2;
   --cream-dim: #d4bb92;
   --gold: #ffd894;
+
   --wood-grain:
     repeating-linear-gradient(90deg, rgba(0,0,0,0.30) 0px, rgba(0,0,0,0.30) 1px, transparent 1px, transparent 8px),
     repeating-linear-gradient(90deg, transparent 0px, transparent 9px, rgba(255,220,170,0.09) 9px, rgba(255,220,170,0.09) 11px, transparent 11px, transparent 25px),
@@ -57,11 +58,6 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 
 .hamburger-btn { display: none; width: 44px; height: 44px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.22); color: var(--cream); font-size: 20px; cursor: pointer; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
 .hamburger-btn:active { background: rgba(0,0,0,0.5); }
-
-/* ===== Mode Pasien ===== */
-body.patient-mode .topbar-menu { display: none !important; }
-body.patient-mode .topbar-user { display: none !important; }
-body.patient-mode #patientLogoutBtn { display: inline-flex !important; }
 
 /* ===== Sidebar Mobile ===== */
 .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
@@ -134,7 +130,23 @@ body.patient-mode #patientLogoutBtn { display: inline-flex !important; }
 .bed-day span { font-size: 9px; display: block; color: var(--text-muted); font-weight: bold; text-transform: uppercase; }
 .bed-day b { font-size: 15px; color: var(--primary); }
 .bed-day b.empty { color: var(--text-muted); font-weight: normal; }
-.bed-edit-btn { margin-top: 10px; width: 100%; justify-content: center; }
+
+/* ===== Tombol Share Sisa Bed ===== */
+.share-row { display:flex; gap:6px; margin-top:12px; padding-top:10px; border-top:1px solid #dcc9a8; }
+.btn-share { flex:1; padding:8px 0; font-size:15px; color:#fff; border:1px solid; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .15s; font-family:inherit; }
+.btn-share:hover { transform:translateY(1px); opacity:.92; }
+.btn-share-wa  { background:linear-gradient(to bottom,#25D366,#128C7E); border-color:#0a6b58; box-shadow:0 2px 0 #0a6b58; }
+.btn-share-tg  { background:linear-gradient(to bottom,#31b6e8,#1c88cc); border-color:#126b9c; box-shadow:0 2px 0 #126b9c; }
+.btn-share-li  { background:linear-gradient(to bottom,#2f8dd8,#0a66c2); border-color:#084d94; box-shadow:0 2px 0 #084d94; }
+.btn-share-pdf { background:linear-gradient(to bottom,#ef4444,#b91c1c); border-color:#7f1d1d; box-shadow:0 2px 0 #7f1d1d; }
+
+/* ===== Kartu Pendaftaran Pasien (Google Form) ===== */
+.daftar-card { display:flex; align-items:center; gap:14px; background:linear-gradient(to bottom,#34d399,#059669); border:1px solid #047857; border-bottom:5px solid #047857; padding:16px 18px; margin-bottom:20px; color:#fff; box-shadow:0 4px 0 #047857, 0 8px 14px rgba(0,0,0,.18); cursor:pointer; transition:all .2s; }
+.daftar-card:hover { transform:translateY(-3px); box-shadow:0 7px 0 #047857, 0 14px 20px rgba(0,0,0,.25); }
+.dc-icon { width:48px; height:48px; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.4); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.dc-title { font-weight:bold; font-size:16px; text-shadow:1px 1px 2px rgba(0,0,0,.3); }
+.dc-desc { font-size:12px; opacity:.92; margin-top:2px; }
+.dc-arrow { margin-left:auto; font-size:16px; }
 
 /* ===== Bagian Pengenalan ===== */
 .about-section { margin-bottom: 24px; }
@@ -187,11 +199,11 @@ body.patient-mode #patientLogoutBtn { display: inline-flex !important; }
 .mode-card.sel-admin { border: 2px solid var(--primary); background: #f0e2c6; }
 .mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
 .mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
-.mc-title { font-weight: bold; font-size: 13px; color: var(--text); }
-.mc-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.mode-card .mc-title { font-weight: bold; font-size: 13px; color: var(--primary); }
+.mode-card .mc-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
-.auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
-.auth-tab.active { border-bottom-color: var(--primary); color: var(--primary); }
+.auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; font-family: inherit; }
+.auth-tab.active { color: var(--primary); border-bottom-color: var(--primary-accent); }
 
 .si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); }
 .si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(122,74,34,.35); }
@@ -208,10 +220,9 @@ body.patient-mode #patientLogoutBtn { display: inline-flex !important; }
 .card { background: #fbf6ec; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,0.1); }
 .card-header { border-bottom: 3px solid #1a0d04; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   background-image: var(--wood-grain), linear-gradient(to bottom, #5a3418, #2b1608); }
-.card-header h3 { font-size: 14px; font-weight: bold; color: var(--cream); }
 
 .tc2 { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); max-width: 350px; pointer-events: auto; border: 1px solid; transition: opacity .3s; }
+.tt { padding: 10px 15px; font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); max-width: 350px; pointer-events: auto; border: 1px solid; }
 .tt-s { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
 .tt-e { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .tt-i { background: #fdf3e2; border-color: #dcc9a8; color: #7a5c33; }
@@ -222,7 +233,6 @@ table.dt thead th { border: 1px solid #1a0d04; padding: 8px; text-align: left; f
 table.dt tbody td { border: 1px solid #dcc9a8; padding: 8px; font-size: 12px; color: var(--text); background: #fbf6ec; }
 table.dt tbody tr:nth-child(even) td { background: #f0e6d0; }
 table.dt tbody tr:hover td { background: #e6d3ac; }
-.table-wrap { overflow-x: auto; }
 
 .badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; text-transform: uppercase; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .badge-menunggu { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
@@ -232,18 +242,13 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
 .badge-meninggal { background: #f3f4f6; color: #374151; border-color: #d1d5db; }
 .badge-norespon { background: #cffafe; color: #155e75; border-color: #67e8f9; }
 .badge-other { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
-.badge-hbsag-pos { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-.badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 
-.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; }
+.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; font-family: inherit; font-weight: bold; }
 .btn-wa:hover { transform: translateY(1px); box-shadow: 0 1px 0 #0a6b58; }
 .btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
 .btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
 
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
-.instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-.instruction-step:last-child { margin-bottom: 0; }
-.instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
 
 .conn-dot { width: 8px; height: 8px; display: inline-block; }
 .conn-ok { background: #10b981; }
@@ -321,36 +326,6 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       <div class="mt-3 flex items-center justify-center gap-2">
         <span class="conn-dot conn-load" id="connDotLogin"></span>
         <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav3.2</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL EDIT SISA BED ===== -->
-<div class="modal-overlay" id="bedEditModal" style="display:none" onclick="if(event.target===this)closeBedEdit()">
-  <div class="modal-box" style="max-width:480px">
-    <div class="modal-hdr">
-      <h3><i class="fa-solid fa-bed mr-2"></i>Edit Sisa Bed — <span id="bedEditRoomName"></span></h3>
-      <button class="modal-close" onclick="closeBedEdit()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="mb-3">
-        <label class="form-label"><i class="fa-solid fa-key mr-1"></i>Password Ruangan</label>
-        <input type="password" id="bedEditPass" class="si2" placeholder="Masukkan password ruangan">
-      </div>
-      <div class="err-box" id="bedEditError"><i class="fa-solid fa-circle-xmark"></i><span id="bedEditErrorMsg"></span></div>
-      <label class="form-label"><i class="fa-solid fa-calendar-week mr-1"></i>Sisa Bed Kosong per Hari</label>
-      <div class="grid grid-cols-3 gap-2">
-        <div><label class="form-label" style="font-size:10px">Senin</label><input type="number" min="0" id="bedIn_sen" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Selasa</label><input type="number" min="0" id="bedIn_sel" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Rabu</label><input type="number" min="0" id="bedIn_rab" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Kamis</label><input type="number" min="0" id="bedIn_kam" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Jumat</label><input type="number" min="0" id="bedIn_jum" class="si2" placeholder="0"></div>
-        <div><label class="form-label" style="font-size:10px">Sabtu</label><input type="number" min="0" id="bedIn_sab" class="si2" placeholder="0"></div>
-      </div>
-      <div class="flex gap-2 mt-4 justify-end">
-        <button class="bo" onclick="closeBedEdit()">Batal</button>
-        <button class="bg2" onclick="submitBedEdit()"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
       </div>
     </div>
   </div>
@@ -490,7 +465,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
     <!-- Kartu Ruangan HD -->
     <div class="room-strip">
 
-      <div class="room-card">
+      <div class="room-card" id="roomCard_teukuumar">
         <img src="teukuumar.png" alt="Ruangan HD Teuku Umar">
         <div class="rc-body">
           <div class="rc-name">HD Teuku Umar</div>
@@ -500,20 +475,20 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <li>2 mesin di ruang <strong>Airborne</strong></li>
             <li>28 mesin <strong>reguler</strong></li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_teukuumar_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_teukuumar_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_teukuumar_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_teukuumar_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_teukuumar_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_teukuumar_sab">–</b></div>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
+          <div class="bed-grid" id="grid_ri_teukuumar"></div>
+          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
+          <div class="bed-grid" id="grid_rj_teukuumar"></div>
+          <div class="share-row">
+            <button class="btn-share btn-share-wa"  onclick="shareBedWA('teukuumar','HD Teuku Umar')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-share btn-share-tg"  onclick="shareBedTG('teukuumar','HD Teuku Umar')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
+            <button class="btn-share btn-share-li"  onclick="shareBedLI('teukuumar','HD Teuku Umar')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('teukuumar','HD Teuku Umar')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
           </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('teukuumar')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
-      <div class="room-card">
+      <div class="room-card" id="roomCard_malahayati">
         <img src="malahayati.png" alt="Ruangan HD Malahayati">
         <div class="rc-body">
           <div class="rc-name">HD Malahayati</div>
@@ -521,20 +496,20 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <ul class="rc-detail">
             <li>29 mesin <strong>reguler</strong> semua</li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_malahayati_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_malahayati_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_malahayati_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_malahayati_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_malahayati_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_malahayati_sab">–</b></div>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
+          <div class="bed-grid" id="grid_ri_malahayati"></div>
+          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
+          <div class="bed-grid" id="grid_rj_malahayati"></div>
+          <div class="share-row">
+            <button class="btn-share btn-share-wa"  onclick="shareBedWA('malahayati','HD Malahayati')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-share btn-share-tg"  onclick="shareBedTG('malahayati','HD Malahayati')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
+            <button class="btn-share btn-share-li"  onclick="shareBedLI('malahayati','HD Malahayati')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('malahayati','HD Malahayati')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
           </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('malahayati')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
-      <div class="room-card">
+      <div class="room-card" id="roomCard_cutnyakdien">
         <img src="cutnyakdien.png" alt="Ruangan HD Cut Nyak Dien">
         <div class="rc-body">
           <div class="rc-name">HD Cut Nyak Dien</div>
@@ -543,16 +518,16 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <li>1 mesin khusus <strong>HDF</strong></li>
             <li>26 mesin <strong>reguler</strong></li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
-          <div class="bed-grid">
-            <div class="bed-day"><span>Sen</span><b id="bed_cutnyakdien_sen">–</b></div>
-            <div class="bed-day"><span>Sel</span><b id="bed_cutnyakdien_sel">–</b></div>
-            <div class="bed-day"><span>Rab</span><b id="bed_cutnyakdien_rab">–</b></div>
-            <div class="bed-day"><span>Kam</span><b id="bed_cutnyakdien_kam">–</b></div>
-            <div class="bed-day"><span>Jum</span><b id="bed_cutnyakdien_jum">–</b></div>
-            <div class="bed-day"><span>Sab</span><b id="bed_cutnyakdien_sab">–</b></div>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
+          <div class="bed-grid" id="grid_ri_cutnyakdien"></div>
+          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
+          <div class="bed-grid" id="grid_rj_cutnyakdien"></div>
+          <div class="share-row">
+            <button class="btn-share btn-share-wa"  onclick="shareBedWA('cutnyakdien','HD Cut Nyak Dien')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-share btn-share-tg"  onclick="shareBedTG('cutnyakdien','HD Cut Nyak Dien')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
+            <button class="btn-share btn-share-li"  onclick="shareBedLI('cutnyakdien','HD Cut Nyak Dien')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('cutnyakdien','HD Cut Nyak Dien')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
           </div>
-          <button class="bo bed-edit-btn" onclick="openBedEdit('cutnyakdien')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
@@ -608,8 +583,8 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <div class="panduan-icon"><i class="fa-solid fa-bed"></i></div>
           <div>
             <div class="panduan-step">Langkah 2</div>
-            <div class="panduan-title">Pantau Sisa Bed Kosong di Home</div>
-            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Klik <strong>Edit Sisa Bed</strong> dan masukkan password ruangan untuk memperbarui.</div>
+            <div class="panduan-title">Pantau & Bagikan Sisa Bed Kosong di Home</div>
+            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Gunakan tombol <strong>Share (WhatsApp, Telegram, LinkedIn, PDF)</strong> di bawah tiap ruangan untuk membagikan informasi sisa bed.</div>
           </div>
         </div>
         <div class="panduan-item">
@@ -618,6 +593,14 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <div class="panduan-step">Langkah 3</div>
             <div class="panduan-title">Buka Menu AKSI SIDARAJA</div>
             <div class="panduan-desc">Pantau kartu status antrian (Menunggu, Terjadwal, HD Lain, dll). Klik salah satu kartu untuk menampilkan rincian daftar pasien sesuai status tersebut.</div>
+          </div>
+        </div>
+        <div class="panduan-item">
+          <div class="panduan-icon" style="background:#f0fdf4;color:#047857"><i class="fa-solid fa-file-circle-plus"></i></div>
+          <div>
+            <div class="panduan-step">Pendaftaran Pasien Baru</div>
+            <div class="panduan-title">Daftar via Google Form</div>
+            <div class="panduan-desc">Buka halaman <strong>AKSI SIDARAJA</strong>, klik kartu <strong>Pendaftaran Pasien</strong>, lalu lengkapi data diri pada <strong>Google Form</strong> yang terbuka hingga menekan tombol <strong>Kirim</strong>. Data akan diverifikasi oleh petugas.</div>
           </div>
         </div>
         <div class="panduan-item">
@@ -668,82 +651,78 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       </div>
     </div>
 
+    <!-- ===== KARTU PENDAFTARAN PASIEN (GOOGLE FORM) ===== -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScKG2eU4ToALTu8-qsK4l6JBrYG6IET76OjaaEn-ZlP34pyng/viewform"
+       target="_blank" rel="noopener" class="daftar-card" style="text-decoration:none">
+      <div class="dc-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
+      <div>
+        <div class="dc-title">Pendaftaran Pasien</div>
+        <div class="dc-desc">Klik untuk mengisi formulir pendaftaran pasien baru via Google Form</div>
+      </div>
+      <i class="fa-solid fa-arrow-up-right-from-square dc-arrow"></i>
+    </a>
+
     <div class="flex gap-2 mb-4 flex-wrap">
       <button class="bo" onclick="cetakPrint()"><i class="fa-solid fa-print"></i> Cetak</button>
       <button class="bp" onclick="kirimPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-      <button class="bg2" onclick="kirimWA()"><i class="fa-brands fa-whatsapp"></i> WA</button>
+      <button class="bg2" onclick="openMenungguWaModal()"><i class="fa-brands fa-whatsapp"></i> Hubungi Pasien Menunggu</button>
     </div>
 
-    <div id="dashboardPrintArea">
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
-        <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
-          <div class="em-card-icon" style="background:#dbeafe;color:#1e40af;border-color:#93c5fd"><i class="fa-solid fa-hourglass-half"></i></div>
-          <div class="em-card-num" id="scMenunggu">0</div>
-          <div class="em-card-label">Menunggu</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
-          <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-calendar-check"></i></div>
-          <div class="em-card-num" id="scTerjadwal">0</div>
-          <div class="em-card-label">Terjadwal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
-          <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-hospital"></i></div>
-          <div class="em-card-num" id="scHdlain">0</div>
-          <div class="em-card-label">HD Lain</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
-          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-circle-xmark"></i></div>
-          <div class="em-card-num" id="scBatal">0</div>
-          <div class="em-card-label">Batal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
-          <div class="em-card-icon" style="background:#f3f4f6;color:#374151;border-color:#d1d5db"><i class="fa-solid fa-ribbon"></i></div>
-          <div class="em-card-num" id="scMeninggal">0</div>
-          <div class="em-card-label">Meninggal</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
-          <div class="em-card-icon" style="background:#cffafe;color:#155e75;border-color:#67e8f9"><i class="fa-solid fa-phone-slash"></i></div>
-          <div class="em-card-num" id="scNorespon">0</div>
-          <div class="em-card-label">No Respon</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('hbsagpos')" data-key="hbsagpos">
-          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-biohazard"></i></div>
-          <div class="em-card-num" id="scHbsagPos">0</div>
-          <div class="em-card-label">HBsAg (+)</div>
-        </div>
-        <div class="em-card" onclick="clickStatusCard('hbsagneg')" data-key="hbsagneg">
-          <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-circle-check"></i></div>
-          <div class="em-card-num" id="scHbsagneg">0</div>
-          <div class="em-card-label">HBsAg (−)</div>
-        </div>
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-4" id="statusCards">
+      <div class="em-card active" id="card_semua" onclick="filterStatus('ALL')">
+        <div class="em-card-icon" style="background:#e8dcc4;color:#7a4a22;border-color:#96703f"><i class="fa-solid fa-users"></i></div>
+        <div class="em-card-num" id="num_all">0</div>
+        <div class="em-card-label">Semua Pasien</div>
       </div>
+      <div class="em-card" id="card_menunggu" onclick="filterStatus('Menunggu')">
+        <div class="em-card-icon" style="background:#dbeafe;color:#1e40af;border-color:#93c5fd"><i class="fa-solid fa-hourglass-half"></i></div>
+        <div class="em-card-num" id="num_Menunggu">0</div>
+        <div class="em-card-label">Menunggu</div>
+      </div>
+      <div class="em-card" id="card_terjadwal" onclick="filterStatus('Terjadwal')">
+        <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-calendar-check"></i></div>
+        <div class="em-card-num" id="num_Terjadwal">0</div>
+        <div class="em-card-label">Terjadwal</div>
+      </div>
+      <div class="em-card" id="card_hdlain" onclick="filterStatus('HD Lain')">
+        <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-hospital"></i></div>
+        <div class="em-card-num" id="num_HD Lain">0</div>
+        <div class="em-card-label">HD Lain</div>
+      </div>
+      <div class="em-card" id="card_batal" onclick="filterStatus('Batal')">
+        <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-circle-xmark"></i></div>
+        <div class="em-card-num" id="num_Batal">0</div>
+        <div class="em-card-label">Batal</div>
+      </div>
+      <div class="em-card" id="card_norespon" onclick="filterStatus('No Respon')">
+        <div class="em-card-icon" style="background:#cffafe;color:#155e75;border-color:#67e8f9"><i class="fa-solid fa-phone-slash"></i></div>
+        <div class="em-card-num" id="num_No Respon">0</div>
+        <div class="em-card-label">No Respon</div>
+      </div>
+    </div>
 
-      <div class="card">
-        <div class="card-header">
-          <h3><i class="fa-solid fa-list-check mr-2"></i>Daftar Pasien — <span id="filterLabel">Menunggu</span></h3>
-        </div>
-        <div class="p-3">
-          <div class="flex items-center gap-3 mb-3 flex-wrap">
-            <input type="text" id="pasienSearchInput" class="si2" style="max-width:240px" placeholder="Cari nama di daftar ini..." oninput="filterTableSearch(this.value)">
-            <span id="tableInfo" class="text-xs" style="color:var(--text-muted)">Memuat data…</span>
-          </div>
-          <div class="table-wrap">
-            <table class="dt">
-              <thead>
-                <tr>
-                  <th style="width:36px">No</th>
-                  <th>Nama Pasien</th>
-                  <th>No WA — Pasien (O)</th>
-                  <th>No WA — Keluarga (P)</th>
-                  <th>Status (Q)</th>
-                  <th>Keterangan (R)</th>
-                  <th style="width:90px">Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="pasienTbody"></tbody>
-            </table>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fa-solid fa-list-check mr-2"></i><span id="tableTitle">Daftar Semua Pasien</span></h3>
+        <input type="text" id="searchNama" class="si2" style="max-width:220px" placeholder="Cari nama pasien..." oninput="renderTable()">
+      </div>
+      <div style="overflow-x:auto">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th style="width:40px">No</th>
+              <th>Nama Pasien</th>
+              <th>No. HP (O)</th>
+              <th>WA Keluarga (P)</th>
+              <th>Ruangan</th>
+              <th>Hari</th>
+              <th>Status (Q)</th>
+              <th>Keterangan (R)</th>
+              <th style="width:70px">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
       </div>
     </div>
 
@@ -757,33 +736,41 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
     <div class="welcome-banner">
       <div>
         <div class="welcome-title"><i class="fa-solid fa-database mr-2" style="color:#059669"></i>Data Pasien</div>
-        <div class="welcome-sub">Pratinjau Google Spreadsheet — ubah kolom Q (Status) dan R (Keterangan) langsung di sini</div>
+        <div class="welcome-sub">Pratinjau & Pengelolaan Data Pasien Hemodialisis</div>
       </div>
       <div class="mode-toggle">
-        <button id="modeView" class="on" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Mode Lihat</button>
-        <button id="modeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+        <button class="on" id="btnModeView" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Pratinjau</button>
+        <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</h3>
-        <a class="bo" href="https://docs.google.com/spreadsheets/d/18hh3z2CCmfFvKEqQsFGfRXzoLMx0ijoHCtnLY-v13WM/edit" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> Buka di Google Sheets</a>
+    <div id="sheetWrap">
+      <div class="card">
+        <div class="card-header"><h3><i class="fa-solid fa-table mr-2"></i>Data Pasien Hemodialisis</h3></div>
+        <div style="overflow-x:auto">
+          <table class="dt">
+            <thead>
+              <tr>
+                <th style="width:40px">No</th>
+                <th>Nama Pasien</th>
+                <th>No. HP (O)</th>
+                <th>WA Keluarga (P)</th>
+                <th>Ruangan</th>
+                <th>Hari</th>
+                <th>Status (Q)</th>
+                <th>Keterangan (R)</th>
+              </tr>
+            </thead>
+            <tbody id="tBodyAll"></tbody>
+          </table>
+        </div>
       </div>
-      <div class="p-3">
-        <iframe class="sheet-frame" id="sheetFrame" src="" style="border:1px solid var(--border)" allowfullscreen></iframe>
-        <div class="instruction-box">
-          <div class="instruction-step">
-            <div class="instruction-num">1</div>
-            <div class="text-xs">Aktifkan <strong>Mode Edit</strong> di atas (pastikan sudah login Google dengan akun yang punya akses edit spreadsheet).</div>
-          </div>
-          <div class="instruction-step">
-            <div class="instruction-num">2</div>
-            <div class="text-xs">Ubah langsung <strong>kolom Q (Status)</strong> dan <strong>kolom R (Keterangan)</strong> sesuai hasil konfirmasi pasien. Pilihan status: Menunggu, Terjadwal, HD Lain, Batal, Meninggal, No Respon.</div>
-          </div>
-          <div class="instruction-step">
-            <div class="instruction-num">3</div>
-            <div class="text-xs">Klik tombol <strong>Refresh</strong> di pojok kanan atas aplikasi — kartu status dan tabel di menu AKSI SIDARAJA akan langsung diperbarui.</div>
+      <div class="instruction-box" id="sheetEditInfo" style="display:none">
+        <div class="flex items-start gap-3">
+          <i class="fa-solid fa-circle-info mt-1" style="color:#d97706"></i>
+          <div class="text-xs" style="line-height:1.7">
+            <strong>Mode Edit aktif.</strong> Untuk mengubah data langsung pada spreadsheet:
+            buka <strong>Google Spreadsheet</strong> Anda, lalu ganti nilai variabel <code>SHEET_URL</code> pada script aplikasi dengan URL spreadsheet yang sudah dipublikasikan. Perubahan kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> akan otomatis tampil setelah tombol <strong>Refresh</strong> ditekan.
           </div>
         </div>
       </div>
@@ -793,435 +780,582 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
 </main>
 
 <script>
-/* =====================================================
-   SIDARAJA v3.2 — KONFIGURASI
-   URL Web App sudah terpasang, tidak perlu diubah lagi
-===================================================== */
-const API_URL   = 'https://script.google.com/macros/s/AKfycbwBEG1QD9bLA-2UpKVbhmCZSfFfuHpO4gWzLE9z2mc9AHv4IdJq325sqSIYqJ7DIcKx/exec';
-const SHEET_ID  = '18hh3z2CCmfFvKEqQsFGfRXzoLMx0ijoHCtnLY-v13WM';
-const DATA_GID  = '0'; // gid sheet data pasien (0 = sheet pertama). Ganti bila perlu.
-const ROOM_KEYS = ['teukuumar','malahayati','cutnyakdien'];
-const DAY_KEYS  = ['sen','sel','rab','kam','jum','sab'];
-const ROOM_LABEL = { teukuumar:'HD Teuku Umar', malahayati:'HD Malahayati', cutnyakdien:'HD Cut Nyak Dien' };
-const FILTER_LABEL = { menunggu:'Menunggu', terjadwal:'Terjadwal', hdlain:'HD Lain', batal:'Batal', meninggal:'Meninggal', norespon:'No Respon', hbsagpos:'HBsAg Positif', hbsagneg:'HBsAg Negatif', other:'Lainnya' };
-const BADGE_CLASS  = { menunggu:'badge-menunggu', terjadwal:'badge-terjadwal', hdlain:'badge-hdlain', batal:'badge-batal', meninggal:'badge-meninggal', norespon:'badge-norespon', hbsagpos:'badge-hbsag-pos', hbsagneg:'badge-hbsag-neg', other:'badge-other' };
+/* ============================================================
+   KONFIGURASI
+   - API_URL  : URL Google Apps Script (opsional, kosong = data contoh)
+   - SHEET_URL: URL Google Spreadsheet publik untuk Mode Edit (opsional)
+   ============================================================ */
+const API_URL  = '';
+const SHEET_URL = '';
 
-/* ===== State ===== */
-let bedData = {}, pasienData = [], currentFilter = 'menunggu', tableSearch = '';
-let currentRole = null, currentUser = null;
+/* ============================================================
+   KONFIGURASI SISA BED KOSONG — UBAH NILAI DI SINI SAJA
+   JIKA ADA PERUBAHAN (ri = Slot Rawat Inap, rj = Rawat Jalan)
+   ============================================================ */
+const HARI = ['sen','sel','rab','kam','jum','sab'];
+const HARI_LABEL = {sen:'Sen',sel:'Sel',rab:'Rab',kam:'Kam',jum:'Jum',sab:'Sab'};
 
-const $ = (id) => document.getElementById(id);
+const SISA_BED = {
+  teukuumar: {
+    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },   // Slot Rawat Inap
+    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }    // Rawat Jalan
+  },
+  malahayati: {
+    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },
+    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }
+  },
+  cutnyakdien: {
+    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },
+    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }
+  }
+};
 
-/* ===== Util ===== */
-function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-function waNumber(n){
-  let d = String(n||'').replace(/[^0-9]/g,'');
-  if(!d) return '';
-  if(d.startsWith('0')) d = '62' + d.slice(1);
-  else if(d.startsWith('8')) d = '62' + d;
-  return d;
-}
-function showToast(type, msg){
-  const c = $('toastC'); if(!c) return;
-  const div = document.createElement('div');
-  div.className = 'tt ' + (type==='success'?'tt-s':type==='error'?'tt-e':'tt-i');
-  const ic = type==='success'?'fa-circle-check':type==='error'?'fa-circle-xmark':'fa-circle-info';
-  div.innerHTML = '<i class="fa-solid '+ic+'"></i><span>'+esc(msg)+'</span>';
-  c.appendChild(div);
-  setTimeout(()=>{ div.style.opacity='0'; setTimeout(()=>div.remove(), 350); }, 3500);
-}
-function showErr(boxId, msgId, msg){ $(msgId).textContent = msg; $(boxId).classList.add('show'); }
-function statusKeyOf(s){
-  const t = String(s||'').toLowerCase().replace(/[^a-z]/g,'');
-  if(!t) return 'other';
-  if(t.includes('hbsag')) return t.includes('pos') ? 'hbsagpos' : 'hbsagneg';
-  if(t.includes('menunggu')) return 'menunggu';
-  if(t.includes('terjadwal')) return 'terjadwal';
-  if(t.includes('hdlain') || (t.includes('hd') && t.includes('lain'))) return 'hdlain';
-  if(t.includes('batal')) return 'batal';
-  if(t.includes('meninggal')) return 'meninggal';
-  if(t.includes('norespon')) return 'norespon';
-  return 'other';
-}
+/* ===== DATA CONTOH (dipakai jika API_URL kosong / gagal) ===== */
+const DEMO_DATA = [
+  { nama:'Ahmad Fauzi',      hp:'081234567801', waKeluarga:'081234567811', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Menunggu jadwal' },
+  { nama:'Siti Aminah',      hp:'081234567802', waKeluarga:'081234567812', ruangan:'Teuku Umar', hari:'Senis-Rabu-Jumat', status:'Terjadwal', ket:'Shift pagi' },
+  { nama:'Budi Santoso',     hp:'081234567803', waKeluarga:'081234567813', ruangan:'Malahayati', hari:'Selasa-Kamis-Sabtu', status:'Terjadwal', ket:'Shift siang' },
+  { nama:'Dewi Lestari',     hp:'081234567804', waKeluarga:'081234567814', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Menunggu konfirmasi keluarga' },
+  { nama:'Hendra Wijaya',    hp:'081234567805', waKeluarga:'081234567815', ruangan:'Cut Nyak Dien', hari:'Senin-Rabu-Jumat', status:'Terjadwal', ket:'HDF' },
+  { nama:'Rina Marlina',     hp:'081234567806', waKeluarga:'081234567816', ruangan:'-',          hari:'-',        status:'HD Lain',   ket:'HD di RS lain' },
+  { nama:'Agus Setiawan',    hp:'081234567807', waKeluarga:'081234567817', ruangan:'-',          hari:'-',        status:'No Respon', ket:'Tidak bisa dihubungi 3x' },
+  { nama:'Sri Wahyuni',      hp:'081234567808', waKeluarga:'081234567818', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Pasien baru dari Google Form' },
+  { nama:'Joko Prasetyo',    hp:'081234567809', waKeluarga:'081234567819', ruangan:'-',          hari:'-',        status:'Batal',     ket:'Mundur atas permintaan' }
+];
 
-/* =====================================================
-   LOGIN / MODE AKSES
-===================================================== */
-function selectMode(m){
-  $('modeAdmin').classList.toggle('sel-admin', m==='admin');
-  $('modeUser').classList.toggle('sel-user', m==='user');
-  $('adminSection').style.display = m==='admin' ? 'block' : 'none';
-  $('userSection').style.display  = m==='user'  ? 'block' : 'none';
-}
-function switchAuthTab(t){
-  $('authTabLogin').classList.toggle('active', t==='login');
-  $('authTabRegister').classList.toggle('active', t==='register');
-  $('authLoginForm').style.display    = t==='login'    ? 'block' : 'none';
-  $('authRegisterForm').style.display = t==='register' ? 'block' : 'none';
-}
-function getUsers(){ try { return JSON.parse(localStorage.getItem('sidaraja_users')||'[]'); } catch(e){ return []; } }
-function seedDefaultUsers(){
-  let u = getUsers();
-  if(!u.length){ u.push({nama:'Admin RSSA', email:'admin@rssa.id', pass:'admin123'}); localStorage.setItem('sidaraja_users', JSON.stringify(u)); }
-}
-function doPetugasLogin(){
-  $('loginError').classList.remove('show');
-  const email = $('loginEmail').value.trim().toLowerCase();
-  const pass  = $('loginPass').value;
-  if(!email || !pass){ showErr('loginError','loginErrorMsg','Email dan kata sandi wajib diisi.'); return; }
-  const u = getUsers().find(x => x.email.toLowerCase()===email && x.pass===pass);
-  if(!u){ showErr('loginError','loginErrorMsg','Email atau kata sandi salah.'); return; }
-  localStorage.setItem('sidaraja_session', JSON.stringify({role:'petugas', nama:u.nama, email:u.email}));
-  enterApp('petugas', u);
-}
-function doPetugasRegister(){
-  $('regError').classList.remove('show'); $('regOk').classList.remove('show');
-  const nama = $('regNama').value.trim(), email = $('regEmail').value.trim().toLowerCase(), pass = $('regPass').value;
-  if(nama.length < 3){ showErr('regError','regErrorMsg','Nama minimal 3 karakter.'); return; }
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showErr('regError','regErrorMsg','Format email tidak valid.'); return; }
-  if(pass.length < 6){ showErr('regError','regErrorMsg','Kata sandi minimal 6 karakter.'); return; }
-  const users = getUsers();
-  if(users.some(x => x.email.toLowerCase()===email)){ showErr('regError','regErrorMsg','Email sudah terdaftar, gunakan tab Masuk.'); return; }
-  users.push({nama, email, pass});
-  localStorage.setItem('sidaraja_users', JSON.stringify(users));
-  $('regOkMsg').textContent = 'Pendaftaran berhasil! Silakan masuk dengan email dan sandi Anda.';
-  $('regOk').classList.add('show');
-  setTimeout(()=>{ switchAuthTab('login'); $('loginEmail').value = email; $('loginPass').value=''; }, 1200);
-}
-function doUserLogin(){ enterApp('user', {nama:'Pasien'}); }
-function doLogout(){
-  localStorage.removeItem('sidaraja_session');
-  location.reload();
+/* ===== STATE ===== */
+let currentData = [];
+let currentFilter = 'ALL';
+let loginMode = 'admin';
+let userRole = 'petugas';       // 'petugas' | 'pasien'
+let currentUser = null;
+let waTarget = null;
+
+/* ===== TOAST ===== */
+function toast(msg, type) {
+  type = type || 'i';
+  const c = document.getElementById('toastC');
+  const el = document.createElement('div');
+  el.className = 'tt tt-' + (type === 'e' ? 'e' : type === 's' ? 's' : 'i');
+  el.innerHTML = '<i class="fa-solid ' + (type === 'e' ? 'fa-circle-xmark' : type === 's' ? 'fa-circle-check' : 'fa-circle-info') + '"></i><span>' + msg + '</span>';
+  c.appendChild(el);
+  setTimeout(function(){ el.remove(); }, 3500);
 }
 
-/* =====================================================
-   MASUK APLIKASI & NAVIGASI
-===================================================== */
-function enterApp(role, user){
-  currentRole = role; currentUser = user;
-  $('loginOverlay').style.display = 'none';
-  $('mainHeader').style.display = 'block';
-  if(role === 'petugas'){
-    document.body.classList.remove('patient-mode');
-    setUserInfo(user.nama, 'Petugas Instalasi Dialisis');
-    switchSlide(1);
-    refreshData(true);
-    showToast('success', 'Selamat datang, ' + user.nama);
+/* ============================================================
+   LOGIN / AUTH
+   ============================================================ */
+function selectMode(mode) {
+  loginMode = mode;
+  document.getElementById('modeAdmin').className = 'mode-card' + (mode === 'admin' ? ' sel-admin' : '');
+  document.getElementById('modeUser').className  = 'mode-card' + (mode === 'user'  ? ' sel-user'  : '');
+  document.getElementById('adminSection').style.display = mode === 'admin' ? 'block' : 'none';
+  document.getElementById('userSection').style.display  = mode === 'user'  ? 'block' : 'none';
+}
+
+function switchAuthTab(tab) {
+  document.getElementById('authTabLogin').className = 'auth-tab' + (tab === 'login' ? ' active' : '');
+  document.getElementById('authTabRegister').className = 'auth-tab' + (tab === 'register' ? ' active' : '');
+  document.getElementById('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function showLoginError(msg) {
+  const b = document.getElementById('loginError');
+  document.getElementById('loginErrorMsg').textContent = msg;
+  b.className = 'err-box show';
+}
+
+function doPetugasLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  document.getElementById('loginError').className = 'err-box';
+  if (!email || !pass) { showLoginError('Email dan kata sandi wajib diisi.'); return; }
+  if (pass.length < 6) { showLoginError('Kata sandi minimal 6 karakter.'); return; }
+  currentUser = { nama: email.split('@')[0], email: email };
+  userRole = 'petugas';
+  enterApp();
+}
+
+function doPetugasRegister() {
+  const nama  = document.getElementById('regNama').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  document.getElementById('regError').className = 'err-box';
+  if (!nama || !email || !pass) {
+    document.getElementById('regErrorMsg').textContent = 'Semua kolom wajib diisi.';
+    document.getElementById('regError').className = 'err-box show';
+    return;
+  }
+  if (pass.length < 6) {
+    document.getElementById('regErrorMsg').textContent = 'Kata sandi minimal 6 karakter.';
+    document.getElementById('regError').className = 'err-box show';
+    return;
+  }
+  document.getElementById('regOkMsg').textContent = 'Pendaftaran berhasil! Silakan masuk dengan email Anda.';
+  document.getElementById('regOk').className = 'ok-box show';
+  setTimeout(function(){ switchAuthTab('login'); document.getElementById('loginEmail').value = email; }, 1500);
+}
+
+function doUserLogin() {
+  userRole = 'pasien';
+  currentUser = null;
+  enterApp();
+}
+
+function enterApp() {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('mainHeader').style.display = 'block';
+
+  if (userRole === 'pasien') {
+    document.getElementById('patientView').style.display = 'block';
+    document.getElementById('slide1').style.display = 'none';
+    document.getElementById('slide2').style.display = 'none';
+    document.getElementById('slide3').style.display = 'none';
+    document.getElementById('hdrUserProfile').style.display = 'none';
+    document.getElementById('patientLogoutBtn').style.display = 'inline-flex';
+    document.getElementById('sbUserName').textContent = 'Pasien';
+    document.getElementById('sbUserRole').textContent = 'Mode Pasien';
+    document.getElementById('sbUserAvatar').textContent = 'P';
   } else {
-    document.body.classList.add('patient-mode');
-    setUserInfo('Pasien', 'Pasien');
-    $('patientView').style.display = 'block';
-    refreshData(true);
-    showToast('success', 'Mode Pasien aktif — ketik nama untuk cek antrian');
+    document.getElementById('patientView').style.display = 'none';
+    document.getElementById('patientLogoutBtn').style.display = 'none';
+    document.getElementById('hdrUserProfile').style.display = 'flex';
+    const inisial = currentUser ? currentUser.nama.charAt(0).toUpperCase() : '?';
+    document.getElementById('hdrUserAvatar').textContent = inisial;
+    document.getElementById('sbUserAvatar').textContent = inisial;
+    document.getElementById('hdrUserName').textContent = currentUser ? currentUser.nama : 'Petugas';
+    document.getElementById('sbUserName').textContent = currentUser ? currentUser.nama : 'Petugas';
+    document.getElementById('sbUserRole').textContent = 'Petugas';
+    switchSlide(1);
   }
-}
-function setUserInfo(nama, role){
-  const ini = String(nama||'?').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase() || '?';
-  $('hdrUserName').textContent = nama; $('sbUserName').textContent = nama;
-  $('hdrUserAvatar').textContent = ini; $('sbUserAvatar').textContent = ini;
-  $('sbUserRole').textContent = role;
-}
-function switchSlide(n){
-  if(currentRole !== 'petugas') return;
-  for(let i=1;i<=3;i++){
-    $('slide'+i).style.display = (i===n) ? 'block' : 'none';
-    $('tab'+i).classList.toggle('active', i===n);
-    $('sbTab'+i).classList.toggle('active', i===n);
-  }
-  if(n===2) updateTodayDate();
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-function switchSlideMobile(n){ closeSidebar(); switchSlide(n); }
-function openSidebar(){ $('mobileSidebar').classList.add('open'); $('sidebarOverlay').classList.add('open'); }
-function closeSidebar(){ $('mobileSidebar').classList.remove('open'); $('sidebarOverlay').classList.remove('open'); }
-function updateTodayDate(){
-  const el = $('todayDate'); if(!el) return;
-  el.textContent = new Date().toLocaleDateString('id-ID',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  loadData();
+  renderSisaBed();
+  toast('Selamat datang di SIDARAJA!', 's');
 }
 
-/* =====================================================
-   DATA DARI SPREADSHEET (SISA BED + PASIEN)
-===================================================== */
-function setConn(ok){
-  ['connDot','sbConnDot','connDotLogin'].forEach(id=>{
-    const el = $(id); if(el) el.className = 'conn-dot ' + (ok ? 'conn-ok' : 'conn-fail');
+function doLogout() {
+  currentUser = null;
+  userRole = 'petugas';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('mainHeader').style.display = 'none';
+  document.getElementById('patientView').style.display = 'none';
+  document.getElementById('slide1').style.display = 'none';
+  document.getElementById('slide2').style.display = 'none';
+  document.getElementById('slide3').style.display = 'none';
+  closeSidebar();
+  document.getElementById('loginPass').value = '';
+  toast('Anda telah keluar dari aplikasi.', 'i');
+}
+
+/* ============================================================
+   NAVIGASI SLIDE
+   ============================================================ */
+function switchSlide(n) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('slide' + i).style.display = (i === n) ? 'block' : 'none';
+    document.getElementById('tab' + i).className = 'topbar-menu-item' + (i === n ? ' active' : '');
+    document.getElementById('sbTab' + i).className = 'sidebar-menu-item' + (i === n ? ' active' : '');
+  }
+  closeSidebar();
+  if (n === 2) updateTodayDate();
+}
+
+function switchSlideMobile(n) { switchSlide(n); closeSidebar(); }
+function openSidebar() {
+  document.getElementById('mobileSidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('open');
+}
+function closeSidebar() {
+  document.getElementById('mobileSidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+function updateTodayDate() {
+  const d = new Date();
+  document.getElementById('todayDate').textContent =
+    d.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+}
+
+/* ============================================================
+   DATA (fetch / demo)
+   ============================================================ */
+function setConn(cls) {
+  ['connDot','sbConnDot','connDotLogin'].forEach(function(id){
+    const el = document.getElementById(id);
+    if (el) { el.className = 'conn-dot ' + cls; }
   });
 }
-async function refreshData(silent){
-  const icon = $('refreshIcon');
-  if(icon) icon.classList.add('fa-spin');
-  try{
-    const res = await fetch(API_URL + '?t=' + Date.now());
-    const out = await res.json();
-    if(out.status !== 'ok') throw new Error(out.message || 'Respons API tidak valid');
-    setConn(true);
-    if(out.rooms){ bedData = out.rooms; applyBedData(); }
-    if(out.pasien){ pasienData = out.pasien; }
-    else if(!silent){ showToast('info','Data pasien belum tersedia — perbarui kode Apps Script ke versi terbaru (lihat Langkah 1).'); }
-    renderStatusCards();
-    renderPasienTable();
-  }catch(err){
-    setConn(false);
-    if(!silent) showToast('error','Gagal memuat data: ' + err.message);
-  }finally{
-    if(icon) setTimeout(()=>icon.classList.remove('fa-spin'), 600);
+
+function loadData() {
+  setConn('conn-load');
+  if (!API_URL) {
+    currentData = DEMO_DATA.slice();
+    setConn('conn-ok');
+    afterDataLoad();
+    return;
   }
-}
-function applyBedData(){
-  ROOM_KEYS.forEach(room=>{
-    const r = bedData[room]; if(!r) return;
-    DAY_KEYS.forEach(d=>{
-      const el = $('bed_'+room+'_'+d); if(!el) return;
-      const v = Number(r[d]);
-      el.textContent = isNaN(v) ? '–' : v;
-      el.className = (!isNaN(v) && v > 0) ? '' : 'empty';
+  fetch(API_URL)
+    .then(function(r){ return r.json(); })
+    .then(function(json){
+      currentData = Array.isArray(json) ? json : (json.data || []);
+      setConn('conn-ok');
+      afterDataLoad();
+      toast('Data berhasil dimuat.', 's');
+    })
+    .catch(function(){
+      currentData = DEMO_DATA.slice();
+      setConn('conn-fail');
+      afterDataLoad();
+      toast('Gagal terhubung ke server — menampilkan data contoh.', 'e');
     });
+}
+
+function refreshData() {
+  const icon = document.getElementById('refreshIcon');
+  icon.classList.add('fa-spin');
+  loadData();
+  setTimeout(function(){ icon.classList.remove('fa-spin'); }, 800);
+}
+
+function afterDataLoad() {
+  renderStatusCounts();
+  renderTable();
+  renderTableAll();
+  if (document.getElementById('menungguWaModal').style.display === 'flex') renderMenungguWaList();
+}
+
+/* ============================================================
+   SLIDE 2 — STATUS CARDS & TABEL
+   ============================================================ */
+function renderStatusCounts() {
+  const counts = { all: currentData.length };
+  ['Menunggu','Terjadwal','HD Lain','Batal','Meninggal','No Respon'].forEach(function(s){ counts[s] = 0; });
+  currentData.forEach(function(p){
+    const s = p.status || '';
+    if (counts.hasOwnProperty(s)) counts[s]++;
+  });
+  document.getElementById('num_all').textContent = counts.all;
+  ['Menunggu','Terjadwal','HD Lain','Batal','No Respon'].forEach(function(s){
+    const el = document.getElementById('num_' + s);
+    if (el) el.textContent = counts[s];
   });
 }
 
-/* ===== Edit Sisa Bed (tersimpan di sheet "ruang" — sinkron semua perangkat) ===== */
-let bedEditCurrentRoom = null;
-function openBedEdit(room){
-  bedEditCurrentRoom = room;
-  $('bedEditRoomName').textContent = ROOM_LABEL[room] || room;
-  $('bedEditPass').value = '';
-  $('bedEditError').classList.remove('show');
-  const r = bedData[room] || {};
-  DAY_KEYS.forEach(d=>{ const inp = $('bedIn_'+d); if(inp) inp.value = (r[d] !== undefined && r[d] !== '') ? r[d] : ''; });
-  $('bedEditModal').style.display = 'flex';
-}
-function closeBedEdit(){ $('bedEditModal').style.display = 'none'; bedEditCurrentRoom = null; }
-async function submitBedEdit(){
-  $('bedEditError').classList.remove('show');
-  const pass = $('bedEditPass').value.trim();
-  if(!pass){ showErr('bedEditError','bedEditErrorMsg','Masukkan password ruangan.'); return; }
-  const payload = { ruangan: bedEditCurrentRoom, password: pass };
-  DAY_KEYS.forEach(d => payload[d] = Number($('bedIn_'+d).value) || 0);
-  try{
-    const res = await fetch(API_URL, {
-      method : 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body   : JSON.stringify(payload)
-    });
-    const out = await res.json();
-    if(out.status === 'ok'){
-      showToast('success','Sisa bed tersimpan — sinkron di semua perangkat');
-      closeBedEdit();
-      refreshData(true);
-    } else {
-      showErr('bedEditError','bedEditErrorMsg', out.message || 'Gagal menyimpan.');
-    }
-  }catch(err){
-    showErr('bedEditError','bedEditErrorMsg','Koneksi gagal: ' + err.message);
-  }
+function statusBadge(s) {
+  const map = {
+    'Menunggu':'badge-menunggu','Terjadwal':'badge-terjadwal','HD Lain':'badge-hdlain',
+    'Batal':'badge-batal','Meninggal':'badge-meninggal','No Respon':'badge-norespon'
+  };
+  return '<span class="badge ' + (map[s] || 'badge-other') + '">' + (s || '-') + '</span>';
 }
 
-/* =====================================================
-   KARTU STATUS & TABEL PASIEN
-===================================================== */
-function renderStatusCards(){
-  const counts = {menunggu:0,terjadwal:0,hdlain:0,batal:0,meninggal:0,norespon:0,hbsagpos:0,hbsagneg:0,other:0};
-  pasienData.forEach(p => { const k = statusKeyOf(p.status); counts[k] = (counts[k]||0) + 1; });
-  $('scMenunggu').textContent = counts.menunggu;
-  $('scTerjadwal').textContent = counts.terjadwal;
-  $('scHdlain').textContent = counts.hdlain;
-  $('scBatal').textContent = counts.batal;
-  $('scMeninggal').textContent = counts.meninggal;
-  $('scNorespon').textContent = counts.norespon;
-  $('scHbsagPos').textContent = counts.hbsagpos;
-  $('scHbsagneg').textContent = counts.hbsagneg;
+function filterStatus(s) {
+  currentFilter = s;
+  ['semua','menunggu','terjadwal','hdlain','batal','norespon'].forEach(function(id){
+    document.getElementById('card_' + id).classList.remove('active');
+  });
+  const map = { ALL:'semua', 'Menunggu':'menunggu', 'Terjadwal':'terjadwal', 'HD Lain':'hdlain', 'Batal':'batal', 'No Respon':'norespon' };
+  if (map[s]) document.getElementById('card_' + map[s]).classList.add('active');
+  renderTable();
 }
-function clickStatusCard(key){
-  currentFilter = key;
-  document.querySelectorAll('#statusCards .em-card').forEach(c => c.classList.toggle('active', c.dataset.key === key));
-  $('filterLabel').textContent = FILTER_LABEL[key] || key;
-  renderPasienTable();
-  const tbl = document.querySelector('#dashboardPrintArea .card');
-  if(tbl) tbl.scrollIntoView({behavior:'smooth', block:'start'});
-}
-function filterTableSearch(v){ tableSearch = String(v||'').toLowerCase(); renderPasienTable(); }
-function renderPasienTable(){
-  const tbody = $('pasienTbody'), info = $('tableInfo');
-  if(!tbody) return;
-  if(!pasienData.length){
-    info.textContent = 'Belum ada data pasien termuat.';
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px">Data pasien belum tersedia. Pastikan Apps Script sudah diperbarui (Langkah 1) dan sheet data pasien terisi, lalu klik Refresh.</td></tr>';
+
+function renderTable() {
+  const q = (document.getElementById('searchNama').value || '').toLowerCase();
+  const rows = currentData.filter(function(p){
+    const okStatus = (currentFilter === 'ALL') || (p.status === currentFilter);
+    const okNama = !q || (p.nama || '').toLowerCase().indexOf(q) !== -1;
+    return okStatus && okNama;
+  });
+  document.getElementById('tableTitle').textContent =
+    'Daftar Pasien — ' + (currentFilter === 'ALL' ? 'Semua' : currentFilter) + ' (' + rows.length + ')';
+
+  const tb = document.getElementById('tBody');
+  if (rows.length === 0) {
+    tb.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text-muted)">Tidak ada data.</td></tr>';
     return;
   }
-  const list = pasienData.filter(p =>
-    statusKeyOf(p.status) === currentFilter &&
-    (!tableSearch || String(p.nama).toLowerCase().includes(tableSearch))
-  );
-  info.textContent = 'Menampilkan ' + list.length + ' dari ' + pasienData.filter(p=>statusKeyOf(p.status)===currentFilter).length +
-    ' pasien berstatus "' + (FILTER_LABEL[currentFilter]||currentFilter) + '" — total data: ' + pasienData.length;
-  if(!list.length){
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px">Tidak ada pasien yang cocok.</td></tr>';
-    return;
-  }
-  tbody.innerHTML = list.map(p=>{
-    const i = pasienData.indexOf(p);
-    const badge = BADGE_CLASS[statusKeyOf(p.status)] || 'badge-other';
-    const waBtn = (p.wa || p.wa2)
-      ? '<button class="btn-wa" onclick="openWaModal('+i+',false)"><i class="fa-brands fa-whatsapp"></i> WA</button>'
-      : '<span style="color:var(--text-muted)">—</span>';
+  tb.innerHTML = rows.map(function(p, i){
     return '<tr>' +
-      '<td>' + (i+1) + '</td>' +
-      '<td><strong>' + esc(p.nama) + '</strong></td>' +
-      '<td>' + (esc(p.wa) || '—') + '</td>' +
-      '<td>' + (esc(p.wa2) || '—') + '</td>' +
-      '<td><span class="badge ' + badge + '">' + (esc(p.status) || '-') + '</span></td>' +
-      '<td>' + (esc(p.ket) || '—') + '</td>' +
-      '<td>' + waBtn + '</td>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td style="font-weight:bold">' + (p.nama || '-') + '</td>' +
+      '<td>' + (p.hp || '-') + '</td>' +
+      '<td>' + (p.waKeluarga || '-') + '</td>' +
+      '<td>' + (p.ruangan || '-') + '</td>' +
+      '<td>' + (p.hari || '-') + '</td>' +
+      '<td>' + statusBadge(p.status) + '</td>' +
+      '<td>' + (p.ket || '-') + '</td>' +
+      '<td><button class="btn-wa" onclick="openWaModal(' + currentData.indexOf(p) + ')" title="Kirim WhatsApp"><i class="fa-brands fa-whatsapp"></i></button></td>' +
     '</tr>';
   }).join('');
 }
 
-/* =====================================================
-   WHATSAPP
-===================================================== */
-function openWaModal(idx, useFamily){
-  const p = pasienData[idx]; if(!p) return;
-  $('waNama').value  = p.nama || '-';
-  $('waNomor').value = (useFamily && p.wa2) ? p.wa2 : (p.wa || p.wa2 || '');
-  $('waRuangan').value = '';
-  generateWaText();
-  closeMenungguWaModal();
-  $('waModal').style.display = 'flex';
-}
-function closeWaModal(){ $('waModal').style.display = 'none'; }
-function generateWaText(){
-  const nama = $('waNama').value;
-  const ruangan = $('waRuangan').value || '[Nama Ruangan]';
-  const tgl = new Date().toLocaleDateString('id-ID',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
-  $('waText').value =
-'Kepada Yth. Bapak/Ibu ' + nama + ',\n\n' +
-'Kami dari Instalasi Dialisis RSUD dr. Saiful Anwar (RSSA) Malang ingin menginformasikan bahwa saat ini terdapat jadwal hemodialisis yang tersedia di:\n\n' +
-'*Ruang : ' + ruangan + '*\n' +
-'Hari/Tanggal : ' + tgl + '\n\n' +
-'Apabila Bapak/Ibu berkenan mengisi jadwal tersebut, mohon melakukan konfirmasi melalui balasan pesan WhatsApp ini.\n\n' +
-'Terima kasih atas perhatian dan kerja samanya.\n\n' +
-'Hormat kami,\nPetugas Instalasi Dialisis RSSA\n(SIDARAJA)';
-}
-function sendWaMessage(){
-  const num = waNumber($('waNomor').value);
-  if(!num){ showToast('error','Nomor WhatsApp pasien tidak tersedia.'); return; }
-  window.open('https://wa.me/' + num + '?text=' + encodeURIComponent($('waText').value), '_blank');
-  closeWaModal();
-}
-
-/* ===== Modal daftar pasien menunggu ===== */
-function kirimWA(){ openMenungguWaModal(); }
-function openMenungguWaModal(){
-  const box = $('menungguWaList');
-  if(!pasienData.length){
-    box.innerHTML = '<p class="text-xs" style="color:var(--text-muted)">Data pasien belum termuat. Klik Refresh lalu coba lagi.</p>';
-  } else {
-    const list = pasienData.filter(p => statusKeyOf(p.status) === 'menunggu');
-    if(!list.length){
-      box.innerHTML = '<p class="text-xs" style="color:var(--text-muted)">Tidak ada pasien berstatus Menunggu.</p>';
-    } else {
-      box.innerHTML = list.map(p=>{
-        const i = pasienData.indexOf(p);
-        return '<div class="panduan-item" style="align-items:center;margin-bottom:8px">' +
-          '<div class="panduan-icon" style="width:38px;height:38px;font-size:15px"><i class="fa-solid fa-user"></i></div>' +
-          '<div style="flex:1;min-width:0"><div style="font-weight:bold;color:var(--primary)">'+esc(p.nama)+'</div>' +
-          '<div class="text-xs" style="color:var(--text-muted)">'+(esc(p.ket)||'-')+'</div></div>' +
-          '<div style="flex-shrink:0">' +
-            (p.wa  ? '<button class="btn-wa" onclick="openWaModal('+i+',false)"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
-            (p.wa2 ? '<button class="btn-wa btn-wa2" onclick="openWaModal('+i+',true)"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
-          '</div></div>';
-      }).join('');
-    }
+/* ============================================================
+   SLIDE 3 — DATA PASIEN
+   ============================================================ */
+function renderTableAll() {
+  const tb = document.getElementById('tBodyAll');
+  if (currentData.length === 0) {
+    tb.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--text-muted)">Tidak ada data.</td></tr>';
+    return;
   }
-  $('menungguWaModal').style.display = 'flex';
-}
-function closeMenungguWaModal(){ $('menungguWaModal').style.display = 'none'; }
-
-/* =====================================================
-   CEK ANTRIAN PASIEN (MODE PASIEN)
-===================================================== */
-function patientSearch(){
-  const q = $('pSearchNama').value.trim().toLowerCase();
-  const box = $('patientResults');
-  if(!q){ box.innerHTML = infoPatient('Ketik nama pasien terlebih dahulu.'); return; }
-  if(!pasienData.length){ box.innerHTML = infoPatient('Data belum termuat. Tunggu beberapa saat lalu coba lagi.'); return; }
-  const res = pasienData.filter(p => String(p.nama||'').toLowerCase().includes(q));
-  if(!res.length){ box.innerHTML = infoPatient('Pasien dengan nama tersebut tidak ditemukan. Periksa ejaan nama atau hubungi petugas Instalasi Dialisis RSSA.'); return; }
-  box.innerHTML = res.map(p=>{
-    const k = statusKeyOf(p.status), b = BADGE_CLASS[k] || 'badge-other';
-    return '<div class="card mb-3">' +
-      '<div class="card-header"><h3><i class="fa-solid fa-user mr-2"></i>' + esc(p.nama) + '</h3></div>' +
-      '<div class="p-4">' +
-        '<div class="flex items-center gap-3 flex-wrap">' +
-          '<span class="badge ' + b + '">' + (esc(p.status) || 'Status belum diisi') + '</span>' +
-          '<span class="text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-calendar-day mr-1"></i>' + new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}) + '</span>' +
-        '</div>' +
-        (p.ket ? '<p class="mt-3 text-xs" style="color:var(--text)"><strong>Keterangan:</strong> ' + esc(p.ket) + '</p>' : '') +
-      '</div></div>';
+  tb.innerHTML = currentData.map(function(p, i){
+    return '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td style="font-weight:bold">' + (p.nama || '-') + '</td>' +
+      '<td>' + (p.hp || '-') + '</td>' +
+      '<td>' + (p.waKeluarga || '-') + '</td>' +
+      '<td>' + (p.ruangan || '-') + '</td>' +
+      '<td>' + (p.hari || '-') + '</td>' +
+      '<td>' + statusBadge(p.status) + '</td>' +
+      '<td>' + (p.ket || '-') + '</td>' +
+    '</tr>';
   }).join('');
 }
-function infoPatient(msg){
-  return '<div class="card"><div class="p-4 text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i>' + esc(msg) + '</div></div>';
+
+function setSheetMode(mode) {
+  document.getElementById('btnModeView').className = mode === 'view' ? 'on' : '';
+  document.getElementById('btnModeEdit').className = mode === 'edit' ? 'on' : '';
+  document.getElementById('sheetEditInfo').style.display = mode === 'edit' ? 'block' : 'none';
+  if (mode === 'edit' && SHEET_URL) {
+    window.open(SHEET_URL, '_blank');
+    toast('Spreadsheet dibuka di tab baru.', 'i');
+  } else if (mode === 'edit') {
+    toast('SHEET_URL belum diatur pada script. Menggunakan pratinjau lokal.', 'i');
+  }
 }
 
-/* =====================================================
-   CETAK / PDF
-===================================================== */
-function cetakPrint(){
-  const area = $('printArea');
-  area.innerHTML = '<h2 style="font-family:Arial;text-align:center;margin-bottom:6px">LAPORAN ANTRIAN PASIEN HEMODIALISIS — SIDARAJA RSSA</h2>' +
-    '<p style="text-align:center;font-size:11px;margin-bottom:14px">' + $('todayDate').textContent + '</p>' +
-    $('dashboardPrintArea').innerHTML;
-  setTimeout(()=>window.print(), 150);
-}
-function kirimPDF(){
-  showToast('info','Menyiapkan PDF, mohon tunggu...');
-  const el = $('dashboardPrintArea');
-  html2pdf().from(el).set({
-    margin: [8,8,8,8],
-    filename: 'Laporan-SIDARAJA-' + new Date().toISOString().slice(0,10) + '.pdf',
-    image: { type:'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit:'mm', format:'a4', orientation:'landscape' }
-  }).save();
+/* ============================================================
+   MODAL WHATSAPP
+   ============================================================ */
+function openWaModal(idx) {
+  waTarget = currentData[idx];
+  if (!waTarget) return;
+  document.getElementById('waNama').value = waTarget.nama || '-';
+  document.getElementById('waNomor').value = waTarget.hp || '-';
+  document.getElementById('waRuangan').value = '';
+  document.getElementById('waText').value = '';
+  document.getElementById('waModal').style.display = 'flex';
+  generateWaText();
 }
 
-/* =====================================================
-   SHEET DATA PASIEN (SLIDE 3)
-===================================================== */
-function setSheetMode(mode){
-  const isEdit = mode === 'edit';
-  $('modeView').classList.toggle('on', !isEdit);
-  $('modeEdit').classList.toggle('on', isEdit);
-  $('sheetFrame').src = isEdit
-    ? 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + DATA_GID + '&single=true&widget=true&chrome=false'
-    : 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + DATA_GID + '&single=true&widget=true&headers=false';
-  if(isEdit) showToast('info','Mode Edit aktif — pastikan login Google akun yang berhak mengedit spreadsheet.');
+function closeWaModal() { document.getElementById('waModal').style.display = 'none'; }
+
+function generateWaText() {
+  const ruangan = document.getElementById('waRuangan').value;
+  const nama = waTarget ? (waTarget.nama || 'Bapak/Ibu') : 'Bapak/Ibu';
+  let t = 'Selamat pagi/siang/sore, saya petugas Instalasi Dialisis RSSA.\n\n' +
+          'Dengan hormat,\nYth. ' + nama + ',\n\n';
+  if (ruangan) {
+    t += 'Bersama pesan ini kami sampaikan bahwa saat ini terdapat jadwal hemodialisis yang tersedia di:\n' +
+         '*Ruangan HD ' + ruangan + '*\n\n' +
+         'Apakah Bapak/Ibu bersedia mengikuti jadwal tersebut? Mohon konfirmasi melalui pesan ini.\n\n';
+  } else {
+    t += 'Kami ingin mengonfirmasi kesiapan jadwal hemodialisis Bapak/Ibu.\n\n';
+  }
+  t += 'Terima kasih atas perhatiannya.\n\nHormat kami,\nPetugas Instalasi Dialisis RSSA';
+  document.getElementById('waText').value = t;
 }
 
-/* =====================================================
-   INIT
-===================================================== */
-document.addEventListener('DOMContentLoaded', function(){
-  seedDefaultUsers();
-  selectMode('admin');
-  updateTodayDate();
-  setSheetMode('view');
-  // muat data awal (silent) — berguna juga untuk mode pasien
-  refreshData(true);
-  // auto refresh tiap 60 detik
-  setInterval(function(){
-    if(currentRole) refreshData(true);
-  }, 60000);
-  // tombol ESC menutup modal
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeBedEdit(); closeWaModal(); closeMenungguWaModal(); }
+function sendWaMessage() {
+  let nomor = document.getElementById('waNomor').value.replace(/[^0-9]/g, '');
+  const text = document.getElementById('waText').value;
+  if (!nomor) { toast('Nomor WhatsApp tidak tersedia.', 'e'); return; }
+  if (nomor.startsWith('0')) nomor = '62' + nomor.slice(1);
+  window.open('https://wa.me/' + nomor + '?text=' + encodeURIComponent(text), '_blank');
+  closeWaModal();
+  toast('WhatsApp dibuka di tab baru.', 's');
+}
+
+/* ===== MODAL MENUNGGU ===== */
+function openMenungguWaModal() {
+  renderMenungguWaList();
+  document.getElementById('menungguWaModal').style.display = 'flex';
+}
+function closeMenungguWaModal() { document.getElementById('menungguWaModal').style.display = 'none'; }
+
+function renderMenungguWaList() {
+  const list = currentData.filter(function(p){ return p.status === 'Menunggu'; });
+  const el = document.getElementById('menungguWaList');
+  if (list.length === 0) {
+    el.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px">Tidak ada pasien berstatus Menunggu.</p>';
+    return;
+  }
+  el.innerHTML = list.map(function(p){
+    const hp = (p.hp || '').replace(/[^0-9]/g, '');
+    const wa = (p.waKeluarga || '').replace(/[^0-9]/g, '');
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);margin-bottom:8px;background:#fff">' +
+      '<div style="flex:1"><div style="font-weight:bold;font-size:13px">' + (p.nama || '-') + '</div>' +
+      '<div style="font-size:11px;color:var(--text-muted)">HP: ' + (p.hp || '-') + ' &middot; Keluarga: ' + (p.waKeluarga || '-') + '</div></div>' +
+      (hp ? '<button class="btn-wa" onclick="waDirect(\'' + hp + '\',\'' + (p.nama || '').replace(/'/g, "\\'") + '\')"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
+      (wa ? '<button class="btn-wa btn-wa2" onclick="waDirect(\'' + wa + '\',\'' + (p.nama || '').replace(/'/g, "\\'") + '\')"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
+    '</div>';
+  }).join('');
+}
+
+function waDirect(nomor, nama) {
+  let n = nomor.replace(/[^0-9]/g, '');
+  if (n.startsWith('0')) n = '62' + n.slice(1);
+  const text = 'Selamat pagi/siang/sore, Yth. ' + nama + '. Kami petugas Instalasi Dialisis RSSA ingin mengonfirmasi kesiapan jadwal hemodialisis Bapak/Ibu. Mohon balas pesan ini. Terima kasih.';
+  window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(text), '_blank');
+}
+
+/* ============================================================
+   CETAK & PDF (SLIDE 2)
+   ============================================================ */
+function buildReportHTML() {
+  const rows = currentData.filter(function(p){
+    return (currentFilter === 'ALL') || (p.status === currentFilter);
   });
-  // restore sesi petugas
-  try{
-    const s = JSON.parse(localStorage.getItem('sidaraja_session') || 'null');
-    if(s && s.role === 'petugas') enterApp('petugas', s);
-  }catch(e){}
+  let body = rows.map(function(p, i){
+    return '<tr><td>' + (i+1) + '</td><td>' + (p.nama||'-') + '</td><td>' + (p.hp||'-') + '</td><td>' + (p.ruangan||'-') + '</td><td>' + (p.hari||'-') + '</td><td>' + (p.status||'-') + '</td><td>' + (p.ket||'-') + '</td></tr>';
+  }).join('');
+  if (!body) body = '<tr><td colspan="7" style="text-align:center;padding:20px">Tidak ada data.</td></tr>';
+  return '<div style="font-family:Arial,Helvetica,sans-serif;padding:20px">' +
+    '<h2 style="text-align:center;color:#2b1608;margin:0 0 4px">SIDARAJA — Laporan Antrian Pasien Hemodialisis</h2>' +
+    '<p style="text-align:center;color:#7d6a4d;font-size:12px;margin:0 0 16px">Instalasi Dialisis RSSA &middot; ' +
+    new Date().toLocaleString('id-ID') + ' &middot; Filter: ' + (currentFilter === 'ALL' ? 'Semua' : currentFilter) + '</p>' +
+    '<table style="width:100%;border-collapse:collapse;font-size:11px">' +
+    '<thead><tr>' +
+    ['No','Nama','No. HP','Ruangan','Hari','Status','Keterangan'].map(function(h){
+      return '<th style="border:1px solid #2b1608;background:#452612;color:#f7e9d2;padding:6px;text-align:left">' + h + '</th>';
+    }).join('') +
+    '</tr></thead><tbody>' + body + '</tbody></table></div>';
+}
+
+function cetakPrint() {
+  document.getElementById('printArea').innerHTML = buildReportHTML();
+  window.print();
+}
+
+function kirimPDF() {
+  toast('Menyiapkan PDF...', 'i');
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:800px;background:#fff;';
+  wrap.innerHTML = buildReportHTML();
+  document.body.appendChild(wrap);
+  html2pdf().set({
+    margin: [10, 10],
+    filename: 'Laporan_Antrian_SIDARAJA.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).from(wrap).save().then(function(){
+    wrap.remove();
+    toast('PDF berhasil disimpan.', 's');
+  }).catch(function(){
+    wrap.remove();
+    toast('Gagal membuat PDF.', 'e');
+  });
+}
+
+/* ============================================================
+   CEK ANTRIAN PASIEN (MODE PASIEN)
+   ============================================================ */
+function patientSearch() {
+  const q = (document.getElementById('pSearchNama').value || '').toLowerCase().trim();
+  const el = document.getElementById('patientResults');
+  if (!q) { el.innerHTML = '<div class="card"><div style="padding:20px;text-align:center;color:var(--text-muted)">Silakan ketik nama pasien terlebih dahulu.</div></div>'; return; }
+  const rows = currentData.filter(function(p){ return (p.nama || '').toLowerCase().indexOf(q) !== -1; });
+  if (rows.length === 0) {
+    el.innerHTML = '<div class="card"><div style="padding:20px;text-align:center;color:var(--text-muted)"><i class="fa-solid fa-magnifying-glass mr-2"></i>Data pasien tidak ditemukan.</div></div>';
+    return;
+  }
+  el.innerHTML = rows.map(function(p){
+    return '<div class="card mt-3"><div class="card-header"><h3><i class="fa-solid fa-user mr-2"></i>' + (p.nama || '-') + '</h3></div>' +
+      '<div style="padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">' +
+      '<div><div class="form-label">Ruangan</div><div style="font-weight:bold">' + (p.ruangan || '-') + '</div></div>' +
+      '<div><div class="form-label">Hari HD</div><div style="font-weight:bold">' + (p.hari || '-') + '</div></div>' +
+      '<div><div class="form-label">Status Antrian</div>' + statusBadge(p.status) + '</div>' +
+      '<div><div class="form-label">Keterangan</div><div>' + (p.ket || '-') + '</div></div>' +
+    '</div></div>';
+  }).join('');
+}
+
+/* ============================================================
+   SISA BED — RENDER & SHARE
+   ============================================================ */
+function renderSisaBed() {
+  Object.keys(SISA_BED).forEach(function(key) {
+    ['ri','rj'].forEach(function(tipe) {
+      const el = document.getElementById('grid_' + tipe + '_' + key);
+      if (!el) return;
+      el.innerHTML = HARI.map(function(h) {
+        const v = SISA_BED[key][tipe][h];
+        return '<div class="bed-day"><span>' + HARI_LABEL[h] + '</span><b class="' + (v === 0 ? 'empty' : '') + '">' + v + '</b></div>';
+      }).join('');
+    });
+  });
+}
+
+function bedText(key, nama) {
+  const d = SISA_BED[key];
+  const ri = HARI.map(function(h){ return HARI_LABEL[h] + ': ' + d.ri[h]; }).join('  |  ');
+  const rj = HARI.map(function(h){ return HARI_LABEL[h] + ': ' + d.rj[h]; }).join('  |  ');
+  return '*SISA BED KOSONG — ' + nama + '*\n' +
+         'Instalasi Dialisis RSSA (SIDARAJA)\n\n' +
+         '*Slot Rawat Inap (Senin–Sabtu):*\n' + ri + '\n\n' +
+         '*Rawat Jalan (Senin–Sabtu):*\n' + rj + '\n\n' +
+         'Update: ' + new Date().toLocaleString('id-ID');
+}
+
+function shareBedWA(key, nama) {
+  window.open('https://wa.me/?text=' + encodeURIComponent(bedText(key, nama)), '_blank');
+  toast('Share WhatsApp dibuka.', 's');
+}
+
+function shareBedTG(key, nama) {
+  window.open('https://t.me/share/url?url=' + encodeURIComponent(location.href) +
+              '&text=' + encodeURIComponent(bedText(key, nama)), '_blank');
+  toast('Share Telegram dibuka.', 's');
+}
+
+function shareBedLI(key, nama) {
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href), '_blank');
+  toast('Share LinkedIn dibuka.', 's');
+}
+
+function shareBedPDF(key, nama) {
+  toast('Menyiapkan PDF sisa bed...', 'i');
+  const card = document.getElementById('roomCard_' + key);
+  if (!card) { toast('Kartu ruangan tidak ditemukan.', 'e'); return; }
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;padding:24px;background:#ffffff;font-family:Arial,Helvetica,sans-serif;width:700px;';
+  wrap.innerHTML =
+    '<div style="text-align:center;border-bottom:3px solid #2b1608;padding-bottom:12px;margin-bottom:16px">' +
+      '<h2 style="color:#2b1608;margin:0">SIDARAJA — Sisa Bed Kosong</h2>' +
+      '<p style="margin:6px 0 0;color:#7d6a4d;font-size:12px">Instalasi Dialisis RSSA &middot; ' +
+      new Date().toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'}) + '</p>' +
+    '</div>';
+  const clone = card.cloneNode(true);
+  wrap.appendChild(clone);
+  document.body.appendChild(wrap);
+  html2pdf().set({
+    margin: [10, 10],
+    filename: 'SisaBed_' + nama.replace(/\s+/g, '_') + '.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).from(wrap).outputPdf('bloburl').then(function(url) {
+    window.open(url, '_blank');   // PDF terbuka di tab baru → bisa dilihat, dicetak, atau disimpan
+    wrap.remove();
+    toast('PDF sisa bed dibuka di tab baru.', 's');
+  }).catch(function() {
+    wrap.remove();
+    toast('Gagal membuat PDF sisa bed.', 'e');
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', function() {
+  selectMode('admin');
+  switchAuthTab('login');
+  updateTodayDate();
+  document.getElementById('pSearchNama').addEventListener('keyup', function(e){
+    if (e.key === 'Enter') patientSearch();
+  });
 });
 </script>
 </body>

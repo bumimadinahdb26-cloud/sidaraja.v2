@@ -736,42 +736,31 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
     <div class="welcome-banner">
       <div>
         <div class="welcome-title"><i class="fa-solid fa-database mr-2" style="color:#059669"></i>Data Pasien</div>
-        <div class="welcome-sub">Pratinjau & Pengelolaan Data Pasien Hemodialisis</div>
+        <div class="welcome-sub">Pratinjau & Pengelolaan Data Pasien Hemodialisis (Google Spreadsheet)</div>
       </div>
-      <div class="mode-toggle">
-        <button class="on" id="btnModeView" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Pratinjau</button>
-        <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+      <div class="flex gap-2 items-center flex-wrap">
+        <button class="bo" onclick="window.open(SHEET_OPEN_URL,'_blank')" title="Buka di Google Sheets"><i class="fa-solid fa-up-right-from-square"></i> Buka di Google Sheets</button>
+        <div class="mode-toggle">
+          <button class="on" id="btnModeView" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Pratinjau</button>
+          <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+        </div>
       </div>
     </div>
 
-    <div id="sheetWrap">
-      <div class="card">
-        <div class="card-header"><h3><i class="fa-solid fa-table mr-2"></i>Data Pasien Hemodialisis</h3></div>
-        <div style="overflow-x:auto">
-          <table class="dt">
-            <thead>
-              <tr>
-                <th style="width:40px">No</th>
-                <th>Nama Pasien</th>
-                <th>No. HP (O)</th>
-                <th>WA Keluarga (P)</th>
-                <th>Ruangan</th>
-                <th>Hari</th>
-                <th>Status (Q)</th>
-                <th>Keterangan (R)</th>
-              </tr>
-            </thead>
-            <tbody id="tBodyAll"></tbody>
-          </table>
-        </div>
+    <div class="card">
+      <div class="card-header"><h3><i class="fa-solid fa-table mr-2"></i>Data Pasien Hemodialisis — Google Spreadsheet</h3></div>
+      <div style="padding:10px">
+        <iframe class="sheet-frame" id="sheetFrame" src="" style="border:1px solid var(--border)" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <div class="instruction-box" id="sheetEditInfo" style="display:none">
-        <div class="flex items-start gap-3">
-          <i class="fa-solid fa-circle-info mt-1" style="color:#d97706"></i>
-          <div class="text-xs" style="line-height:1.7">
-            <strong>Mode Edit aktif.</strong> Untuk mengubah data langsung pada spreadsheet:
-            buka <strong>Google Spreadsheet</strong> Anda, lalu ganti nilai variabel <code>SHEET_URL</code> pada script aplikasi dengan URL spreadsheet yang sudah dipublikasikan. Perubahan kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> akan otomatis tampil setelah tombol <strong>Refresh</strong> ditekan.
-          </div>
+    </div>
+
+    <div class="instruction-box" id="sheetEditInfo" style="display:none">
+      <div class="flex items-start gap-3">
+        <i class="fa-solid fa-circle-info mt-1" style="color:#d97706"></i>
+        <div class="text-xs" style="line-height:1.7">
+          <strong>Mode Edit aktif.</strong> Ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> pada spreadsheet di atas.
+          Catatan: untuk dapat mengedit, Anda harus <strong>sudah login ke akun Google</strong> yang memiliki akses edit ke spreadsheet ini.
+          Setelah mengubah data, tekan tombol <strong>Refresh</strong> di pojok kanan atas agar tabel di menu AKSI SIDARAJA ikut ter-update.
         </div>
       </div>
     </div>
@@ -781,12 +770,15 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
 
 <script>
 /* ============================================================
-   KONFIGURASI
-   - API_URL  : URL Google Apps Script (opsional, kosong = data contoh)
-   - SHEET_URL: URL Google Spreadsheet publik untuk Mode Edit (opsional)
+   KONFIGURASI — LINK ASLI (Google Apps Script & Spreadsheet)
    ============================================================ */
-const API_URL  = '';
-const SHEET_URL = '';
+const API_URL = 'https://script.google.com/macros/s/AKfycbz1IWHom_-RWePiit_3Dfhq_bKXpbmp_GVdh-SQshmxl24HiK4OJihfiZaX8A_TLz8S/exec';
+
+const SHEET_ID  = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
+const SHEET_GID = '1588121083';
+const SHEET_VIEW_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlview?gid=' + SHEET_GID + '&single=true';
+const SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + SHEET_GID + '&single=true&widget=true&headers=false';
+const SHEET_OPEN_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit#gid=' + SHEET_GID;
 
 /* ============================================================
    KONFIGURASI SISA BED KOSONG — UBAH NILAI DI SINI SAJA
@@ -810,24 +802,11 @@ const SISA_BED = {
   }
 };
 
-/* ===== DATA CONTOH (dipakai jika API_URL kosong / gagal) ===== */
-const DEMO_DATA = [
-  { nama:'Ahmad Fauzi',      hp:'081234567801', waKeluarga:'081234567811', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Menunggu jadwal' },
-  { nama:'Siti Aminah',      hp:'081234567802', waKeluarga:'081234567812', ruangan:'Teuku Umar', hari:'Senis-Rabu-Jumat', status:'Terjadwal', ket:'Shift pagi' },
-  { nama:'Budi Santoso',     hp:'081234567803', waKeluarga:'081234567813', ruangan:'Malahayati', hari:'Selasa-Kamis-Sabtu', status:'Terjadwal', ket:'Shift siang' },
-  { nama:'Dewi Lestari',     hp:'081234567804', waKeluarga:'081234567814', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Menunggu konfirmasi keluarga' },
-  { nama:'Hendra Wijaya',    hp:'081234567805', waKeluarga:'081234567815', ruangan:'Cut Nyak Dien', hari:'Senin-Rabu-Jumat', status:'Terjadwal', ket:'HDF' },
-  { nama:'Rina Marlina',     hp:'081234567806', waKeluarga:'081234567816', ruangan:'-',          hari:'-',        status:'HD Lain',   ket:'HD di RS lain' },
-  { nama:'Agus Setiawan',    hp:'081234567807', waKeluarga:'081234567817', ruangan:'-',          hari:'-',        status:'No Respon', ket:'Tidak bisa dihubungi 3x' },
-  { nama:'Sri Wahyuni',      hp:'081234567808', waKeluarga:'081234567818', ruangan:'-',          hari:'-',        status:'Menunggu',  ket:'Pasien baru dari Google Form' },
-  { nama:'Joko Prasetyo',    hp:'081234567809', waKeluarga:'081234567819', ruangan:'-',          hari:'-',        status:'Batal',     ket:'Mundur atas permintaan' }
-];
-
 /* ===== STATE ===== */
 let currentData = [];
 let currentFilter = 'ALL';
 let loginMode = 'admin';
-let userRole = 'petugas';       // 'petugas' | 'pasien'
+let userRole = 'petugas';
 let currentUser = null;
 let waTarget = null;
 
@@ -843,7 +822,109 @@ function toast(msg, type) {
 }
 
 /* ============================================================
-   LOGIN / AUTH
+   FETCH & NORMALISASI DATA DARI GOOGLE APPS SCRIPT
+   ============================================================ */
+async function fetchJson(url) {
+  const r = await fetch(url, { method: 'GET', redirect: 'follow' });
+  const text = await r.text();
+  try { return JSON.parse(text); } catch(e) { throw new Error('Respon bukan JSON: ' + text.slice(0, 120)); }
+}
+
+function normKey(k) { return String(k).toLowerCase().replace(/[^a-z]/g, ''); }
+
+/* Normalisasi satu objek dengan berbagai kemungkinan nama kolom */
+function normalizeObj(o) {
+  const m = {};
+  Object.keys(o).forEach(function(k){ m[normKey(k)] = o[k]; });
+  const g = function(){
+    for (let i = 0; i < arguments.length; i++) {
+      const v = m[arguments[i]];
+      if (v !== undefined && v !== null && String(v).trim() !== '') return String(v).trim();
+    }
+    return '';
+  };
+  return {
+    nama:       g('nama','namapasien','name','pasien','namalengkap'),
+    hp:         g('hp','nohp','nohppasien','nomorhp','nomor','notelp','telp','telepon','hppasien','nohphereg'),
+    waKeluarga: g('wakeluarga','nomorwakeluarga','hpkeluarga','nokeluarga','nomorkeluarga','wahubkeluarga'),
+    ruangan:    g('ruangan','ruang','room','ruanghd'),
+    hari:       g('hari','jadwalhari','harid','harihd','shift','jadwal'),
+    status:     g('status','statusantrian','statuspasien'),
+    ket:        g('ket','keterangan','catatan','keteranganstatus')
+  };
+}
+
+const KNOWN_STATUS = ['menunggu','terjadwal','hd lain','hdlain','batal','meninggal','no respon','norespon'];
+const PHONE_RE = /^(\+?62|0)8\d{7,13}$/;
+const RUANGAN_RE = /teuku\s*umar|malahayati|cut\s*nyak\s*dien/i;
+const HARI_RE = /senin|selasa|rabu|kamis|jumat|jum'at|sabtu|minggu/i;
+
+/* Deteksi heuristik untuk baris array (tanpa header jelas) */
+function normalizeArrayRow(row) {
+  const out = { nama:'', hp:'', waKeluarga:'', ruangan:'', hari:'', status:'', ket:'' };
+  row.forEach(function(cRaw){
+    if (cRaw === null || cRaw === undefined) return;
+    const c = String(cRaw).trim();
+    if (!c) return;
+    const cl = c.toLowerCase();
+
+    if (!out.status && KNOWN_STATUS.indexOf(cl) !== -1) { out.status = c; return; }
+
+    const digits = c.replace(/[^0-9]/g, '');
+    if (PHONE_RE.test(c.replace(/[\s-]/g, '')) || (digits.length >= 10 && digits.length <= 15 && /^(\+?62|0)8/.test(c.replace(/[\s-]/g, '')))) {
+      if (!out.hp) { out.hp = c; return; }
+      if (!out.waKeluarga) { out.waKeluarga = c; return; }
+    }
+
+    if (RUANGAN_RE.test(c)) { if (!out.ruangan) { out.ruangan = c; return; } }
+    if (HARI_RE.test(c) && c.length <= 60) { if (!out.hari) { out.hari = c; return; } }
+
+    // Nama: teks huruf dominan, bukan tanggal
+    const isDate = /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/.test(c);
+    const letters = c.replace(/[^A-Za-z\s.'-]/g, '');
+    if (!isDate && !out.nama && c.length <= 60 && letters.length / c.length > 0.7 && /[A-Za-z]/.test(c) && !/^\d+$/.test(c)) {
+      out.nama = c; return;
+    }
+    if (!out.ket && c.length > 3) out.ket = c;
+  });
+  return out;
+}
+
+function normalizeApiData(json) {
+  let rows = null;
+  if (Array.isArray(json)) rows = json;
+  else if (json && typeof json === 'object') {
+    rows = json.data || json.rows || json.values || json.result || json.pasien || json.records || null;
+  }
+  if (!rows || !Array.isArray(rows) || rows.length === 0) return [];
+
+  // Bentuk 1: array of objects
+  if (rows[0] && typeof rows[0] === 'object' && !Array.isArray(rows[0])) {
+    return rows.map(normalizeObj).filter(function(p){ return p.nama || p.hp || p.status; });
+  }
+
+  // Bentuk 2: array of arrays — cek apakah baris pertama header
+  const first = rows[0] || [];
+  const headerish = first.some(function(c){
+    return typeof c === 'string' && /nama|status|hp|ruangan|hari|ket/i.test(c);
+  });
+
+  if (headerish) {
+    const headers = first.map(normKey);
+    const body = rows.slice(1);
+    return body.map(function(r){
+      const o = {};
+      headers.forEach(function(h, i){ if (h) o[h] = r[i]; });
+      return normalizeObj(o);
+    }).filter(function(p){ return p.nama || p.hp || p.status; });
+  }
+
+  // Bentuk 3: array of arrays tanpa header → deteksi heuristik
+  return rows.map(normalizeArrayRow).filter(function(p){ return p.nama || p.hp || p.status; });
+}
+
+/* ============================================================
+   LOGIN / AUTH (mencoba ke API, fallback lokal bila API tidak mendukung)
    ============================================================ */
 function selectMode(mode) {
   loginMode = mode;
@@ -861,27 +942,44 @@ function switchAuthTab(tab) {
 }
 
 function showLoginError(msg) {
-  const b = document.getElementById('loginError');
   document.getElementById('loginErrorMsg').textContent = msg;
-  b.className = 'err-box show';
+  document.getElementById('loginError').className = 'err-box show';
 }
 
-function doPetugasLogin() {
+async function doPetugasLogin() {
   const email = document.getElementById('loginEmail').value.trim();
   const pass  = document.getElementById('loginPass').value;
   document.getElementById('loginError').className = 'err-box';
   if (!email || !pass) { showLoginError('Email dan kata sandi wajib diisi.'); return; }
   if (pass.length < 6) { showLoginError('Kata sandi minimal 6 karakter.'); return; }
-  currentUser = { nama: email.split('@')[0], email: email };
+
+  const btn = document.getElementById('btnLogin');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memeriksa...';
+  try {
+    // Coba autentikasi ke Apps Script (jika mendukung action=login)
+    const json = await fetchJson(API_URL + '?action=login&email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(pass));
+    if (json && json.success === false) {
+      showLoginError(json.message || 'Email atau kata sandi salah.');
+      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk';
+      return;
+    }
+    const nama = (json && (json.nama || json.name)) || email.split('@')[0];
+    currentUser = { nama: nama, email: email };
+  } catch (e) {
+    // API tidak mendukung login / gagal → gunakan sesi lokal
+    currentUser = { nama: email.split('@')[0], email: email };
+  }
+  btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk';
   userRole = 'petugas';
   enterApp();
 }
 
-function doPetugasRegister() {
+async function doPetugasRegister() {
   const nama  = document.getElementById('regNama').value.trim();
   const email = document.getElementById('regEmail').value.trim();
   const pass  = document.getElementById('regPass').value;
   document.getElementById('regError').className = 'err-box';
+  document.getElementById('regOk').className = 'ok-box';
   if (!nama || !email || !pass) {
     document.getElementById('regErrorMsg').textContent = 'Semua kolom wajib diisi.';
     document.getElementById('regError').className = 'err-box show';
@@ -892,6 +990,18 @@ function doPetugasRegister() {
     document.getElementById('regError').className = 'err-box show';
     return;
   }
+  const btn = document.getElementById('btnRegister');
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mendaftarkan...';
+  try {
+    const json = await fetchJson(API_URL + '?action=register&nama=' + encodeURIComponent(nama) + '&email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(pass));
+    if (json && json.success === false) {
+      document.getElementById('regErrorMsg').textContent = json.message || 'Pendaftaran gagal.';
+      document.getElementById('regError').className = 'err-box show';
+      btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Daftar';
+      return;
+    }
+  } catch (e) { /* API tidak mendukung register → lanjut lokal */ }
+  btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Daftar';
   document.getElementById('regOkMsg').textContent = 'Pendaftaran berhasil! Silakan masuk dengan email Anda.';
   document.getElementById('regOk').className = 'ok-box show';
   setTimeout(function(){ switchAuthTab('login'); document.getElementById('loginEmail').value = email; }, 1500);
@@ -978,50 +1088,58 @@ function updateTodayDate() {
 }
 
 /* ============================================================
-   DATA (fetch / demo)
+   MEMUAT DATA DARI SERVER (TANPA DATA DEMO)
    ============================================================ */
 function setConn(cls) {
   ['connDot','sbConnDot','connDotLogin'].forEach(function(id){
     const el = document.getElementById(id);
-    if (el) { el.className = 'conn-dot ' + cls; }
+    if (el) el.className = 'conn-dot ' + cls;
   });
 }
 
-function loadData() {
+async function loadData() {
   setConn('conn-load');
-  if (!API_URL) {
-    currentData = DEMO_DATA.slice();
-    setConn('conn-ok');
-    afterDataLoad();
-    return;
+  renderLoadingState();
+  const attempts = [
+    API_URL,
+    API_URL + '?action=getAll',
+    API_URL + '?action=data'
+  ];
+  let lastErr = null;
+  for (let i = 0; i < attempts.length; i++) {
+    try {
+      const json = await fetchJson(attempts[i]);
+      const parsed = normalizeApiData(json);
+      if (parsed.length > 0) {
+        currentData = parsed;
+        setConn('conn-ok');
+        afterDataLoad();
+        toast('Data berhasil dimuat dari server (' + parsed.length + ' pasien).', 's');
+        return;
+      }
+    } catch (e) { lastErr = e; }
   }
-  fetch(API_URL)
-    .then(function(r){ return r.json(); })
-    .then(function(json){
-      currentData = Array.isArray(json) ? json : (json.data || []);
-      setConn('conn-ok');
-      afterDataLoad();
-      toast('Data berhasil dimuat.', 's');
-    })
-    .catch(function(){
-      currentData = DEMO_DATA.slice();
-      setConn('conn-fail');
-      afterDataLoad();
-      toast('Gagal terhubung ke server — menampilkan data contoh.', 'e');
-    });
+  currentData = [];
+  setConn('conn-fail');
+  afterDataLoad();
+  toast('Gagal memuat data dari server. Pastikan Web App Apps Script di-deploy dengan akses "Anyone" & spreadsheet dibagikan.', 'e');
 }
 
 function refreshData() {
   const icon = document.getElementById('refreshIcon');
   icon.classList.add('fa-spin');
   loadData();
-  setTimeout(function(){ icon.classList.remove('fa-spin'); }, 800);
+  setTimeout(function(){ icon.classList.remove('fa-spin'); }, 1000);
+}
+
+function renderLoadingState() {
+  const tb = document.getElementById('tBody');
+  if (tb) tb.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Memuat data dari server...</td></tr>';
 }
 
 function afterDataLoad() {
   renderStatusCounts();
   renderTable();
-  renderTableAll();
   if (document.getElementById('menungguWaModal').style.display === 'flex') renderMenungguWaList();
 }
 
@@ -1061,6 +1179,8 @@ function filterStatus(s) {
 }
 
 function renderTable() {
+  const tb = document.getElementById('tBody');
+  if (!tb) return;
   const q = (document.getElementById('searchNama').value || '').toLowerCase();
   const rows = currentData.filter(function(p){
     const okStatus = (currentFilter === 'ALL') || (p.status === currentFilter);
@@ -1070,7 +1190,6 @@ function renderTable() {
   document.getElementById('tableTitle').textContent =
     'Daftar Pasien — ' + (currentFilter === 'ALL' ? 'Semua' : currentFilter) + ' (' + rows.length + ')';
 
-  const tb = document.getElementById('tBody');
   if (rows.length === 0) {
     tb.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text-muted)">Tidak ada data.</td></tr>';
     return;
@@ -1091,38 +1210,14 @@ function renderTable() {
 }
 
 /* ============================================================
-   SLIDE 3 — DATA PASIEN
+   SLIDE 3 — SPREADSHEET (PRATINJAU / MODE EDIT)
    ============================================================ */
-function renderTableAll() {
-  const tb = document.getElementById('tBodyAll');
-  if (currentData.length === 0) {
-    tb.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--text-muted)">Tidak ada data.</td></tr>';
-    return;
-  }
-  tb.innerHTML = currentData.map(function(p, i){
-    return '<tr>' +
-      '<td>' + (i + 1) + '</td>' +
-      '<td style="font-weight:bold">' + (p.nama || '-') + '</td>' +
-      '<td>' + (p.hp || '-') + '</td>' +
-      '<td>' + (p.waKeluarga || '-') + '</td>' +
-      '<td>' + (p.ruangan || '-') + '</td>' +
-      '<td>' + (p.hari || '-') + '</td>' +
-      '<td>' + statusBadge(p.status) + '</td>' +
-      '<td>' + (p.ket || '-') + '</td>' +
-    '</tr>';
-  }).join('');
-}
-
 function setSheetMode(mode) {
   document.getElementById('btnModeView').className = mode === 'view' ? 'on' : '';
   document.getElementById('btnModeEdit').className = mode === 'edit' ? 'on' : '';
   document.getElementById('sheetEditInfo').style.display = mode === 'edit' ? 'block' : 'none';
-  if (mode === 'edit' && SHEET_URL) {
-    window.open(SHEET_URL, '_blank');
-    toast('Spreadsheet dibuka di tab baru.', 'i');
-  } else if (mode === 'edit') {
-    toast('SHEET_URL belum diatur pada script. Menggunakan pratinjau lokal.', 'i');
-  }
+  document.getElementById('sheetFrame').src = mode === 'edit' ? SHEET_EDIT_URL : SHEET_VIEW_URL;
+  toast(mode === 'edit' ? 'Mode Edit aktif — ubah langsung kolom Q & R.' : 'Mode Pratinjau aktif.', 'i');
 }
 
 /* ============================================================
@@ -1134,7 +1229,6 @@ function openWaModal(idx) {
   document.getElementById('waNama').value = waTarget.nama || '-';
   document.getElementById('waNomor').value = waTarget.hp || '-';
   document.getElementById('waRuangan').value = '';
-  document.getElementById('waText').value = '';
   document.getElementById('waModal').style.display = 'flex';
   generateWaText();
 }
@@ -1174,6 +1268,8 @@ function openMenungguWaModal() {
 }
 function closeMenungguWaModal() { document.getElementById('menungguWaModal').style.display = 'none'; }
 
+function esc(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+
 function renderMenungguWaList() {
   const list = currentData.filter(function(p){ return p.status === 'Menunggu'; });
   const el = document.getElementById('menungguWaList');
@@ -1187,8 +1283,8 @@ function renderMenungguWaList() {
     return '<div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);margin-bottom:8px;background:#fff">' +
       '<div style="flex:1"><div style="font-weight:bold;font-size:13px">' + (p.nama || '-') + '</div>' +
       '<div style="font-size:11px;color:var(--text-muted)">HP: ' + (p.hp || '-') + ' &middot; Keluarga: ' + (p.waKeluarga || '-') + '</div></div>' +
-      (hp ? '<button class="btn-wa" onclick="waDirect(\'' + hp + '\',\'' + (p.nama || '').replace(/'/g, "\\'") + '\')"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
-      (wa ? '<button class="btn-wa btn-wa2" onclick="waDirect(\'' + wa + '\',\'' + (p.nama || '').replace(/'/g, "\\'") + '\')"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
+      (hp ? '<button class="btn-wa" onclick="waDirect(\'' + hp + '\',\'' + esc(p.nama) + '\')"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
+      (wa ? '<button class="btn-wa btn-wa2" onclick="waDirect(\'' + wa + '\',\'' + esc(p.nama) + '\')"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
     '</div>';
   }).join('');
 }
@@ -1353,6 +1449,7 @@ document.addEventListener('DOMContentLoaded', function() {
   selectMode('admin');
   switchAuthTab('login');
   updateTodayDate();
+  document.getElementById('sheetFrame').src = SHEET_VIEW_URL;
   document.getElementById('pSearchNama').addEventListener('keyup', function(e){
     if (e.key === 'Enter') patientSearch();
   });

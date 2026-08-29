@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
 <style>
@@ -32,10 +31,10 @@ body.patient-bg { background: #f0f4f8; }
 
 /* Top Navbar 3D Style */
 .topbar { background: linear-gradient(to bottom, var(--primary), var(--primary-light)); border-bottom: 3px solid #001a33; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
-.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 50px; }
+.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 100px; }
 .topbar-logo { color: #fff; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,.4); }
-.topbar-logo img { height: 35px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
-.topbar-menu { display: flex; gap: 0; height: 50px; }
+.topbar-logo img { height: 70px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5)); }
+.topbar-menu { display: flex; gap: 0; height: 100px; }
 .topbar-menu-item { padding: 0 18px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; border: none; background: none; height: 100%; display: flex; align-items: center; text-decoration: none; transition: background 0.2s; }
 .topbar-menu-item:hover { background: rgba(255,255,255,0.1); }
 .topbar-menu-item.active { background: var(--bg); color: var(--primary); box-shadow: inset 0 4px 0 var(--primary-accent); }
@@ -128,8 +127,6 @@ table.dt tbody tr:hover td { background: #e0effa; }
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
 .instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
-
-.laporan-stat-card { background: #fff; border: 1px solid var(--border); padding: 15px; text-align: center; border-top: 4px solid var(--primary); box-shadow: 0 4px 0 #d1d5db, 0 6px 12px rgba(0,0,0,0.05); }
 
 .conn-dot { width: 8px; height: 8px; display: inline-block; }
 .conn-ok { background: #10b981; }
@@ -268,12 +265,10 @@ table.dt tbody tr:hover td { background: #e0effa; }
     <div class="topbar-inner">
       <div class="topbar-logo">
         <img src="logosidaraja.png" alt="Logo SIDARAJA">
-        <span>SIDARAJA</span>
       </div>
       <nav class="topbar-menu">
         <button class="topbar-menu-item active" id="tab1" onclick="switchSlide(1)">Home</button>
         <button class="topbar-menu-item" id="tab2" onclick="switchSlide(2)">Data Pasien</button>
-        <button class="topbar-menu-item" id="tab3" onclick="switchSlide(3)">Laporan</button>
       </nav>
       <div class="topbar-right">
         <div class="flex items-center gap-2 px-2 py-1" style="background:rgba(0,0,0,.2);border:1px solid rgba(0,0,0,0.3)">
@@ -453,70 +448,15 @@ table.dt tbody tr:hover td { background: #e0effa; }
   </div>
 </main>
 
-<!-- ===== SLIDE 3: LAPORAN ===== -->
-<main id="slide3" class="px-4 sm:px-8 pb-16" style="display:none">
-  <div class="max-w-7xl mx-auto mt-6">
-    <div class="welcome-banner">
-      <div>
-        <div class="welcome-title"><i class="fa-solid fa-chart-column mr-2"></i>Laporan Antrian Pasien</div>
-        <div class="welcome-sub">Filter dan analisis data pasien</div>
-      </div>
-    </div>
-
-    <div class="card p-4 mb-4">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
-        <div><label class="form-label">Dari Tanggal</label><input type="date" id="laporanDari" class="si2"></div>
-        <div><label class="form-label">Sampai Tanggal</label><input type="date" id="laporanSampai" class="si2"></div>
-        <div class="flex gap-2">
-          <button class="bp flex-1 justify-center" onclick="applyLaporanFilter()"><i class="fa-solid fa-magnifying-glass"></i> Tampilkan</button>
-          <button class="bo" onclick="resetLaporanFilter()"><i class="fa-solid fa-rotate-left"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-4">
-      <div class="laporan-stat-card" style="border-top-color:#3b82f6"><div class="laporan-stat-num" id="lapMenunggu" style="color:#3b82f6">0</div><div class="laporan-stat-label">Menunggu</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#10b981"><div class="laporan-stat-num" id="lapTerjadwal" style="color:#10b981">0</div><div class="laporan-stat-label">Terjadwal</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#f59e0b"><div class="laporan-stat-num" id="lapHdlain" style="color:#f59e0b">0</div><div class="laporan-stat-label">HD Lain</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#ef4444"><div class="laporan-stat-num" id="lapBatal" style="color:#ef4444">0</div><div class="laporan-stat-label">Batal</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#6b7280"><div class="laporan-stat-num" id="lapMeninggal" style="color:#6b7280">0</div><div class="laporan-stat-label">Meninggal</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#0891b2"><div class="laporan-stat-num" id="lapNorespon" style="color:#0891b2">0</div><div class="laporan-stat-label">No Respon</div></div>
-      <div class="laporan-stat-card" style="border-top-color:#7c3aed"><div class="laporan-stat-num" id="lapTotal" style="color:#7c3aed">0</div><div class="laporan-stat-label">Total</div></div>
-    </div>
-
-    <div class="card mb-4">
-      <div class="card-header">
-        <span>Diagram Batang Distribusi Status</span>
-        <button class="bo text-xs" onclick="saveChartAsImage('lapChart','laporan-status')"><i class="fa-solid fa-download"></i> Simpan</button>
-      </div>
-      <div class="p-4" style="height:350px"><canvas id="lapChart"></canvas></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">Detail Data Laporan</div>
-      <div style="overflow-x:auto;max-height:450px;overflow-y:auto">
-        <table class="dt">
-          <thead>
-            <tr><th>No</th><th>Tanggal</th><th>Nama</th><th>No RM</th><th>Status</th></tr>
-          </thead>
-          <tbody id="lapBody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</main>
-
 <script>
 var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
 var GID = '1588121083';
 var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
-var SHEET_USER = 'user'; 
 
 var allData = [];
 var currentFilter = 'menunggu';
 var currentUser = null;
-var chartInstance = null;
-var laporanData = [];
+var currentMode = 'admin';
 
 function $(id) { return document.getElementById(id); }
 function escHtml(s) { if (!s && s !== 0) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -529,7 +469,7 @@ function toast(msg, type) {
   el.className = 'tt ' + cls;
   el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + escHtml(msg) + '</span>';
   c.appendChild(el);
-  setTimeout(function() { el.classList.add('tt-x'); setTimeout(function() { el.remove(); }, 300); }, 3500);
+  setTimeout(function() { el.remove(); }, 3500);
 }
 
 function setConnState(dotId, labelId, state) {
@@ -608,7 +548,8 @@ function doUserLogin() { currentUser = { nama: 'Pasien', role: 'Pasien' }; enter
 function doLogout() {
   currentUser = null; localStorage.removeItem('sidaraja_user');
   $('loginOverlay').style.display = 'flex'; $('mainHeader').style.display = 'none';
-  $('slide1').style.display = 'none'; $('slide2').style.display = 'none'; $('slide3').style.display = 'none';
+  $('slide1').style.display = 'none'; $('slide2').style.display = 'none';
+  $('patientView').style.display = 'none';
 }
 
 function enterApp(mode) {
@@ -643,11 +584,10 @@ function updateProfileUI() {
 }
 
 function switchSlide(n) {
-  for (var i = 1; i <= 3; i++) {
+  for (var i = 1; i <= 2; i++) {
     $('tab' + i).classList.toggle('active', i === n);
     $('slide' + i).style.display = i === n ? 'block' : 'none';
   }
-  if (n === 3) renderLaporan();
 }
 
 function fetchSheetData() {
@@ -660,15 +600,14 @@ function fetchSheetData() {
     rows.forEach(function(row, idx) {
       var c = function(ci) { return row.c[ci] ? (row.c[ci].v !== null ? row.c[ci].v : '') : ''; };
       allData.push({
-        row: idx + 2, 
-        timestamp: parseGvizDate(c(0)), 
+        row: idx + 2,
+        timestamp: parseGvizDate(c(0)),
         nama: c(1), noRM: c(2), umur: c(4),
         hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
       });
     });
     setConnState('connDot', 'connLabel', 'ok');
     updateStatusCounts(); renderDashboard();
-    if ($('slide3').style.display === 'block') renderLaporan();
   }).catch(function(err) {
     setConnState('connDot', 'connLabel', 'fail');
     toast('Gagal memuat data: ' + err.message, 'error');
@@ -781,56 +720,6 @@ function sendWaMessage() {
   closeWaModal();
 }
 
-// ===== LAPORAN =====
-function applyLaporanFilter() { renderLaporan(); }
-function resetLaporanFilter() { $('laporanDari').value = ''; $('laporanSampai').value = ''; renderLaporan(); }
-
-function renderLaporan() {
-  var dari = $('laporanDari').value ? new Date($('laporanDari').value + 'T00:00:00') : null;
-  var sampai = $('laporanSampai').value ? new Date($('laporanSampai').value + 'T23:59:59') : null;
-
-  laporanData = allData.filter(function(d) {
-    if (!d.timestamp) return false; 
-    if (dari && d.timestamp < dari) return false;
-    if (sampai && d.timestamp > sampai) return false;
-    return true;
-  });
-  
-  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
-  laporanData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
-  
-  $('lapMenunggu').textContent = counts.menunggu; $('lapTerjadwal').textContent = counts.terjadwal;
-  $('lapHdlain').textContent = counts.hdlain; $('lapBatal').textContent = counts.batal;
-  $('lapMeninggal').textContent = counts.meninggal; $('lapNorespon').textContent = counts.norespon;
-  $('lapTotal').textContent = laporanData.length;
-  
-  var labels = ['Menunggu', 'Terjadwal', 'HD Lain', 'Batal', 'Meninggal', 'No Respon'];
-  var data = [counts.menunggu, counts.terjadwal, counts.hdlain, counts.batal, counts.meninggal, counts.norespon];
-  var colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#6b7280', '#0891b2'];
-  
-  if (chartInstance) chartInstance.destroy();
-  var ctx = $('lapChart'); if (!ctx) return;
-  chartInstance = new Chart(ctx, {
-    type: 'bar',
-    data: { labels: labels, datasets: [{ label: 'Jumlah', data: data, backgroundColor: colors, borderColor: colors, borderWidth: 1 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-  });
-  
-  var body = $('lapBody');
-  var html = '';
-  laporanData.forEach(function(d, i) {
-    var sk = getStatusKey(d.status);
-    var tgl = d.timestamp ? d.timestamp.toLocaleDateString('id-ID') : '-';
-    html += '<tr><td>' + (i+1) + '</td><td>' + escHtml(tgl) + '</td><td>' + escHtml(d.nama) + '</td><td>' + escHtml(d.noRM) + '</td><td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td></tr>';
-  });
-  body.innerHTML = html || '<tr><td colspan="5" style="text-align:center;padding:20px">Tidak ada data</td></tr>';
-}
-
-function saveChartAsImage(id, name) {
-  var canvas = $(id); if (!canvas) return;
-  var link = document.createElement('a'); link.download = name + '.png'; link.href = canvas.toDataURL('image/png'); link.click();
-}
-
 function cetakPrint() { $('printArea').innerHTML = $('dashboardPrintArea').innerHTML; window.print(); setTimeout(function() { $('printArea').innerHTML = ''; }, 500); }
 function kirimPDF() {
   html2pdf().set({ margin: 10, filename: 'SIDARAJA_Home.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' } })
@@ -846,33 +735,23 @@ function kirimWA() {
 function patientSearch() {
   var nama = $('pSearchNama').value.trim().toLowerCase();
   if (!nama) { toast('Masukkan nama pasien', 'info'); return; }
-  var results = allData.filter(function(d) { return d.nama.toLowerCase().includes(nama); });
+  var results = allData.filter(function(d) { return String(d.nama).toLowerCase().includes(nama); });
   var container = $('patientResults');
   if (results.length === 0) { container.innerHTML = '<div class="card p-4 text-center">Tidak ditemukan</div>'; return; }
   var html = '';
-  results.forEach(function(d) {
+  results.forEach(function(d, i) {
     var sk = getStatusKey(d.status);
-    var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
     html += '<div class="card p-4 mb-3">';
-    html += '<div style="font-weight:bold">' + escHtml(d.nama) + '</div>';
-    html += '<div style="font-size:12px;color:var(--text-muted)">No RM: ' + escHtml(d.noRM) + '</div>';
-    html += '<div style="margin-top:5px"><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
-    html += '<div style="margin-top:10px;display:flex;gap:5px">';
-    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien</button>';
-    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>';
-    html += '</div></div>';
+    html += '<div style="font-weight:bold;font-size:15px;color:var(--primary)">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
+    html += '<div style="font-size:12px;color:var(--text-muted);margin:4px 0">No RM: ' + escHtml(d.noRM) + '</div>';
+    html += '<div><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
+    html += '</div>';
   });
   container.innerHTML = html;
 }
 
-function init() {
-  checkAuth();
-  if (!navigator.onLine) setConnState('connDot', 'connLabel', 'fail');
-  window.addEventListener('online', refreshData);
-  window.addEventListener('offline', function() { setConnState('connDot', 'connLabel', 'fail'); });
-}
-
-document.addEventListener('DOMContentLoaded', init);
+// Init
+checkAuth();
 </script>
 </body>
 </html>

@@ -11,6 +11,7 @@
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Arial','Helvetica','sans-serif']}}}}</script>
 <style>
 :root {
+  /* ===== Palet Kayu Jati Tua (lebih gelap) ===== */
   --primary: #2b1608;
   --primary-light: #452612;
   --primary-accent: #7a4a22;
@@ -130,23 +131,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .bed-day span { font-size: 9px; display: block; color: var(--text-muted); font-weight: bold; text-transform: uppercase; }
 .bed-day b { font-size: 15px; color: var(--primary); }
 .bed-day b.empty { color: var(--text-muted); font-weight: normal; }
-
-/* ===== Tombol Share Sisa Bed ===== */
-.share-row { display:flex; gap:6px; margin-top:12px; padding-top:10px; border-top:1px solid #dcc9a8; }
-.btn-share { flex:1; padding:8px 0; font-size:15px; color:#fff; border:1px solid; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .15s; font-family:inherit; }
-.btn-share:hover { transform:translateY(1px); opacity:.92; }
-.btn-share-wa  { background:linear-gradient(to bottom,#25D366,#128C7E); border-color:#0a6b58; box-shadow:0 2px 0 #0a6b58; }
-.btn-share-tg  { background:linear-gradient(to bottom,#31b6e8,#1c88cc); border-color:#126b9c; box-shadow:0 2px 0 #126b9c; }
-.btn-share-li  { background:linear-gradient(to bottom,#2f8dd8,#0a66c2); border-color:#084d94; box-shadow:0 2px 0 #084d94; }
-.btn-share-pdf { background:linear-gradient(to bottom,#ef4444,#b91c1c); border-color:#7f1d1d; box-shadow:0 2px 0 #7f1d1d; }
-
-/* ===== Kartu Pendaftaran Pasien (Google Form) ===== */
-.daftar-card { display:flex; align-items:center; gap:14px; background:linear-gradient(to bottom,#34d399,#059669); border:1px solid #047857; border-bottom:5px solid #047857; padding:16px 18px; margin-bottom:20px; color:#fff; box-shadow:0 4px 0 #047857, 0 8px 14px rgba(0,0,0,.18); cursor:pointer; transition:all .2s; }
-.daftar-card:hover { transform:translateY(-3px); box-shadow:0 7px 0 #047857, 0 14px 20px rgba(0,0,0,.25); }
-.dc-icon { width:48px; height:48px; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.4); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-.dc-title { font-weight:bold; font-size:16px; text-shadow:1px 1px 2px rgba(0,0,0,.3); }
-.dc-desc { font-size:12px; opacity:.92; margin-top:2px; }
-.dc-arrow { margin-left:auto; font-size:16px; }
+.bed-edit-btn { margin-top: 10px; width: 100%; justify-content: center; }
 
 /* ===== Bagian Pengenalan ===== */
 .about-section { margin-bottom: 24px; }
@@ -180,7 +165,7 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .welcome-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .welcome-date { background: var(--secondary); border: 1px solid var(--border); padding: 8px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); }
 
-/* ===== Kartu Status ===== */
+/* ===== Kartu Status (ikon Font Awesome) ===== */
 .em-card { background: #fbf6ec; border: 1px solid var(--border); padding: 10px; text-align: center; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 120px; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 0 #96703f, 0 7px 12px rgba(0,0,0,0.13); }
 .em-card:hover { transform: translateY(-3px); box-shadow: 0 7px 0 #6d4c26, 0 12px 20px rgba(0,0,0,0.2); }
 .em-card.active { border: 2px solid var(--primary); background: #f0e2c6; box-shadow: 0 4px 0 var(--primary-accent), 0 7px 12px rgba(0,0,0,0.18); }
@@ -199,11 +184,8 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .mode-card.sel-admin { border: 2px solid var(--primary); background: #f0e2c6; }
 .mode-card.sel-user { border: 2px solid var(--green); background: #f0fdf4; }
 .mode-card .mc-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 18px; border: 1px solid var(--border); }
-.mode-card .mc-title { font-weight: bold; font-size: 13px; color: var(--primary); }
-.mode-card .mc-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 .auth-tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 1px solid var(--border); }
-.auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; font-family: inherit; }
-.auth-tab.active { color: var(--primary); border-bottom-color: var(--primary-accent); }
+.auth-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); background: none; }
 
 .si2 { width: 100%; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; color: var(--text); background: #fff; outline: none; font-family: inherit; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06); }
 .si2:focus { border-color: var(--primary-accent); box-shadow: 0 0 3px rgba(122,74,34,.35); }
@@ -216,6 +198,25 @@ body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: 
 .bg2:hover { transform: translateY(1px); box-shadow: 0 2px 0 #047857, 0 3px 4px rgba(0,0,0,0.2); }
 .bo { background: linear-gradient(to bottom, #ffffff, #e8dcc4); border-color: var(--border); color: var(--text); box-shadow: 0 3px 0 #96703f, 0 4px 6px rgba(0,0,0,0.12); }
 .bo:hover { transform: translateY(1px); box-shadow: 0 2px 0 #96703f, 0 3px 4px rgba(0,0,0,0.1); }
+
+/* ★★★ TAMBAHAN BARU: Tombol Khusus Google Form ★★★ */
+.btn-gform {
+  background: linear-gradient(to bottom, #4285F4, #1a73e8);
+  border: 1px solid #174ea6;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  line-height: 1.4;
+  box-shadow: 0 3px 0 #174ea6, 0 4px 6px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition: all 0.1s;
+}
+.btn-gform:hover { transform: translateY(1px); box-shadow: 0 2px 0 #174ea6, 0 3px 4px rgba(0,0,0,0.2); }
 
 .card { background: #fbf6ec; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,0.1); }
 .card-header { border-bottom: 3px solid #1a0d04; padding: 8px 15px; font-weight: bold; color: var(--cream); font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
@@ -242,13 +243,17 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
 .badge-meninggal { background: #f3f4f6; color: #374151; border-color: #d1d5db; }
 .badge-norespon { background: #cffafe; color: #155e75; border-color: #67e8f9; }
 .badge-other { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+.badge-hbsag-pos { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.badge-hbsag-neg { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
 
-.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; font-family: inherit; font-weight: bold; }
+.btn-wa { background: linear-gradient(to bottom, #25D366, #128C7E); color: #fff; padding: 4px 8px; font-size: 11px; margin-right: 4px; text-decoration: none; border: 1px solid #0a6b58; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 0 #0a6b58; }
 .btn-wa:hover { transform: translateY(1px); box-shadow: 0 1px 0 #0a6b58; }
 .btn-wa2 { background: linear-gradient(to bottom, #0ea5e9, #0284c7); border-color: #0369a1; box-shadow: 0 2px 0 #0369a1; }
 .btn-wa2:hover { box-shadow: 0 1px 0 #0369a1; }
 
 .instruction-box { background: #fffbe6; border: 1px solid #fcd34d; border-left: 4px solid var(--yellow); padding: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); }
+.instruction-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.instruction-num { width: 20px; height: 20px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; flex-shrink: 0; border: 1px solid #b45309; box-shadow: 0 2px 0 #b45309; }
 
 .conn-dot { width: 8px; height: 8px; display: inline-block; }
 .conn-ok { background: #10b981; }
@@ -326,6 +331,36 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       <div class="mt-3 flex items-center justify-center gap-2">
         <span class="conn-dot conn-load" id="connDotLogin"></span>
         <span class="text-xs font-bold" style="color:var(--text-muted)">sidarajav3.2</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL EDIT SISA BED ===== -->
+<div class="modal-overlay" id="bedEditModal" style="display:none" onclick="if(event.target===this)closeBedEdit()">
+  <div class="modal-box" style="max-width:480px">
+    <div class="modal-hdr">
+      <h3><i class="fa-solid fa-bed mr-2"></i>Edit Sisa Bed — <span id="bedEditRoomName"></span></h3>
+      <button class="modal-close" onclick="closeBedEdit()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-key mr-1"></i>Password Ruangan</label>
+        <input type="password" id="bedEditPass" class="si2" placeholder="Masukkan password ruangan">
+      </div>
+      <div class="err-box" id="bedEditError"><i class="fa-solid fa-circle-xmark"></i><span id="bedEditErrorMsg"></span></div>
+      <label class="form-label"><i class="fa-solid fa-calendar-week mr-1"></i>Sisa Bed Kosong per Hari</label>
+      <div class="grid grid-cols-3 gap-2">
+        <div><label class="form-label" style="font-size:10px">Senin</label><input type="number" min="0" id="bedIn_sen" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Selasa</label><input type="number" min="0" id="bedIn_sel" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Rabu</label><input type="number" min="0" id="bedIn_rab" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Kamis</label><input type="number" min="0" id="bedIn_kam" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Jumat</label><input type="number" min="0" id="bedIn_jum" class="si2" placeholder="0"></div>
+        <div><label class="form-label" style="font-size:10px">Sabtu</label><input type="number" min="0" id="bedIn_sab" class="si2" placeholder="0"></div>
+      </div>
+      <div class="flex gap-2 mt-4 justify-end">
+        <button class="bo" onclick="closeBedEdit()">Batal</button>
+        <button class="bg2" onclick="submitBedEdit()"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
       </div>
     </div>
   </div>
@@ -465,7 +500,7 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
     <!-- Kartu Ruangan HD -->
     <div class="room-strip">
 
-      <div class="room-card" id="roomCard_teukuumar">
+      <div class="room-card">
         <img src="teukuumar.png" alt="Ruangan HD Teuku Umar">
         <div class="rc-body">
           <div class="rc-name">HD Teuku Umar</div>
@@ -475,20 +510,20 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <li>2 mesin di ruang <strong>Airborne</strong></li>
             <li>28 mesin <strong>reguler</strong></li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
-          <div class="bed-grid" id="grid_ri_teukuumar"></div>
-          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
-          <div class="bed-grid" id="grid_rj_teukuumar"></div>
-          <div class="share-row">
-            <button class="btn-share btn-share-wa"  onclick="shareBedWA('teukuumar','HD Teuku Umar')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
-            <button class="btn-share btn-share-tg"  onclick="shareBedTG('teukuumar','HD Teuku Umar')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
-            <button class="btn-share btn-share-li"  onclick="shareBedLI('teukuumar','HD Teuku Umar')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
-            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('teukuumar','HD Teuku Umar')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_teukuumar_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_teukuumar_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_teukuumar_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_teukuumar_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_teukuumar_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_teukuumar_sab">–</b></div>
           </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('teukuumar')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
-      <div class="room-card" id="roomCard_malahayati">
+      <div class="room-card">
         <img src="malahayati.png" alt="Ruangan HD Malahayati">
         <div class="rc-body">
           <div class="rc-name">HD Malahayati</div>
@@ -496,20 +531,20 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <ul class="rc-detail">
             <li>29 mesin <strong>reguler</strong> semua</li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
-          <div class="bed-grid" id="grid_ri_malahayati"></div>
-          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
-          <div class="bed-grid" id="grid_rj_malahayati"></div>
-          <div class="share-row">
-            <button class="btn-share btn-share-wa"  onclick="shareBedWA('malahayati','HD Malahayati')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
-            <button class="btn-share btn-share-tg"  onclick="shareBedTG('malahayati','HD Malahayati')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
-            <button class="btn-share btn-share-li"  onclick="shareBedLI('malahayati','HD Malahayati')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
-            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('malahayati','HD Malahayati')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_malahayati_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_malahayati_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_malahayati_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_malahayati_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_malahayati_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_malahayati_sab">–</b></div>
           </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('malahayati')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
-      <div class="room-card" id="roomCard_cutnyakdien">
+      <div class="room-card">
         <img src="cutnyakdien.png" alt="Ruangan HD Cut Nyak Dien">
         <div class="rc-body">
           <div class="rc-name">HD Cut Nyak Dien</div>
@@ -518,16 +553,16 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <li>1 mesin khusus <strong>HDF</strong></li>
             <li>26 mesin <strong>reguler</strong></li>
           </ul>
-          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong — Slot Rawat Inap</div>
-          <div class="bed-grid" id="grid_ri_cutnyakdien"></div>
-          <div class="bed-label" style="margin-top:8px"><i class="fa-solid fa-user-clock mr-1"></i>Sisa Bed Kosong — Rawat Jalan</div>
-          <div class="bed-grid" id="grid_rj_cutnyakdien"></div>
-          <div class="share-row">
-            <button class="btn-share btn-share-wa"  onclick="shareBedWA('cutnyakdien','HD Cut Nyak Dien')"  title="Share WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
-            <button class="btn-share btn-share-tg"  onclick="shareBedTG('cutnyakdien','HD Cut Nyak Dien')"  title="Share Telegram"><i class="fa-brands fa-telegram"></i></button>
-            <button class="btn-share btn-share-li"  onclick="shareBedLI('cutnyakdien','HD Cut Nyak Dien')"  title="Share LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
-            <button class="btn-share btn-share-pdf" onclick="shareBedPDF('cutnyakdien','HD Cut Nyak Dien')" title="PDF View / Cetak / Simpan"><i class="fa-solid fa-file-pdf"></i></button>
+          <div class="bed-label"><i class="fa-solid fa-bed mr-1"></i>Sisa Bed Kosong</div>
+          <div class="bed-grid">
+            <div class="bed-day"><span>Sen</span><b id="bed_cutnyakdien_sen">–</b></div>
+            <div class="bed-day"><span>Sel</span><b id="bed_cutnyakdien_sel">–</b></div>
+            <div class="bed-day"><span>Rab</span><b id="bed_cutnyakdien_rab">–</b></div>
+            <div class="bed-day"><span>Kam</span><b id="bed_cutnyakdien_kam">–</b></div>
+            <div class="bed-day"><span>Jum</span><b id="bed_cutnyakdien_jum">–</b></div>
+            <div class="bed-day"><span>Sab</span><b id="bed_cutnyakdien_sab">–</b></div>
           </div>
+          <button class="bo bed-edit-btn" onclick="openBedEdit('cutnyakdien')"><i class="fa-solid fa-lock"></i> Edit Sisa Bed</button>
         </div>
       </div>
 
@@ -583,8 +618,8 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
           <div class="panduan-icon"><i class="fa-solid fa-bed"></i></div>
           <div>
             <div class="panduan-step">Langkah 2</div>
-            <div class="panduan-title">Pantau & Bagikan Sisa Bed Kosong di Home</div>
-            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Gunakan tombol <strong>Share (WhatsApp, Telegram, LinkedIn, PDF)</strong> di bawah tiap ruangan untuk membagikan informasi sisa bed.</div>
+            <div class="panduan-title">Pantau Sisa Bed Kosong di Home</div>
+            <div class="panduan-desc">Informasi kapasitas mesin dan sisa bed kosong per hari (Senin–Sabtu) tiap ruangan tampil di halaman Home. Klik <strong>Edit Sisa Bed</strong> dan masukkan password ruangan untuk memperbarui.</div>
           </div>
         </div>
         <div class="panduan-item">
@@ -593,14 +628,6 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <div class="panduan-step">Langkah 3</div>
             <div class="panduan-title">Buka Menu AKSI SIDARAJA</div>
             <div class="panduan-desc">Pantau kartu status antrian (Menunggu, Terjadwal, HD Lain, dll). Klik salah satu kartu untuk menampilkan rincian daftar pasien sesuai status tersebut.</div>
-          </div>
-        </div>
-        <div class="panduan-item">
-          <div class="panduan-icon" style="background:#f0fdf4;color:#047857"><i class="fa-solid fa-file-circle-plus"></i></div>
-          <div>
-            <div class="panduan-step">Pendaftaran Pasien Baru</div>
-            <div class="panduan-title">Daftar via Google Form</div>
-            <div class="panduan-desc">Buka halaman <strong>AKSI SIDARAJA</strong>, klik kartu <strong>Pendaftaran Pasien</strong>, lalu lengkapi data diri pada <strong>Google Form</strong> yang terbuka hingga menekan tombol <strong>Kirim</strong>. Data akan diverifikasi oleh petugas.</div>
           </div>
         </div>
         <div class="panduan-item">
@@ -619,6 +646,21 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
             <div class="panduan-desc">Buka menu <strong>Data Pasien</strong>, aktifkan <strong>Mode Edit</strong> pada pratinjau spreadsheet, lalu ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> sesuai hasil konfirmasi pasien.</div>
           </div>
         </div>
+
+        <!-- ★★★ TAMBAHAN BARU: Panduan Pendaftaran via Google Form (Slide 1) ★★★ -->
+        <div class="panduan-item" style="border:1px solid #93c5fd;box-shadow:0 3px 0 #93c5fd;background:#eff6ff">
+          <div class="panduan-icon" style="background:#dbeafe;color:#1a73e8"><i class="fa-brands fa-google"></i></div>
+          <div>
+            <div class="panduan-step">Pendaftaran Pasien Baru</div>
+            <div class="panduan-title" style="color:#1a73e8">Pendaftaran via Google Form</div>
+            <div class="panduan-desc">Calon pasien hemodialisis baru dapat mendaftar secara daring melalui Google Form. Buka menu <strong>AKSI SIDARAJA</strong>, klik tombol <strong>Pendaftaran via Google Form</strong>, lalu isi dan kirim formulir. Data pendaftaran akan masuk ke spreadsheet untuk diproses petugas agar masuk ke daftar antrian.</div>
+            <a class="btn-gform mt-2" href="https://docs.google.com/forms/d/e/1FAIpQLScKG2eU4ToALTu8-qsK4l6JBrYG6IET76OjaaEn-ZlP34pyng/viewform" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-google"></i> Buka Formulir Pendaftaran
+            </a>
+          </div>
+        </div>
+        <!-- ★★★ AKHIR TAMBAHAN: Panduan Google Form ★★★ -->
+
         <div class="panduan-item" style="border:1px solid #fca5a5;box-shadow:0 3px 0 #fca5a5;background:#fef2f2">
           <div class="panduan-icon" style="background:#fee2e2;color:#dc2626"><i class="fa-solid fa-users"></i></div>
           <div>
@@ -651,809 +693,581 @@ table.dt tbody tr:hover td { background: #e6d3ac; }
       </div>
     </div>
 
-    <!-- ===== KARTU PENDAFTARAN PASIEN (GOOGLE FORM) ===== -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScKG2eU4ToALTu8-qsK4l6JBrYG6IET76OjaaEn-ZlP34pyng/viewform"
-       target="_blank" rel="noopener" class="daftar-card" style="text-decoration:none">
-      <div class="dc-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
-      <div>
-        <div class="dc-title">Pendaftaran Pasien</div>
-        <div class="dc-desc">Klik untuk mengisi formulir pendaftaran pasien baru via Google Form</div>
-      </div>
-      <i class="fa-solid fa-arrow-up-right-from-square dc-arrow"></i>
-    </a>
-
     <div class="flex gap-2 mb-4 flex-wrap">
       <button class="bo" onclick="cetakPrint()"><i class="fa-solid fa-print"></i> Cetak</button>
       <button class="bp" onclick="kirimPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-      <button class="bg2" onclick="openMenungguWaModal()"><i class="fa-brands fa-whatsapp"></i> Hubungi Pasien Menunggu</button>
+      <button class="bg2" onclick="kirimWA()"><i class="fa-brands fa-whatsapp"></i> WA</button>
+
+      <!-- ★★★ TAMBAHAN BARU: Tombol Khusus Pendaftaran via Google Form (Slide 2) ★★★ -->
+      <a class="btn-gform" href="https://docs.google.com/forms/d/e/1FAIpQLScKG2eU4ToALTu8-qsK4l6JBrYG6IET76OjaaEn-ZlP34pyng/viewform" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-google"></i> Pendaftaran via Google Form
+      </a>
+      <!-- ★★★ AKHIR TAMBAHAN: Tombol Google Form ★★★ -->
     </div>
 
-    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-4" id="statusCards">
-      <div class="em-card active" id="card_semua" onclick="filterStatus('ALL')">
-        <div class="em-card-icon" style="background:#e8dcc4;color:#7a4a22;border-color:#96703f"><i class="fa-solid fa-users"></i></div>
-        <div class="em-card-num" id="num_all">0</div>
-        <div class="em-card-label">Semua Pasien</div>
+    <div id="dashboardPrintArea">
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-4" id="statusCards">
+        <div class="em-card active" onclick="clickStatusCard('menunggu')" data-key="menunggu">
+          <div class="em-card-icon" style="background:#dbeafe;color:#1e40af;border-color:#93c5fd"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div class="em-card-num" id="scMenunggu">0</div>
+          <div class="em-card-label">Menunggu</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('terjadwal')" data-key="terjadwal">
+          <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="em-card-num" id="scTerjadwal">0</div>
+          <div class="em-card-label">Terjadwal</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('hdlain')" data-key="hdlain">
+          <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-right-left"></i></div>
+          <div class="em-card-num" id="scHdlain">0</div>
+          <div class="em-card-label">HD Lain</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('batal')" data-key="batal">
+          <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-ban"></i></div>
+          <div class="em-card-num" id="scBatal">0</div>
+          <div class="em-card-label">Batal</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('meninggal')" data-key="meninggal">
+          <div class="em-card-icon" style="background:#e5e7eb;color:#374151;border-color:#9ca3af"><i class="fa-solid fa-heart-crack"></i></div>
+          <div class="em-card-num" id="scMeninggal">0</div>
+          <div class="em-card-label">Meninggal</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('norespon')" data-key="norespon">
+          <div class="em-card-icon" style="background:#cffafe;color:#155e75;border-color:#67e8f9"><i class="fa-solid fa-phone-slash"></i></div>
+          <div class="em-card-num" id="scNorespon">0</div>
+          <div class="em-card-label">No Respon</div>
+        </div>
+        <div class="em-card" onclick="clickStatusCard('all')" data-key="all">
+          <div class="em-card-icon" style="background:#f0e2c6;color:#7a4a22;border-color:#96703f"><i class="fa-solid fa-users"></i></div>
+          <div class="em-card-num" id="scTotal">0</div>
+          <div class="em-card-label">Total Pasien</div>
+        </div>
+        <div class="em-card" style="background:#f0fdf4" onclick="openMenungguWaModal()">
+          <div class="em-card-icon" style="background:#d1fae5;color:#047857;border-color:#6ee7b7"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="em-card-num" id="scWaMenunggu" style="color:#065f46">0</div>
+          <div class="em-card-label" style="color:#047857">Hubungi WA</div>
+        </div>
       </div>
-      <div class="em-card" id="card_menunggu" onclick="filterStatus('Menunggu')">
-        <div class="em-card-icon" style="background:#dbeafe;color:#1e40af;border-color:#93c5fd"><i class="fa-solid fa-hourglass-half"></i></div>
-        <div class="em-card-num" id="num_Menunggu">0</div>
-        <div class="em-card-label">Menunggu</div>
-      </div>
-      <div class="em-card" id="card_terjadwal" onclick="filterStatus('Terjadwal')">
-        <div class="em-card-icon" style="background:#d1fae5;color:#065f46;border-color:#6ee7b7"><i class="fa-solid fa-calendar-check"></i></div>
-        <div class="em-card-num" id="num_Terjadwal">0</div>
-        <div class="em-card-label">Terjadwal</div>
-      </div>
-      <div class="em-card" id="card_hdlain" onclick="filterStatus('HD Lain')">
-        <div class="em-card-icon" style="background:#fef3c7;color:#92400e;border-color:#fcd34d"><i class="fa-solid fa-hospital"></i></div>
-        <div class="em-card-num" id="num_HD Lain">0</div>
-        <div class="em-card-label">HD Lain</div>
-      </div>
-      <div class="em-card" id="card_batal" onclick="filterStatus('Batal')">
-        <div class="em-card-icon" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5"><i class="fa-solid fa-circle-xmark"></i></div>
-        <div class="em-card-num" id="num_Batal">0</div>
-        <div class="em-card-label">Batal</div>
-      </div>
-      <div class="em-card" id="card_norespon" onclick="filterStatus('No Respon')">
-        <div class="em-card-icon" style="background:#cffafe;color:#155e75;border-color:#67e8f9"><i class="fa-solid fa-phone-slash"></i></div>
-        <div class="em-card-num" id="num_No Respon">0</div>
-        <div class="em-card-label">No Respon</div>
+
+      <div class="card">
+        <div class="card-header">
+          <span>Daftar Pasien <span id="filterLabel" style="color:#e8cfa8">(Menunggu)</span></span>
+        </div>
+        <div style="overflow-x:auto;max-height:500px;overflow-y:auto">
+          <table class="dt">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>No RM</th>
+                <th>Umur</th>
+                <th>HbsAg</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th style="text-align:center">Kontak WA</th>
+              </tr>
+            </thead>
+            <tbody id="dashBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <h3><i class="fa-solid fa-list-check mr-2"></i><span id="tableTitle">Daftar Semua Pasien</span></h3>
-        <input type="text" id="searchNama" class="si2" style="max-width:220px" placeholder="Cari nama pasien..." oninput="renderTable()">
-      </div>
-      <div style="overflow-x:auto">
-        <table class="dt">
-          <thead>
-            <tr>
-              <th style="width:40px">No</th>
-              <th>Nama Pasien</th>
-              <th>No. HP (O)</th>
-              <th>WA Keluarga (P)</th>
-              <th>Ruangan</th>
-              <th>Hari</th>
-              <th>Status (Q)</th>
-              <th>Keterangan (R)</th>
-              <th style="width:70px">Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="tBody"></tbody>
-        </table>
-      </div>
-    </div>
-
   </div>
 </main>
 
 <!-- ===== SLIDE 3: DATA PASIEN ===== -->
-<main id="slide3" class="px-4 sm:px-8 pb-16" style="display:none">
-  <div class="max-w-7xl mx-auto mt-6">
-
+<main id="slide3" style="display:none" class="px-4 sm:px-8 pb-16">
+  <div class="max-w-6xl mx-auto mt-6">
     <div class="welcome-banner">
       <div>
-        <div class="welcome-title"><i class="fa-solid fa-database mr-2" style="color:#059669"></i>Data Pasien</div>
-        <div class="welcome-sub">Pratinjau & Pengelolaan Data Pasien Hemodialisis (Google Spreadsheet)</div>
+        <div class="welcome-title" style="color:var(--green)"><i class="fa-solid fa-database mr-2"></i>Master Data Pasien</div>
+        <div class="welcome-sub">Data pasien Instalasi Dialisis RSSA — Google Spreadsheet</div>
       </div>
-      <div class="flex gap-2 items-center flex-wrap">
-        <button class="bo" onclick="window.open(SHEET_OPEN_URL,'_blank')" title="Buka di Google Sheets"><i class="fa-solid fa-up-right-from-square"></i> Buka di Google Sheets</button>
-        <div class="mode-toggle">
-          <button class="on" id="btnModeView" onclick="setSheetMode('view')"><i class="fa-solid fa-eye"></i> Pratinjau</button>
-          <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header" style="background-image:none;background:linear-gradient(to bottom, #34d399, #059669);border-bottom:2px solid #047857">
+        <span><i class="fa-solid fa-file-excel mr-2"></i>Spreadsheet SIDARAJA</span>
+        <a href="https://docs.google.com/spreadsheets/d/1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA/edit?resourcekey=&gid=1588121083#gid=1588121083" target="_blank" class="bo" style="font-size:11px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tab Baru</a>
+      </div>
+      <div class="p-4">
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
+          <div class="mode-toggle">
+            <button id="btnModeRead" class="on" onclick="setSheetMode('read')"><i class="fa-solid fa-eye"></i> Mode Baca</button>
+            <button id="btnModeEdit" onclick="setSheetMode('edit')"><i class="fa-solid fa-pen-to-square"></i> Mode Edit</button>
+          </div>
+          <div class="flex gap-2 flex-wrap">
+            <button class="bo" onclick="reloadSheetFrame()"><i class="fa-solid fa-arrows-rotate"></i> Muat Ulang</button>
+            <button class="bp" onclick="refreshData()"><i class="fa-solid fa-bolt"></i> Sinkron ke AKSI SIDARAJA</button>
+          </div>
         </div>
+        <p class="mb-3" style="font-size:12px;color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i><strong>Mode Baca</strong>: pratinjau ringan untuk melihat data. <strong>Mode Edit</strong>: spreadsheet penuh — sel dapat diklik dan <strong>diedit langsung dari aplikasi ini</strong>.</p>
+        <iframe class="sheet-frame" id="sheetFrame" src="" loading="lazy" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-header"><h3><i class="fa-solid fa-table mr-2"></i>Data Pasien Hemodialisis — Google Spreadsheet</h3></div>
-      <div style="padding:10px">
-        <iframe class="sheet-frame" id="sheetFrame" src="" style="border:1px solid var(--border)" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="instruction-box">
+      <div class="flex items-center gap-3 mb-4 pb-2" style="border-bottom:1px solid #fcd34d">
+        <i class="fa-solid fa-bell" style="font-size:18px;color:#d97706"></i>
+        <h4 style="font-size:14px;font-weight:bold;color:#92400e;text-transform:uppercase">Petunjuk Update Status Pasien</h4>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-num">1</div>
+        <div style="font-size:12px;color:#78350f"><strong>Hubungi pasien</strong> melalui WhatsApp pada tombol WA di halaman <strong>AKSI SIDARAJA</strong>.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-num">2</div>
+        <div style="font-size:12px;color:#78350f">Klik <strong>Mode Edit</strong> di atas, lalu ubah <strong>kolom Q (Status)</strong> — pilih: MENUNGGU, TERJADWAL, HD LAIN, BATAL, MENINGGAL, NO RESPON.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-num">3</div>
+        <div style="font-size:12px;color:#78350f">Isi <strong>kolom R (Keterangan/Aksi)</strong> dengan informasi tindakan.</div>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-num">4</div>
+        <div style="font-size:12px;color:#78350f">Klik <strong>Sinkron ke AKSI SIDARAJA</strong> untuk melihat perubahan pada kartu status.</div>
       </div>
     </div>
-
-    <div class="instruction-box" id="sheetEditInfo" style="display:none">
-      <div class="flex items-start gap-3">
-        <i class="fa-solid fa-circle-info mt-1" style="color:#d97706"></i>
-        <div class="text-xs" style="line-height:1.7">
-          <strong>Mode Edit aktif.</strong> Ubah langsung kolom <strong>Q (Status)</strong> dan <strong>R (Keterangan)</strong> pada spreadsheet di atas.
-          Catatan: untuk dapat mengedit, Anda harus <strong>sudah login ke akun Google</strong> yang memiliki akses edit ke spreadsheet ini.
-          Setelah mengubah data, tekan tombol <strong>Refresh</strong> di pojok kanan atas agar tabel di menu AKSI SIDARAJA ikut ter-update.
-        </div>
-      </div>
-    </div>
-
   </div>
 </main>
 
 <script>
-/* ============================================================
-   KONFIGURASI — LINK ASLI (Google Apps Script & Spreadsheet)
-   ============================================================ */
-const API_URL = 'https://script.google.com/macros/s/AKfycbz1IWHom_-RWePiit_3Dfhq_bKXpbmp_GVdh-SQshmxl24HiK4OJihfiZaX8A_TLz8S/exec';
+var APP_VERSION = 'sidarajav3.2';
+var SHEET_ID = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
+var GID = '1588121083';
+var DATA_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?gid=' + GID + '&tqx=out:json';
+var SHEET_READ_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlembed?gid=' + GID + '&single=true';
+var SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + GID + '#gid=' + GID;
+var sheetMode = 'read';
 
-const SHEET_ID  = '1UbMj1gbz-wDIUlT64-nnHPa2xvGxlS_fEgnaEzcU1cA';
-const SHEET_GID = '1588121083';
-const SHEET_VIEW_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/htmlview?gid=' + SHEET_GID + '&single=true';
-const SHEET_EDIT_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + SHEET_GID + '&single=true&widget=true&headers=false';
-const SHEET_OPEN_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit#gid=' + SHEET_GID;
+var BED_API_URL = '';
+var ROOM_PASSWORDS = { teukuumar: 'apik', malahayati: 'bagus', cutnyakdien: 'cakep' };
+var ROOM_NAMES = { teukuumar: 'HD Teuku Umar', malahayati: 'HD Malahayati', cutnyakdien: 'HD Cut Nyak Dien' };
+var BED_DAYS = ['sen','sel','rab','kam','jum','sab'];
+var bedData = { teukuumar: {}, malahayati: {}, cutnyakdien: {} };
+var currentBedRoom = null;
 
-/* ============================================================
-   KONFIGURASI SISA BED KOSONG — UBAH NILAI DI SINI SAJA
-   JIKA ADA PERUBAHAN (ri = Slot Rawat Inap, rj = Rawat Jalan)
-   ============================================================ */
-const HARI = ['sen','sel','rab','kam','jum','sab'];
-const HARI_LABEL = {sen:'Sen',sel:'Sel',rab:'Rab',kam:'Kam',jum:'Jum',sab:'Sab'};
+var allData = [];
+var currentFilter = 'menunggu';
+var currentUser = null;
+var currentMode = 'admin';
 
-const SISA_BED = {
-  teukuumar: {
-    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },   // Slot Rawat Inap
-    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }    // Rawat Jalan
-  },
-  malahayati: {
-    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },
-    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }
-  },
-  cutnyakdien: {
-    ri: { sen:4, sel:4, rab:4, kam:4, jum:4, sab:4 },
-    rj: { sen:0, sel:0, rab:0, kam:0, jum:0, sab:0 }
-  }
-};
+function $(id) { return document.getElementById(id); }
+function escHtml(s) { if (!s && s !== 0) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-/* ===== STATE ===== */
-let currentData = [];
-let currentFilter = 'ALL';
-let loginMode = 'admin';
-let userRole = 'petugas';
-let currentUser = null;
-let waTarget = null;
-
-/* ===== TOAST ===== */
 function toast(msg, type) {
-  type = type || 'i';
-  const c = document.getElementById('toastC');
-  const el = document.createElement('div');
-  el.className = 'tt tt-' + (type === 'e' ? 'e' : type === 's' ? 's' : 'i');
-  el.innerHTML = '<i class="fa-solid ' + (type === 'e' ? 'fa-circle-xmark' : type === 's' ? 'fa-circle-check' : 'fa-circle-info') + '"></i><span>' + msg + '</span>';
+  var c = $('toastC');
+  var cls = type === 'error' ? 'tt-e' : type === 'info' ? 'tt-i' : 'tt-s';
+  var icon = type === 'error' ? 'fa-circle-xmark' : type === 'info' ? 'fa-circle-info' : 'fa-circle-check';
+  var el = document.createElement('div');
+  el.className = 'tt ' + cls;
+  el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + escHtml(msg) + '</span>';
   c.appendChild(el);
-  setTimeout(function(){ el.remove(); }, 3500);
+  setTimeout(function() { el.remove(); }, 3500);
 }
 
-/* ============================================================
-   FETCH & NORMALISASI DATA DARI GOOGLE APPS SCRIPT
-   ============================================================ */
-async function fetchJson(url) {
-  const r = await fetch(url, { method: 'GET', redirect: 'follow' });
-  const text = await r.text();
-  try { return JSON.parse(text); } catch(e) { throw new Error('Respon bukan JSON: ' + text.slice(0, 120)); }
-}
-
-function normKey(k) { return String(k).toLowerCase().replace(/[^a-z]/g, ''); }
-
-/* Normalisasi satu objek dengan berbagai kemungkinan nama kolom */
-function normalizeObj(o) {
-  const m = {};
-  Object.keys(o).forEach(function(k){ m[normKey(k)] = o[k]; });
-  const g = function(){
-    for (let i = 0; i < arguments.length; i++) {
-      const v = m[arguments[i]];
-      if (v !== undefined && v !== null && String(v).trim() !== '') return String(v).trim();
-    }
-    return '';
-  };
-  return {
-    nama:       g('nama','namapasien','name','pasien','namalengkap'),
-    hp:         g('hp','nohp','nohppasien','nomorhp','nomor','notelp','telp','telepon','hppasien','nohphereg'),
-    waKeluarga: g('wakeluarga','nomorwakeluarga','hpkeluarga','nokeluarga','nomorkeluarga','wahubkeluarga'),
-    ruangan:    g('ruangan','ruang','room','ruanghd'),
-    hari:       g('hari','jadwalhari','harid','harihd','shift','jadwal'),
-    status:     g('status','statusantrian','statuspasien'),
-    ket:        g('ket','keterangan','catatan','keteranganstatus')
-  };
-}
-
-const KNOWN_STATUS = ['menunggu','terjadwal','hd lain','hdlain','batal','meninggal','no respon','norespon'];
-const PHONE_RE = /^(\+?62|0)8\d{7,13}$/;
-const RUANGAN_RE = /teuku\s*umar|malahayati|cut\s*nyak\s*dien/i;
-const HARI_RE = /senin|selasa|rabu|kamis|jumat|jum'at|sabtu|minggu/i;
-
-/* Deteksi heuristik untuk baris array (tanpa header jelas) */
-function normalizeArrayRow(row) {
-  const out = { nama:'', hp:'', waKeluarga:'', ruangan:'', hari:'', status:'', ket:'' };
-  row.forEach(function(cRaw){
-    if (cRaw === null || cRaw === undefined) return;
-    const c = String(cRaw).trim();
-    if (!c) return;
-    const cl = c.toLowerCase();
-
-    if (!out.status && KNOWN_STATUS.indexOf(cl) !== -1) { out.status = c; return; }
-
-    const digits = c.replace(/[^0-9]/g, '');
-    if (PHONE_RE.test(c.replace(/[\s-]/g, '')) || (digits.length >= 10 && digits.length <= 15 && /^(\+?62|0)8/.test(c.replace(/[\s-]/g, '')))) {
-      if (!out.hp) { out.hp = c; return; }
-      if (!out.waKeluarga) { out.waKeluarga = c; return; }
-    }
-
-    if (RUANGAN_RE.test(c)) { if (!out.ruangan) { out.ruangan = c; return; } }
-    if (HARI_RE.test(c) && c.length <= 60) { if (!out.hari) { out.hari = c; return; } }
-
-    // Nama: teks huruf dominan, bukan tanggal
-    const isDate = /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/.test(c);
-    const letters = c.replace(/[^A-Za-z\s.'-]/g, '');
-    if (!isDate && !out.nama && c.length <= 60 && letters.length / c.length > 0.7 && /[A-Za-z]/.test(c) && !/^\d+$/.test(c)) {
-      out.nama = c; return;
-    }
-    if (!out.ket && c.length > 3) out.ket = c;
-  });
-  return out;
-}
-
-function normalizeApiData(json) {
-  let rows = null;
-  if (Array.isArray(json)) rows = json;
-  else if (json && typeof json === 'object') {
-    rows = json.data || json.rows || json.values || json.result || json.pasien || json.records || null;
-  }
-  if (!rows || !Array.isArray(rows) || rows.length === 0) return [];
-
-  // Bentuk 1: array of objects
-  if (rows[0] && typeof rows[0] === 'object' && !Array.isArray(rows[0])) {
-    return rows.map(normalizeObj).filter(function(p){ return p.nama || p.hp || p.status; });
-  }
-
-  // Bentuk 2: array of arrays — cek apakah baris pertama header
-  const first = rows[0] || [];
-  const headerish = first.some(function(c){
-    return typeof c === 'string' && /nama|status|hp|ruangan|hari|ket/i.test(c);
-  });
-
-  if (headerish) {
-    const headers = first.map(normKey);
-    const body = rows.slice(1);
-    return body.map(function(r){
-      const o = {};
-      headers.forEach(function(h, i){ if (h) o[h] = r[i]; });
-      return normalizeObj(o);
-    }).filter(function(p){ return p.nama || p.hp || p.status; });
-  }
-
-  // Bentuk 3: array of arrays tanpa header → deteksi heuristik
-  return rows.map(normalizeArrayRow).filter(function(p){ return p.nama || p.hp || p.status; });
-}
-
-/* ============================================================
-   LOGIN / AUTH (mencoba ke API, fallback lokal bila API tidak mendukung)
-   ============================================================ */
-function selectMode(mode) {
-  loginMode = mode;
-  document.getElementById('modeAdmin').className = 'mode-card' + (mode === 'admin' ? ' sel-admin' : '');
-  document.getElementById('modeUser').className  = 'mode-card' + (mode === 'user'  ? ' sel-user'  : '');
-  document.getElementById('adminSection').style.display = mode === 'admin' ? 'block' : 'none';
-  document.getElementById('userSection').style.display  = mode === 'user'  ? 'block' : 'none';
-}
-
-function switchAuthTab(tab) {
-  document.getElementById('authTabLogin').className = 'auth-tab' + (tab === 'login' ? ' active' : '');
-  document.getElementById('authTabRegister').className = 'auth-tab' + (tab === 'register' ? ' active' : '');
-  document.getElementById('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
-  document.getElementById('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
-}
-
-function showLoginError(msg) {
-  document.getElementById('loginErrorMsg').textContent = msg;
-  document.getElementById('loginError').className = 'err-box show';
-}
-
-async function doPetugasLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPass').value;
-  document.getElementById('loginError').className = 'err-box';
-  if (!email || !pass) { showLoginError('Email dan kata sandi wajib diisi.'); return; }
-  if (pass.length < 6) { showLoginError('Kata sandi minimal 6 karakter.'); return; }
-
-  const btn = document.getElementById('btnLogin');
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memeriksa...';
-  try {
-    // Coba autentikasi ke Apps Script (jika mendukung action=login)
-    const json = await fetchJson(API_URL + '?action=login&email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(pass));
-    if (json && json.success === false) {
-      showLoginError(json.message || 'Email atau kata sandi salah.');
-      btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk';
-      return;
-    }
-    const nama = (json && (json.nama || json.name)) || email.split('@')[0];
-    currentUser = { nama: nama, email: email };
-  } catch (e) {
-    // API tidak mendukung login / gagal → gunakan sesi lokal
-    currentUser = { nama: email.split('@')[0], email: email };
-  }
-  btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk';
-  userRole = 'petugas';
-  enterApp();
-}
-
-async function doPetugasRegister() {
-  const nama  = document.getElementById('regNama').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass  = document.getElementById('regPass').value;
-  document.getElementById('regError').className = 'err-box';
-  document.getElementById('regOk').className = 'ok-box';
-  if (!nama || !email || !pass) {
-    document.getElementById('regErrorMsg').textContent = 'Semua kolom wajib diisi.';
-    document.getElementById('regError').className = 'err-box show';
-    return;
-  }
-  if (pass.length < 6) {
-    document.getElementById('regErrorMsg').textContent = 'Kata sandi minimal 6 karakter.';
-    document.getElementById('regError').className = 'err-box show';
-    return;
-  }
-  const btn = document.getElementById('btnRegister');
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mendaftarkan...';
-  try {
-    const json = await fetchJson(API_URL + '?action=register&nama=' + encodeURIComponent(nama) + '&email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(pass));
-    if (json && json.success === false) {
-      document.getElementById('regErrorMsg').textContent = json.message || 'Pendaftaran gagal.';
-      document.getElementById('regError').className = 'err-box show';
-      btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Daftar';
-      return;
-    }
-  } catch (e) { /* API tidak mendukung register → lanjut lokal */ }
-  btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Daftar';
-  document.getElementById('regOkMsg').textContent = 'Pendaftaran berhasil! Silakan masuk dengan email Anda.';
-  document.getElementById('regOk').className = 'ok-box show';
-  setTimeout(function(){ switchAuthTab('login'); document.getElementById('loginEmail').value = email; }, 1500);
-}
-
-function doUserLogin() {
-  userRole = 'pasien';
-  currentUser = null;
-  enterApp();
-}
-
-function enterApp() {
-  document.getElementById('loginOverlay').style.display = 'none';
-  document.getElementById('mainHeader').style.display = 'block';
-
-  if (userRole === 'pasien') {
-    document.getElementById('patientView').style.display = 'block';
-    document.getElementById('slide1').style.display = 'none';
-    document.getElementById('slide2').style.display = 'none';
-    document.getElementById('slide3').style.display = 'none';
-    document.getElementById('hdrUserProfile').style.display = 'none';
-    document.getElementById('patientLogoutBtn').style.display = 'inline-flex';
-    document.getElementById('sbUserName').textContent = 'Pasien';
-    document.getElementById('sbUserRole').textContent = 'Mode Pasien';
-    document.getElementById('sbUserAvatar').textContent = 'P';
-  } else {
-    document.getElementById('patientView').style.display = 'none';
-    document.getElementById('patientLogoutBtn').style.display = 'none';
-    document.getElementById('hdrUserProfile').style.display = 'flex';
-    const inisial = currentUser ? currentUser.nama.charAt(0).toUpperCase() : '?';
-    document.getElementById('hdrUserAvatar').textContent = inisial;
-    document.getElementById('sbUserAvatar').textContent = inisial;
-    document.getElementById('hdrUserName').textContent = currentUser ? currentUser.nama : 'Petugas';
-    document.getElementById('sbUserName').textContent = currentUser ? currentUser.nama : 'Petugas';
-    document.getElementById('sbUserRole').textContent = 'Petugas';
-    switchSlide(1);
-  }
-  loadData();
-  renderSisaBed();
-  toast('Selamat datang di SIDARAJA!', 's');
-}
-
-function doLogout() {
-  currentUser = null;
-  userRole = 'petugas';
-  document.getElementById('loginOverlay').style.display = 'flex';
-  document.getElementById('mainHeader').style.display = 'none';
-  document.getElementById('patientView').style.display = 'none';
-  document.getElementById('slide1').style.display = 'none';
-  document.getElementById('slide2').style.display = 'none';
-  document.getElementById('slide3').style.display = 'none';
-  closeSidebar();
-  document.getElementById('loginPass').value = '';
-  toast('Anda telah keluar dari aplikasi.', 'i');
-}
-
-/* ============================================================
-   NAVIGASI SLIDE
-   ============================================================ */
-function switchSlide(n) {
-  for (let i = 1; i <= 3; i++) {
-    document.getElementById('slide' + i).style.display = (i === n) ? 'block' : 'none';
-    document.getElementById('tab' + i).className = 'topbar-menu-item' + (i === n ? ' active' : '');
-    document.getElementById('sbTab' + i).className = 'sidebar-menu-item' + (i === n ? ' active' : '');
-  }
-  closeSidebar();
-  if (n === 2) updateTodayDate();
-}
-
-function switchSlideMobile(n) { switchSlide(n); closeSidebar(); }
-function openSidebar() {
-  document.getElementById('mobileSidebar').classList.add('open');
-  document.getElementById('sidebarOverlay').classList.add('open');
-}
-function closeSidebar() {
-  document.getElementById('mobileSidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('open');
-}
-
-function updateTodayDate() {
-  const d = new Date();
-  document.getElementById('todayDate').textContent =
-    d.toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-}
-
-/* ============================================================
-   MEMUAT DATA DARI SERVER (TANPA DATA DEMO)
-   ============================================================ */
-function setConn(cls) {
-  ['connDot','sbConnDot','connDotLogin'].forEach(function(id){
-    const el = document.getElementById(id);
-    if (el) el.className = 'conn-dot ' + cls;
+function setConnState(state) {
+  var dotCls = 'conn-dot ' + (state === 'ok' ? 'conn-ok' : state === 'fail' ? 'conn-fail' : 'conn-load');
+  ['connDot', 'sbConnDot', 'connDotLogin'].forEach(function(id) {
+    var dot = $(id); if (dot) dot.className = dotCls;
   });
 }
 
-async function loadData() {
-  setConn('conn-load');
-  renderLoadingState();
-  const attempts = [
-    API_URL,
-    API_URL + '?action=getAll',
-    API_URL + '?action=data'
-  ];
-  let lastErr = null;
-  for (let i = 0; i < attempts.length; i++) {
-    try {
-      const json = await fetchJson(attempts[i]);
-      const parsed = normalizeApiData(json);
-      if (parsed.length > 0) {
-        currentData = parsed;
-        setConn('conn-ok');
-        afterDataLoad();
-        toast('Data berhasil dimuat dari server (' + parsed.length + ' pasien).', 's');
-        return;
-      }
-    } catch (e) { lastErr = e; }
-  }
-  currentData = [];
-  setConn('conn-fail');
-  afterDataLoad();
-  toast('Gagal memuat data dari server. Pastikan Web App Apps Script di-deploy dengan akses "Anyone" & spreadsheet dibagikan.', 'e');
-}
-
-function refreshData() {
-  const icon = document.getElementById('refreshIcon');
-  icon.classList.add('fa-spin');
-  loadData();
-  setTimeout(function(){ icon.classList.remove('fa-spin'); }, 1000);
-}
-
-function renderLoadingState() {
-  const tb = document.getElementById('tBody');
-  if (tb) tb.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text-muted)"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Memuat data dari server...</td></tr>';
-}
-
-function afterDataLoad() {
-  renderStatusCounts();
-  renderTable();
-  if (document.getElementById('menungguWaModal').style.display === 'flex') renderMenungguWaList();
-}
-
-/* ============================================================
-   SLIDE 2 — STATUS CARDS & TABEL
-   ============================================================ */
-function renderStatusCounts() {
-  const counts = { all: currentData.length };
-  ['Menunggu','Terjadwal','HD Lain','Batal','Meninggal','No Respon'].forEach(function(s){ counts[s] = 0; });
-  currentData.forEach(function(p){
-    const s = p.status || '';
-    if (counts.hasOwnProperty(s)) counts[s]++;
-  });
-  document.getElementById('num_all').textContent = counts.all;
-  ['Menunggu','Terjadwal','HD Lain','Batal','No Respon'].forEach(function(s){
-    const el = document.getElementById('num_' + s);
-    if (el) el.textContent = counts[s];
-  });
-}
-
-function statusBadge(s) {
-  const map = {
-    'Menunggu':'badge-menunggu','Terjadwal':'badge-terjadwal','HD Lain':'badge-hdlain',
-    'Batal':'badge-batal','Meninggal':'badge-meninggal','No Respon':'badge-norespon'
-  };
-  return '<span class="badge ' + (map[s] || 'badge-other') + '">' + (s || '-') + '</span>';
-}
-
-function filterStatus(s) {
-  currentFilter = s;
-  ['semua','menunggu','terjadwal','hdlain','batal','norespon'].forEach(function(id){
-    document.getElementById('card_' + id).classList.remove('active');
-  });
-  const map = { ALL:'semua', 'Menunggu':'menunggu', 'Terjadwal':'terjadwal', 'HD Lain':'hdlain', 'Batal':'batal', 'No Respon':'norespon' };
-  if (map[s]) document.getElementById('card_' + map[s]).classList.add('active');
-  renderTable();
-}
-
-function renderTable() {
-  const tb = document.getElementById('tBody');
-  if (!tb) return;
-  const q = (document.getElementById('searchNama').value || '').toLowerCase();
-  const rows = currentData.filter(function(p){
-    const okStatus = (currentFilter === 'ALL') || (p.status === currentFilter);
-    const okNama = !q || (p.nama || '').toLowerCase().indexOf(q) !== -1;
-    return okStatus && okNama;
-  });
-  document.getElementById('tableTitle').textContent =
-    'Daftar Pasien — ' + (currentFilter === 'ALL' ? 'Semua' : currentFilter) + ' (' + rows.length + ')';
-
-  if (rows.length === 0) {
-    tb.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--text-muted)">Tidak ada data.</td></tr>';
-    return;
-  }
-  tb.innerHTML = rows.map(function(p, i){
-    return '<tr>' +
-      '<td>' + (i + 1) + '</td>' +
-      '<td style="font-weight:bold">' + (p.nama || '-') + '</td>' +
-      '<td>' + (p.hp || '-') + '</td>' +
-      '<td>' + (p.waKeluarga || '-') + '</td>' +
-      '<td>' + (p.ruangan || '-') + '</td>' +
-      '<td>' + (p.hari || '-') + '</td>' +
-      '<td>' + statusBadge(p.status) + '</td>' +
-      '<td>' + (p.ket || '-') + '</td>' +
-      '<td><button class="btn-wa" onclick="openWaModal(' + currentData.indexOf(p) + ')" title="Kirim WhatsApp"><i class="fa-brands fa-whatsapp"></i></button></td>' +
-    '</tr>';
-  }).join('');
-}
-
-/* ============================================================
-   SLIDE 3 — SPREADSHEET (PRATINJAU / MODE EDIT)
-   ============================================================ */
-function setSheetMode(mode) {
-  document.getElementById('btnModeView').className = mode === 'view' ? 'on' : '';
-  document.getElementById('btnModeEdit').className = mode === 'edit' ? 'on' : '';
-  document.getElementById('sheetEditInfo').style.display = mode === 'edit' ? 'block' : 'none';
-  document.getElementById('sheetFrame').src = mode === 'edit' ? SHEET_EDIT_URL : SHEET_VIEW_URL;
-  toast(mode === 'edit' ? 'Mode Edit aktif — ubah langsung kolom Q & R.' : 'Mode Pratinjau aktif.', 'i');
-}
-
-/* ============================================================
-   MODAL WHATSAPP
-   ============================================================ */
-function openWaModal(idx) {
-  waTarget = currentData[idx];
-  if (!waTarget) return;
-  document.getElementById('waNama').value = waTarget.nama || '-';
-  document.getElementById('waNomor').value = waTarget.hp || '-';
-  document.getElementById('waRuangan').value = '';
-  document.getElementById('waModal').style.display = 'flex';
-  generateWaText();
-}
-
-function closeWaModal() { document.getElementById('waModal').style.display = 'none'; }
-
-function generateWaText() {
-  const ruangan = document.getElementById('waRuangan').value;
-  const nama = waTarget ? (waTarget.nama || 'Bapak/Ibu') : 'Bapak/Ibu';
-  let t = 'Selamat pagi/siang/sore, saya petugas Instalasi Dialisis RSSA.\n\n' +
-          'Dengan hormat,\nYth. ' + nama + ',\n\n';
-  if (ruangan) {
-    t += 'Bersama pesan ini kami sampaikan bahwa saat ini terdapat jadwal hemodialisis yang tersedia di:\n' +
-         '*Ruangan HD ' + ruangan + '*\n\n' +
-         'Apakah Bapak/Ibu bersedia mengikuti jadwal tersebut? Mohon konfirmasi melalui pesan ini.\n\n';
-  } else {
-    t += 'Kami ingin mengonfirmasi kesiapan jadwal hemodialisis Bapak/Ibu.\n\n';
-  }
-  t += 'Terima kasih atas perhatiannya.\n\nHormat kami,\nPetugas Instalasi Dialisis RSSA';
-  document.getElementById('waText').value = t;
-}
-
-function sendWaMessage() {
-  let nomor = document.getElementById('waNomor').value.replace(/[^0-9]/g, '');
-  const text = document.getElementById('waText').value;
-  if (!nomor) { toast('Nomor WhatsApp tidak tersedia.', 'e'); return; }
-  if (nomor.startsWith('0')) nomor = '62' + nomor.slice(1);
-  window.open('https://wa.me/' + nomor + '?text=' + encodeURIComponent(text), '_blank');
-  closeWaModal();
-  toast('WhatsApp dibuka di tab baru.', 's');
-}
-
-/* ===== MODAL MENUNGGU ===== */
-function openMenungguWaModal() {
-  renderMenungguWaList();
-  document.getElementById('menungguWaModal').style.display = 'flex';
-}
-function closeMenungguWaModal() { document.getElementById('menungguWaModal').style.display = 'none'; }
-
-function esc(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
-
-function renderMenungguWaList() {
-  const list = currentData.filter(function(p){ return p.status === 'Menunggu'; });
-  const el = document.getElementById('menungguWaList');
-  if (list.length === 0) {
-    el.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px">Tidak ada pasien berstatus Menunggu.</p>';
-    return;
-  }
-  el.innerHTML = list.map(function(p){
-    const hp = (p.hp || '').replace(/[^0-9]/g, '');
-    const wa = (p.waKeluarga || '').replace(/[^0-9]/g, '');
-    return '<div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);margin-bottom:8px;background:#fff">' +
-      '<div style="flex:1"><div style="font-weight:bold;font-size:13px">' + (p.nama || '-') + '</div>' +
-      '<div style="font-size:11px;color:var(--text-muted)">HP: ' + (p.hp || '-') + ' &middot; Keluarga: ' + (p.waKeluarga || '-') + '</div></div>' +
-      (hp ? '<button class="btn-wa" onclick="waDirect(\'' + hp + '\',\'' + esc(p.nama) + '\')"><i class="fa-brands fa-whatsapp"></i> Pasien</button>' : '') +
-      (wa ? '<button class="btn-wa btn-wa2" onclick="waDirect(\'' + wa + '\',\'' + esc(p.nama) + '\')"><i class="fa-brands fa-whatsapp"></i> Keluarga</button>' : '') +
-    '</div>';
-  }).join('');
-}
-
-function waDirect(nomor, nama) {
-  let n = nomor.replace(/[^0-9]/g, '');
-  if (n.startsWith('0')) n = '62' + n.slice(1);
-  const text = 'Selamat pagi/siang/sore, Yth. ' + nama + '. Kami petugas Instalasi Dialisis RSSA ingin mengonfirmasi kesiapan jadwal hemodialisis Bapak/Ibu. Mohon balas pesan ini. Terima kasih.';
-  window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(text), '_blank');
-}
-
-/* ============================================================
-   CETAK & PDF (SLIDE 2)
-   ============================================================ */
-function buildReportHTML() {
-  const rows = currentData.filter(function(p){
-    return (currentFilter === 'ALL') || (p.status === currentFilter);
-  });
-  let body = rows.map(function(p, i){
-    return '<tr><td>' + (i+1) + '</td><td>' + (p.nama||'-') + '</td><td>' + (p.hp||'-') + '</td><td>' + (p.ruangan||'-') + '</td><td>' + (p.hari||'-') + '</td><td>' + (p.status||'-') + '</td><td>' + (p.ket||'-') + '</td></tr>';
-  }).join('');
-  if (!body) body = '<tr><td colspan="7" style="text-align:center;padding:20px">Tidak ada data.</td></tr>';
-  return '<div style="font-family:Arial,Helvetica,sans-serif;padding:20px">' +
-    '<h2 style="text-align:center;color:#2b1608;margin:0 0 4px">SIDARAJA — Laporan Antrian Pasien Hemodialisis</h2>' +
-    '<p style="text-align:center;color:#7d6a4d;font-size:12px;margin:0 0 16px">Instalasi Dialisis RSSA &middot; ' +
-    new Date().toLocaleString('id-ID') + ' &middot; Filter: ' + (currentFilter === 'ALL' ? 'Semua' : currentFilter) + '</p>' +
-    '<table style="width:100%;border-collapse:collapse;font-size:11px">' +
-    '<thead><tr>' +
-    ['No','Nama','No. HP','Ruangan','Hari','Status','Keterangan'].map(function(h){
-      return '<th style="border:1px solid #2b1608;background:#452612;color:#f7e9d2;padding:6px;text-align:left">' + h + '</th>';
-    }).join('') +
-    '</tr></thead><tbody>' + body + '</tbody></table></div>';
-}
-
-function cetakPrint() {
-  document.getElementById('printArea').innerHTML = buildReportHTML();
-  window.print();
-}
-
-function kirimPDF() {
-  toast('Menyiapkan PDF...', 'i');
-  const wrap = document.createElement('div');
-  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;width:800px;background:#fff;';
-  wrap.innerHTML = buildReportHTML();
-  document.body.appendChild(wrap);
-  html2pdf().set({
-    margin: [10, 10],
-    filename: 'Laporan_Antrian_SIDARAJA.pdf',
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  }).from(wrap).save().then(function(){
-    wrap.remove();
-    toast('PDF berhasil disimpan.', 's');
-  }).catch(function(){
-    wrap.remove();
-    toast('Gagal membuat PDF.', 'e');
-  });
-}
-
-/* ============================================================
-   CEK ANTRIAN PASIEN (MODE PASIEN)
-   ============================================================ */
-function patientSearch() {
-  const q = (document.getElementById('pSearchNama').value || '').toLowerCase().trim();
-  const el = document.getElementById('patientResults');
-  if (!q) { el.innerHTML = '<div class="card"><div style="padding:20px;text-align:center;color:var(--text-muted)">Silakan ketik nama pasien terlebih dahulu.</div></div>'; return; }
-  const rows = currentData.filter(function(p){ return (p.nama || '').toLowerCase().indexOf(q) !== -1; });
-  if (rows.length === 0) {
-    el.innerHTML = '<div class="card"><div style="padding:20px;text-align:center;color:var(--text-muted)"><i class="fa-solid fa-magnifying-glass mr-2"></i>Data pasien tidak ditemukan.</div></div>';
-    return;
-  }
-  el.innerHTML = rows.map(function(p){
-    return '<div class="card mt-3"><div class="card-header"><h3><i class="fa-solid fa-user mr-2"></i>' + (p.nama || '-') + '</h3></div>' +
-      '<div style="padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px">' +
-      '<div><div class="form-label">Ruangan</div><div style="font-weight:bold">' + (p.ruangan || '-') + '</div></div>' +
-      '<div><div class="form-label">Hari HD</div><div style="font-weight:bold">' + (p.hari || '-') + '</div></div>' +
-      '<div><div class="form-label">Status Antrian</div>' + statusBadge(p.status) + '</div>' +
-      '<div><div class="form-label">Keterangan</div><div>' + (p.ket || '-') + '</div></div>' +
-    '</div></div>';
-  }).join('');
-}
-
-/* ============================================================
-   SISA BED — RENDER & SHARE
-   ============================================================ */
-function renderSisaBed() {
-  Object.keys(SISA_BED).forEach(function(key) {
-    ['ri','rj'].forEach(function(tipe) {
-      const el = document.getElementById('grid_' + tipe + '_' + key);
+/* ================= SISA BED KOSONG ================= */
+function renderBedData() {
+  Object.keys(bedData).forEach(function(room) {
+    BED_DAYS.forEach(function(day) {
+      var el = $('bed_' + room + '_' + day);
       if (!el) return;
-      el.innerHTML = HARI.map(function(h) {
-        const v = SISA_BED[key][tipe][h];
-        return '<div class="bed-day"><span>' + HARI_LABEL[h] + '</span><b class="' + (v === 0 ? 'empty' : '') + '">' + v + '</b></div>';
-      }).join('');
+      var v = bedData[room][day];
+      if (v === undefined || v === '' || v === null) {
+        el.textContent = '–'; el.classList.add('empty');
+      } else {
+        el.textContent = v; el.classList.remove('empty');
+      }
     });
   });
 }
 
-function bedText(key, nama) {
-  const d = SISA_BED[key];
-  const ri = HARI.map(function(h){ return HARI_LABEL[h] + ': ' + d.ri[h]; }).join('  |  ');
-  const rj = HARI.map(function(h){ return HARI_LABEL[h] + ': ' + d.rj[h]; }).join('  |  ');
-  return '*SISA BED KOSONG — ' + nama + '*\n' +
-         'Instalasi Dialisis RSSA (SIDARAJA)\n\n' +
-         '*Slot Rawat Inap (Senin–Sabtu):*\n' + ri + '\n\n' +
-         '*Rawat Jalan (Senin–Sabtu):*\n' + rj + '\n\n' +
-         'Update: ' + new Date().toLocaleString('id-ID');
+function loadBedData() {
+  var fallbackLocal = function() {
+    try {
+      var s = localStorage.getItem('sidaraja_bed');
+      if (s) bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, JSON.parse(s));
+    } catch(e) {}
+    renderBedData();
+  };
+  if (BED_API_URL) {
+    fetch(BED_API_URL).then(function(r) { return r.json(); }).then(function(d) {
+      bedData = Object.assign({teukuumar:{},malahayati:{},cutnyakdien:{}}, d);
+      renderBedData();
+    }).catch(fallbackLocal);
+  } else fallbackLocal();
 }
 
-function shareBedWA(key, nama) {
-  window.open('https://wa.me/?text=' + encodeURIComponent(bedText(key, nama)), '_blank');
-  toast('Share WhatsApp dibuka.', 's');
+function saveBedData() {
+  if (BED_API_URL) {
+    fetch(BED_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(bedData)
+    }).then(function() {
+      toast('Data sisa bed tersimpan online — terlihat semua user', 'success');
+    }).catch(function() {
+      localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
+      toast('Server online gagal — data disimpan lokal sementara', 'info');
+    });
+  } else {
+    localStorage.setItem('sidaraja_bed', JSON.stringify(bedData));
+    toast('Data sisa bed tersimpan di perangkat ini', 'success');
+  }
 }
 
-function shareBedTG(key, nama) {
-  window.open('https://t.me/share/url?url=' + encodeURIComponent(location.href) +
-              '&text=' + encodeURIComponent(bedText(key, nama)), '_blank');
-  toast('Share Telegram dibuka.', 's');
+function openBedEdit(room) {
+  currentBedRoom = room;
+  $('bedEditRoomName').textContent = ROOM_NAMES[room];
+  $('bedEditPass').value = '';
+  hideErr('bedEditError');
+  BED_DAYS.forEach(function(day) { $('bedIn_' + day).value = (bedData[room][day] !== undefined ? bedData[room][day] : ''); });
+  $('bedEditModal').style.display = 'flex';
+  setTimeout(function() { $('bedEditPass').focus(); }, 100);
 }
+function closeBedEdit() { $('bedEditModal').style.display = 'none'; }
 
-function shareBedLI(key, nama) {
-  window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(location.href), '_blank');
-  toast('Share LinkedIn dibuka.', 's');
-}
-
-function shareBedPDF(key, nama) {
-  toast('Menyiapkan PDF sisa bed...', 'i');
-  const card = document.getElementById('roomCard_' + key);
-  if (!card) { toast('Kartu ruangan tidak ditemukan.', 'e'); return; }
-  const wrap = document.createElement('div');
-  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;padding:24px;background:#ffffff;font-family:Arial,Helvetica,sans-serif;width:700px;';
-  wrap.innerHTML =
-    '<div style="text-align:center;border-bottom:3px solid #2b1608;padding-bottom:12px;margin-bottom:16px">' +
-      '<h2 style="color:#2b1608;margin:0">SIDARAJA — Sisa Bed Kosong</h2>' +
-      '<p style="margin:6px 0 0;color:#7d6a4d;font-size:12px">Instalasi Dialisis RSSA &middot; ' +
-      new Date().toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'}) + '</p>' +
-    '</div>';
-  const clone = card.cloneNode(true);
-  wrap.appendChild(clone);
-  document.body.appendChild(wrap);
-  html2pdf().set({
-    margin: [10, 10],
-    filename: 'SisaBed_' + nama.replace(/\s+/g, '_') + '.pdf',
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  }).from(wrap).outputPdf('bloburl').then(function(url) {
-    window.open(url, '_blank');   // PDF terbuka di tab baru → bisa dilihat, dicetak, atau disimpan
-    wrap.remove();
-    toast('PDF sisa bed dibuka di tab baru.', 's');
-  }).catch(function() {
-    wrap.remove();
-    toast('Gagal membuat PDF sisa bed.', 'e');
+function submitBedEdit() {
+  var pass = $('bedEditPass').value;
+  if (pass !== ROOM_PASSWORDS[currentBedRoom]) {
+    showErr('bedEditError', 'Password salah! Hubungi petugas ruangan ' + ROOM_NAMES[currentBedRoom] + '.');
+    return;
+  }
+  BED_DAYS.forEach(function(day) {
+    bedData[currentBedRoom][day] = $('bedIn_' + day).value.trim();
   });
+  saveBedData();
+  renderBedData();
+  closeBedEdit();
 }
-
-/* ============================================================
-   INIT
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', function() {
-  selectMode('admin');
-  switchAuthTab('login');
-  updateTodayDate();
-  document.getElementById('sheetFrame').src = SHEET_VIEW_URL;
-  document.getElementById('pSearchNama').addEventListener('keyup', function(e){
-    if (e.key === 'Enter') patientSearch();
-  });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && $('bedEditModal').style.display === 'flex') submitBedEdit();
 });
+
+/* ================= SIDEBAR ================= */
+function openSidebar() {
+  $('mobileSidebar').classList.add('open');
+  $('sidebarOverlay').classList.add('open');
+}
+function closeSidebar() {
+  $('mobileSidebar').classList.remove('open');
+  $('sidebarOverlay').classList.remove('open');
+}
+function switchSlideMobile(n) { closeSidebar(); switchSlide(n); }
+
+/* ================= SPREADSHEET MODE ================= */
+function setSheetMode(mode) {
+  sheetMode = mode;
+  $('btnModeRead').classList.toggle('on', mode === 'read');
+  $('btnModeEdit').classList.toggle('on', mode === 'edit');
+  $('sheetFrame').src = (mode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
+  toast(mode === 'edit' ? 'Mode Edit aktif — spreadsheet dapat diedit langsung' : 'Mode Baca aktif', 'info');
+}
+function reloadSheetFrame() {
+  $('sheetFrame').src = (sheetMode === 'edit' ? SHEET_EDIT_URL : SHEET_READ_URL + '&t=' + Date.now());
+  toast('Pratinjau spreadsheet dimuat ulang', 'info');
+}
+
+function parseGvizDate(val) {
+  if (!val) return null;
+  if (typeof val === 'string' && val.startsWith('Date(')) {
+    var m = val.match(/Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)/);
+    if (m) return new Date(+m[1], +m[2], +m[3], m[4]?+m[4]:0, m[5]?+m[5]:0, m[6]?+m[6]:0);
+  }
+  var d = new Date(val);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function getStatusKey(status) {
+  if (!status) return 'other';
+  var s = String(status).toUpperCase().trim();
+  s = s.replace(/\s+/g, ' ');
+  if (s.includes('MENINGGAL')) return 'meninggal';
+  if (s.includes('NO RESPON') || s.includes('NORESPON') || s.includes('NO RESPONS') || s.includes('TIDAK RESPON')) return 'norespon';
+  if (s.includes('BATAL')) return 'batal';
+  var hasHD = s.includes('HD') || s.includes('HEMODIALISIS') || s.includes('HEMODIALISA');
+  var hasLain = s.includes('LAIN');
+  if (hasHD && hasLain) return 'hdlain';
+  if (s.includes('HDLAIN')) return 'hdlain';
+  if (s.includes('RS LAIN') || s.includes('RUMAH SAKIT LAIN')) return 'hdlain';
+  if (s.includes('TERJADWAL')) return 'terjadwal';
+  if (s.includes('MENUNGGU')) return 'menunggu';
+  return 'other';
+}
+
+function renderHbsAgBadge(val) {
+  if (!val) return '<span style="color:var(--text-muted)">-</span>';
+  var v = String(val).toUpperCase().trim();
+  if (v.includes('POSITIF') || v === '+') return '<span class="badge badge-hbsag-pos">Positif</span>';
+  if (v.includes('NEGATIF') || v.includes('NON REAKTIF') || v === '-') return '<span class="badge badge-hbsag-neg">Negatif</span>';
+  return '<span class="badge badge-other">' + escHtml(val) + '</span>';
+}
+
+function formatPhone(p) {
+  if (!p) return '';
+  var s = String(p).replace(/[^0-9+]/g, '');
+  if (!s) return '';
+  return s.startsWith('0') ? '62' + s.substring(1) : s;
+}
+
+function selectMode(mode) {
+  currentMode = mode;
+  $('modeAdmin').className = 'mode-card' + (mode === 'admin' ? ' sel-admin' : '');
+  $('modeUser').className = 'mode-card' + (mode === 'user' ? ' sel-user' : '');
+  $('adminSection').style.display = mode === 'admin' ? 'block' : 'none';
+  $('userSection').style.display = mode === 'user' ? 'block' : 'none';
+}
+
+function switchAuthTab(tab) {
+  $('authTabLogin').className = 'auth-tab' + (tab === 'login' ? ' active' : '');
+  $('authTabRegister').className = 'auth-tab' + (tab === 'register' ? ' active' : '');
+  $('authLoginForm').style.display = tab === 'login' ? 'block' : 'none';
+  $('authRegisterForm').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function showErr(id, msg) { var e = $(id); if (e) { e.querySelector('span').textContent = msg; e.classList.add('show'); } }
+function hideErr(id) { var e = $(id); if (e) e.classList.remove('show'); }
+
+function doPetugasLogin() {
+  var email = $('loginEmail').value.trim(), pass = $('loginPass').value;
+  if (!email || !pass) { showErr('loginError', 'Email dan kata sandi wajib diisi.'); return; }
+  currentUser = { nama: email.split('@')[0], email: email, role: 'Petugas' };
+  localStorage.setItem('sidaraja_user', JSON.stringify(currentUser));
+  enterApp('admin');
+}
+
+function doPetugasRegister() { showErr('regError', 'Fitur daftar sedang maintenance. Hubungi admin.'); }
+function doUserLogin() { currentUser = { nama: 'Pasien', role: 'Pasien' }; enterApp('patient'); }
+
+function doLogout() {
+  closeSidebar();
+  currentUser = null; localStorage.removeItem('sidaraja_user');
+  $('loginOverlay').style.display = 'flex'; $('mainHeader').style.display = 'none';
+  $('slide1').style.display = 'none'; $('slide2').style.display = 'none'; $('slide3').style.display = 'none';
+  $('patientView').style.display = 'none';
+}
+
+function enterApp(mode) {
+  $('loginOverlay').style.display = 'none'; $('mainHeader').style.display = 'block';
+  if (mode === 'admin') {
+    $('slide1').style.display = 'block';
+    $('hdrUserProfile').style.display = 'flex'; $('patientLogoutBtn').style.display = 'none';
+    switchSlide(1); updateProfileUI();
+  } else {
+    $('patientView').style.display = 'block';
+    $('hdrUserProfile').style.display = 'none'; $('patientLogoutBtn').style.display = 'inline-flex';
+    updateProfileUI();
+  }
+  refreshData();
+}
+
+function checkAuth() {
+  var saved = localStorage.getItem('sidaraja_user');
+  if (saved) {
+    try { currentUser = JSON.parse(saved); if (currentUser && currentUser.role === 'Petugas') { selectMode('admin'); enterApp('admin'); } else { localStorage.removeItem('sidaraja_user'); } }
+    catch(e) { localStorage.removeItem('sidaraja_user'); }
+  }
+}
+
+function updateProfileUI() {
+  if (!currentUser) return;
+  var initial = currentUser.nama ? currentUser.nama.charAt(0).toUpperCase() : '?';
+  $('hdrUserAvatar').textContent = initial;
+  $('hdrUserName').textContent = currentUser.nama;
+  $('sbUserAvatar').textContent = initial;
+  $('sbUserName').textContent = currentUser.nama;
+  $('sbUserRole').textContent = currentUser.role || '';
+  var today = new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  $('todayDate').textContent = today;
+}
+
+function switchSlide(n) {
+  for (var i = 1; i <= 3; i++) {
+    var tab = $('tab' + i), sbTab = $('sbTab' + i);
+    if (tab) tab.classList.toggle('active', i === n);
+    if (sbTab) sbTab.classList.toggle('active', i === n);
+    $('slide' + i).style.display = i === n ? 'block' : 'none';
+  }
+  if (n === 3 && !$('sheetFrame').src) {
+    $('sheetFrame').src = SHEET_READ_URL;
+  }
+}
+
+function fetchSheetData() {
+  setConnState('load');
+  fetch(DATA_URL).then(function(r) { return r.text(); }).then(function(text) {
+    var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
+    if (!match) throw new Error('Format gviz tidak valid');
+    var json = JSON.parse(match[1]); var rows = json.table.rows || [];
+    allData = [];
+    rows.forEach(function(row, idx) {
+      var c = function(ci) { return row.c[ci] ? (row.c[ci].v !== null ? row.c[ci].v : '') : ''; };
+      allData.push({
+        row: idx + 2,
+        timestamp: parseGvizDate(c(0)),
+        nama: c(1), noRM: c(2), umur: c(4),
+        hbsAg: c(9), noHP: c(14), noHP2: c(15), status: c(16), keterangan: c(17)
+      });
+    });
+    setConnState('ok');
+    updateStatusCounts(); renderDashboard();
+  }).catch(function(err) {
+    setConnState('fail');
+    toast('Gagal memuat data: ' + err.message, 'error');
+  });
+}
+
+function refreshData() {
+  var icon = $('refreshIcon'); if (icon) icon.classList.add('fa-spin');
+  fetchSheetData(); loadBedData();
+  setTimeout(function() { if (icon) icon.classList.remove('fa-spin'); }, 2000);
+}
+
+function clickStatusCard(key) {
+  currentFilter = key;
+  document.querySelectorAll('#statusCards .em-card').forEach(function(c) {
+    if (c.getAttribute('data-key')) {
+      c.classList.toggle('active', c.getAttribute('data-key') === key);
+    }
+  });
+  var labelMap = { menunggu:'(Menunggu)', terjadwal:'(Terjadwal)', hdlain:'(HD Lain)', batal:'(Batal)', meninggal:'(Meninggal)', norespon:'(No Respon)', all:'(Semua Data)' };
+  $('filterLabel').textContent = labelMap[key] || '(Semua Data)';
+  renderDashboard();
+}
+
+function updateStatusCounts() {
+  var counts = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
+  allData.forEach(function(d) { var k = getStatusKey(d.status); if (counts.hasOwnProperty(k)) counts[k]++; });
+  $('scMenunggu').textContent = counts.menunggu; $('scTerjadwal').textContent = counts.terjadwal;
+  $('scHdlain').textContent = counts.hdlain; $('scBatal').textContent = counts.batal;
+  $('scMeninggal').textContent = counts.meninggal; $('scNorespon').textContent = counts.norespon;
+  $('scTotal').textContent = allData.length; $('scWaMenunggu').textContent = counts.menunggu;
+}
+
+function renderDashboard() {
+  var body = $('dashBody'); if (!body) return;
+  var filtered = allData.filter(function(d) { return currentFilter === 'all' || getStatusKey(d.status) === currentFilter; });
+  if (filtered.length === 0) { body.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:20px">Tidak ada data</td></tr>'; return; }
+  var html = '';
+  filtered.forEach(function(d, i) {
+    var sk = getStatusKey(d.status);
+    var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
+    html += '<tr>';
+    html += '<td>' + (i + 1) + '</td>';
+    html += '<td style="font-weight:bold">' + escHtml(d.nama) + '</td>';
+    html += '<td>' + escHtml(d.noRM) + '</td>';
+    html += '<td>' + escHtml(d.umur) + '</td>';
+    html += '<td>' + renderHbsAgBadge(d.hbsAg) + '</td>';
+    html += '<td>' + escHtml(d.keterangan) + '</td>';
+    html += '<td><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></td>';
+    html += '<td style="white-space:nowrap;text-align:center">';
+    if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa" title="WA Pasien (O)"><i class="fa-brands fa-whatsapp"></i></button>';
+    if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2" title="WA Keluarga (P)"><i class="fa-brands fa-whatsapp"></i></button>';
+    if (!wa1 && !wa2) html += '<span style="color:var(--text-muted)">-</span>';
+    html += '</td>';
+    html += '</tr>';
+  });
+  body.innerHTML = html;
+}
+
+function openMenungguWaModal() {
+  var list = allData.filter(function(d) { return getStatusKey(d.status) === 'menunggu'; });
+  var container = $('menungguWaList');
+  if (list.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:20px">Tidak ada pasien menunggu</div>';
+  } else {
+    var html = '';
+    list.forEach(function(d, i) {
+      var wa1 = formatPhone(d.noHP), wa2 = formatPhone(d.noHP2);
+      html += '<div style="background:#f0e6d0;border:1px solid #dcc9a8;padding:10px;margin-bottom:8px">';
+      html += '<div style="font-weight:bold;margin-bottom:5px">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
+      html += '<div style="display:flex;gap:5px;flex-wrap:wrap">';
+      if (wa1) html += '<button onclick="openWaModal(' + d.row + ', 1)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Pasien (O)</button>';
+      if (wa2) html += '<button onclick="openWaModal(' + d.row + ', 2)" class="btn-wa btn-wa2"><i class="fa-brands fa-whatsapp"></i> Keluarga (P)</button>';
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+  }
+  $('menungguWaModal').style.display = 'flex';
+}
+function closeMenungguWaModal() { $('menungguWaModal').style.display = 'none'; }
+
+function openWaModal(row, type) {
+  var d = allData.find(function(x) { return x.row == row; });
+  if (!d) return toast('Data tidak ditemukan', 'error');
+  var phone = type === 1 ? d.noHP : d.noHP2;
+  var wa = formatPhone(phone);
+  if (!wa) return toast('Nomor WhatsApp tidak tersedia', 'error');
+  $('waNama').value = d.nama;
+  $('waNomor').value = wa;
+  $('waRuangan').value = '';
+  generateWaText();
+  $('waModal').style.display = 'flex';
+}
+function closeWaModal() { $('waModal').style.display = 'none'; }
+
+function generateWaText() {
+  var nama = $('waNama').value;
+  var ruangan = $('waRuangan').value;
+  var text = "INSTALASI DIALISIS\nRSUD DR SAIFUL ANWAR\nPROV JAWA TIMUR\n\nSalam sehat kami sampaikan,\n\n";
+  if (ruangan) {
+    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menginformasikan bahwa saat ini di ruangan " + ruangan + " terdapat jadwal kosong untuk pelaksanaan Hemodialisis.\n\n";
+    text += "Apakah Bapak/Ibu " + nama + " bersedia untuk mengisi jadwal tersebut?\n\n";
+  } else {
+    text += "Kami dari tim penjadwalan Instalasi Dialisis RSUD Dr. Saiful Anwar ingin menghubungi Bapak/Ibu " + nama + " terkait jadwal Hemodialisis.\n\n";
+  }
+  text += "Mohon kesediaannya untuk memberikan konfirmasi balasan. Terima kasih atas perhatian dan kerja samanya.\n\nSalam hangat,\nTim Penjadwalan Instalasi Dialisis RSSA";
+  $('waText').value = text;
+}
+
+function sendWaMessage() {
+  var text = $('waText').value;
+  var wa = $('waNomor').value;
+  if (!text.trim()) return toast('Pesan tidak boleh kosong', 'error');
+  window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), '_blank');
+  closeWaModal();
+}
+
+function cetakPrint() { $('printArea').innerHTML = $('dashboardPrintArea').innerHTML; window.print(); setTimeout(function() { $('printArea').innerHTML = ''; }, 500); }
+function kirimPDF() {
+  html2pdf().set({ margin: 10, filename: 'AKSI_SIDARAJA.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' } })
+  .from($('dashboardPrintArea')).save().then(function() { toast('PDF berhasil diunduh', 'success'); });
+}
+function kirimWA() {
+  var c = { menunggu: 0, terjadwal: 0, hdlain: 0, batal: 0, meninggal: 0, norespon: 0 };
+  allData.forEach(function(d) { var k = getStatusKey(d.status); if (c.hasOwnProperty(k)) c[k]++; });
+  var text = "*AKSI SIDARAJA - Laporan*\nTotal: " + allData.length + "\nMenunggu: " + c.menunggu + "\nTerjadwal: " + c.terjadwal + "\nHD Lain: " + c.hdlain;
+  window.open("https://wa.me/?text=" + encodeURIComponent(text), '_blank');
+}
+
+function patientSearch() {
+  var nama = $('pSearchNama').value.trim().toLowerCase();
+  if (!nama) { toast('Masukkan nama pasien', 'info'); return; }
+  var results = allData.filter(function(d) { return String(d.nama).toLowerCase().includes(nama); });
+  var container = $('patientResults');
+  if (results.length === 0) { container.innerHTML = '<div class="card p-4 text-center">Tidak ditemukan</div>'; return; }
+  var html = '';
+  results.forEach(function(d, i) {
+    var sk = getStatusKey(d.status);
+    html += '<div class="card p-4 mb-3">';
+    html += '<div style="font-weight:bold;font-size:15px;color:var(--primary)">' + (i+1) + '. ' + escHtml(d.nama) + '</div>';
+    html += '<div style="font-size:12px;color:var(--text-muted);margin:4px 0">No RM: ' + escHtml(d.noRM) + '</div>';
+    html += '<div><span class="badge badge-' + sk + '">' + escHtml(d.status || '-') + '</span></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+// Init
+checkAuth();
+loadBedData();
 </script>
 </body>
 </html>
